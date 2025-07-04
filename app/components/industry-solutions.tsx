@@ -21,7 +21,7 @@ export function IndustrySolutions() {
   // AOS-EFFECT-END
 
   return (
-    
+
     // <section
     //   id="solutions"
     //   className="py-20 bg-gradient-to-br from-purple-50 to-pink-50 dark:from-purple-900/10 dark:to-pink-900/10 w-full"

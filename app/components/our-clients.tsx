@@ -1,6 +1,9 @@
 "use client"
 
 import Image from "next/image"
+import OwlCarousel from 'react-owl-carousel';
+import 'owl.carousel/dist/assets/owl.carousel.css';
+import 'owl.carousel/dist/assets/owl.theme.default.css';
 
 const clients = [
   {
@@ -60,11 +63,11 @@ export function OurClients() {
     <section className="mb-8 pt-5" id="our-clients">
       <div className="container">
         <div className="row">
-          <div className="col-lg-12 heading70 text-center" data-aos="fade-right">Our Clients</div>
+          <div className="col-lg-12 heading70 text-center mb-5" data-aos="fade-right">Our Clients</div>
         </div>
         <div className="row">
           <div className="col-lg-12">
-            <div className="clientlogo_box">
+            <OwlCarousel className='owl-theme' loop items={5} autoplay>
               {clients.map((client, index) => (
                 <div key={index} className="clientlogo_list">
                       <div className="">
@@ -72,7 +75,7 @@ export function OurClients() {
                       </div>
                 </div>
               ))}
-            </div>
+            </OwlCarousel>
           </div>
         </div>
       </div>

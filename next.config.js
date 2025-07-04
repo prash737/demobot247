@@ -1,4 +1,5 @@
 /** @type {import('next').NextConfig} */
+const webpack = require('webpack');
 const nextConfig = {
   eslint: {
     ignoreDuringBuilds: true,
@@ -10,6 +11,12 @@ const nextConfig = {
     unoptimized: true,
   },
   webpack: (config, { isServer }) => {
+    config.plugins.push(
+      new webpack.ProvidePlugin({
+        $: 'jquery',
+        jQuery: 'jquery',
+        'window.jQuery': 'jquery',
+      }));
     if (!isServer) {
       config.resolve.fallback = {
         ...config.resolve.fallback,
@@ -18,8 +25,8 @@ const nextConfig = {
         tls: false,
       }
     }
-    return config
+    return config;
   },
-}
+};
 
-export default nextConfig
+module.exports = nextConfig

@@ -255,7 +255,7 @@ body {
 /* --------------PURPLE-BOX-------------- */
 .keyfeatures_section {
   background-image: linear-gradient(to bottom, #2b2058, #42357d);
-  min-height: 360px;
+  min-height: 320px;
   clip-path: polygon(0 0, 100% 0, 100% 100%, 0 65%);
   position: relative;
   padding: 40px 0 0 0;
@@ -289,6 +289,7 @@ body {
 }
 .key_text{
   color: #fff;
+  font-size: 18px;
 }
 
 /* --------------PURPLE-BOX-------------- */

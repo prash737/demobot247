@@ -12,7 +12,7 @@ interface InternalHeroProps {
 
 export function InternalHero({ title, description, icon, className }: InternalHeroProps) {
   return (
-    
+
     <section className="relative justify-center overflow-hidden">
       <div className="absolute inset-0">
 

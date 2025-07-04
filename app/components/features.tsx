@@ -14,6 +14,11 @@ import {
 } from "lucide-react"
 import { Card, CardContent } from "@/components/ui/card"
 
+import React from 'react';
+import OwlCarousel from 'react-owl-carousel';
+import 'owl.carousel/dist/assets/owl.carousel.css';
+import 'owl.carousel/dist/assets/owl.theme.default.css';
+
 const features = [
   {
     icon: HelpCircle,
@@ -83,6 +88,35 @@ export function Features() {
       <div className="container">
         <div className="row">
           <div className="col-lg-12">
+            {/* <OwlCarousel className='owl-theme' loop items={2} nav autoplay>
+              <div className='item'>
+                <h4>1</h4>
+              </div>
+              <div className='item'>
+                <h4>2</h4>
+              </div>              
+            </OwlCarousel> */}
+          </div>
+        </div>
+        <div className="row">
+          <div className="col-lg-12">
+            <OwlCarousel className='owl-theme' loop items={5} autoplay>
+              {features.map((feature, index) => (
+                <div className="item">
+                  <div key={index} className="key_list">
+                    <div className="key_icon">
+                      <feature.icon className="w-12 h-12 text-blue-500 mb-4" />
+                    </div>
+                    <div className="key_text">{feature.title}</div>
+                    {/* <p className="text-gray-600 dark:text-gray-300">{feature.description}</p> */}
+                  </div>
+                </div>
+              ))}
+            </OwlCarousel>
+          </div>
+        </div>
+        {/* <div className="row">
+          <div className="col-lg-12">
             <div className="keyfeatures_inner">
               {features.map((feature, index) => (
                 <div key={index} className="key_list">
@@ -90,12 +124,11 @@ export function Features() {
                     <feature.icon className="w-12 h-12 text-blue-500 mb-4" />
                   </div>
                   <div className="key_text">{feature.title}</div>
-                  {/* <p className="text-gray-600 dark:text-gray-300">{feature.description}</p> */}
                 </div>
               ))}
             </div>
           </div>
-        </div>
+        </div> */}
       </div>
     </section>
     // <section id="features" className="py-20 bg-gray-50 dark:bg-gray-900 w-full">

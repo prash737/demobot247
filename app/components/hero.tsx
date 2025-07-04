@@ -7,6 +7,8 @@ import { Input } from "@/components/ui/input" // Import Input
 import { Loader2 } from "lucide-react" // Import Loader2 icon
 import { useRouter } from "next/navigation" // Import useRouter
 
+
+
 const words = ["Intelligence", "Efficiency", "Precision", "Innovation"]
 const gradients = [
   "from-blue-600 to-green-600",
@@ -110,7 +112,7 @@ export function Hero() {
             />
           ))}
         </div>
-        
+
       </div>
 
       {/* Content */}
