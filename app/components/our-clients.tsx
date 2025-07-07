@@ -1,9 +1,14 @@
 "use client";
 
 import Image from "next/image";
-import OwlCarousel from "react-owl-carousel";
+import dynamic from "next/dynamic";
+import { useState, useEffect } from "react";
 import "owl.carousel/dist/assets/owl.carousel.css";
 import "owl.carousel/dist/assets/owl.theme.default.css";
+
+const OwlCarousel = dynamic(() => import("react-owl-carousel"), {
+  ssr: false,
+});
 
 const clients = [
   {
@@ -38,12 +43,12 @@ const clients = [
   },
   {
     name: "Evonix",
-    logo: "public/images/evonix.png",
+    logo: "/images/evonix.png",
     alt: "Evonix Logo",
   },
   {
     name: "QuickKart",
-    logo: "public/images/quickart.png",
+    logo: "/images/quickart.png",
     alt: "QuickKart Logo",
   },
   {
@@ -53,7 +58,7 @@ const clients = [
   },
   {
     name: "Hyp Mobility",
-    logo: "https://replit.com/@evonix/demobot247#public/images/hyp-mobility.png",
+    logo: "/images/hyp-mobility.png",
     alt: "Hyp Mobility Logo",
   },
 ];
@@ -78,6 +83,33 @@ const options = {
 // OWL-Carousel-END
 
 export function OurClients() {
+  const [isClient, setIsClient] = useState(false);
+
+  useEffect(() => {
+    setIsClient(true);
+  }, []);
+
+  if (!isClient) {
+    return (
+      <section className="mb-5 pt-5" id="our-clients">
+        <div className="container">
+          <div className="row">
+            <div className="col-lg-12 heading70 text-center mb-5">
+              Our Clients
+            </div>
+          </div>
+          <div className="row">
+            <div className="col-lg-12">
+              <div className="flex justify-center items-center h-32">
+                <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-500"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    );
+  }
+
   return (
     <section className="mb-5 pt-5" id="our-clients">
       <div className="container">
@@ -96,12 +128,13 @@ export function OurClients() {
               autoplay
             >
               {clients.map((client, index) => (
-                <div key={index} className="clientlogo_list">
-                  <div className="clientlogo_list_inner">
+                <div key={`client-${index}`} className="clientlogo_list">
+                  <div className="clientlogo_list_inner relative">
                     <Image
                       src={client.logo || "/placeholder.svg"}
                       alt={client.alt}
                       fill
+                      style={{ objectFit: 'contain' }}
                     />
                   </div>
                 </div>
