@@ -38,12 +38,12 @@ const clients = [
   },
   {
     name: "Evonix",
-    logo: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Client%201.jpg-qGhjSFqpkZOsu4SpSQ3OTBh4uSMJUA.jpeg",
+    logo: "public/images/evonix.png",
     alt: "Evonix Logo",
   },
   {
     name: "QuickKart",
-    logo: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Client%203.jpg-LK7mmtOjwp93cdUw3znRgvNwP480KI.jpeg",
+    logo: "public/images/quickart.png",
     alt: "QuickKart Logo",
   },
   {
@@ -53,7 +53,7 @@ const clients = [
   },
   {
     name: "Hyp Mobility",
-    logo: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Client%202.jpg-MEkWjv90KVWIPmWXMexx6i9jRO1yIi.jpeg",
+    logo: "https://replit.com/@evonix/demobot247#public/images/hyp-mobility.png",
     alt: "Hyp Mobility Logo",
   },
 ];
