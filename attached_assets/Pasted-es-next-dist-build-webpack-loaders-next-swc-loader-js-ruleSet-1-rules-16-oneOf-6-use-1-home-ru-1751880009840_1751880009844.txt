@@ -1,0 +1,18 @@
+es/next/dist/build/webpack/loaders/next-swc-loader.js??ruleSet[1].rules[16].oneOf[6].use[1]!/home/runner/workspace/node_modules/react-owl-carousel/umd/OwlCarousel.js|ssr': No serializer registered for ProvidedDependency
+<w> while serializing webpack/lib/cache/PackFileCacheStrategy.PackContentItems -> webpack/lib/NormalModule -> Array { 16 items } -> ProvidedDependency
+ ✓ Compiled / in 7.4s (1058 modules)
+ GET / 500 in 8071ms
+ ⨯ ReferenceError: window is not defined
+    at __webpack_require__ (/home/runner/workspace/.next/server/webpack-runtime.js:33:43)
+    at eval (./app/components/features.tsx:21:76)
+    at (ssr)/./app/components/features.tsx (/home/runner/workspace/.next/server/app/page.js:259:1)
+    at __webpack_require__ (/home/runner/workspace/.next/server/webpack-runtime.js:33:43)
+    at eval (./app/page.tsx:8:82)
+    at (ssr)/./app/page.tsx (/home/runner/workspace/.next/server/app/page.js:402:1)
+    at Object.__webpack_require__ [as require] (/home/runner/workspace/.next/server/webpack-runtime.js:33:43)
+digest: "3938034335"
+ ✓ Compiled in 716ms (500 modules)
+ ⚠ Cross origin request detected from ffaf4985-0798-4be8-bbcb-8795591862ff-00-37uwt6dp1y64p.pike.replit.dev to /_next/* resource. In a future major version of Next.js, you will need to explicitly configure "allowedDevOrigins" in next.config to allow this.
+Read more: https://nextjs.org/docs/app/api-reference/config/next-config-js/allowedDevOrigins
+<w> [webpack.cache.PackFileCacheStrategy] Skipped not serializable cache item 'Compilation/modules|javascript/auto|/home/runner/workspace/node_modules/next/dist/build/webpack/loaders/next-flight-client-module-loader.js!/home/runner/workspace/node_modules/next/dist/build/webpack/loaders/next-swc-loader.js??ruleSet[1].rules[17].oneOf[5].use[1]!/home/runner/workspace/node_modules/react-owl-carousel/umd/OwlCarousel.js|app-pages-browser': No serializer registered for ProvidedDependency
+<w> while serializing webpack/lib/cache/PackFileCacheStrategy.PackContentItems -> webpack/lib/NormalModule -> Array { 16 items } -> ProvidedDependency

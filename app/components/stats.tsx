@@ -15,26 +15,32 @@ const stats = [
     value: "24/7",
     label: "Availability",
   },
-]
+];
 
 export function Stats() {
   return (
     <section className="system_section mb-5">
-      <div className="container">
+      <div className="container" style={{ position: "relative", zIndex: "5" }}>
         <div className="row">
-          <div className="col-lg-12 heading70 text-center mb-5" data-aos="fade-right">System Overview at a Glance</div>
+          <div className="col-lg-12 heading70 text-center mb-5">
+            System Overview at a Glance
+          </div>
         </div>
         <div className="row">
-            {stats.map((stat, index) => (
-              <div key={index} className="col-lg-3 text-center" data-aos="fade-up">
-                <div className="system_count">{stat.value}</div>
-                <div>{stat.label}</div>
-              </div>
-            ))}
+          {stats.map((stat, index) => (
+            <div key={index} className="col-lg-3 col-sm-6 mb-4 text-center">
+              <div className="system_count">{stat.value}</div>
+              <div>{stat.label}</div>
+            </div>
+          ))}
         </div>
       </div>
       <div className="system_globe">
-        <img src="/images/system_globe_img.png" className="img-fluid" alt="System globe background"></img>
+        <img
+          src="/images/system_globe_img.png"
+          className="img-fluid"
+          alt="System globe background"
+        ></img>
       </div>
     </section>
     // <section className="py-20 w-full">
@@ -49,5 +55,5 @@ export function Stats() {
     //     </div>
     //   </div>
     // </section>
-  )
+  );
 }
