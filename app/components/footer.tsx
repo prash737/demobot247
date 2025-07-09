@@ -180,7 +180,7 @@ export function Footer() {
         <div className="row">
           <div className="col-lg-1"></div>
           <div className="col-lg-10">
-            <div className="demobox" data-aos="fade-down">
+            <div className="demobox">
               <div className="demobox_img">
                 <img
                   src="/images/demo_icon.png"
@@ -222,19 +222,13 @@ export function Footer() {
           </div>
           <div className="col-lg-1"></div>
           <div className="col-lg-7">
-            <div className="footer_list mb-5" data-aos="fade-down">
+            <div className="footer_list footer_list1 mb-5" data-aos="fade-down">
               <div className="row">
                 <div className="col-lg-12">
                   <div className="footer_menu_heading mb-3 pb-2">Product</div>
                 </div>
                 <div className="col-lg-12 footer_menu">
-                  {[
-                    "features",
-                    "benefits",
-                    "implementation",
-                    "pricing",
-                    "docs",
-                  ].map((item) => (
+                  {["features", "benefits", "pricing", "docs"].map((item) => (
                     <div key={item}>
                       {item === "docs" ? (
                         <Link
@@ -256,7 +250,7 @@ export function Footer() {
                 </div>
               </div>
             </div>
-            <div className="footer_list mb-5" data-aos="fade-up">
+            <div className="footer_list footer_list2 mb-5" data-aos="fade-up">
               <div className="row">
                 <div className="col-lg-12">
                   <div className="footer_menu_heading mb-3 pb-2">Company</div>
@@ -277,7 +271,7 @@ export function Footer() {
                 </div>
               </div>
             </div>
-            <div className="footer_list mb-5" data-aos="fade-down">
+            <div className="footer_list footer_list3 mb-5" data-aos="fade-down">
               <div className="row">
                 <div className="col-lg-12">
                   <div className="footer_menu_heading mb-3 pb-2">Legal</div>

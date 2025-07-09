@@ -4,6 +4,7 @@ import { Features } from "@/app/components/features";
 import { Stats } from "@/app/components/stats";
 import { Implementation } from "@/app/components/implementation";
 import { Benefits } from "@/app/components/benefits";
+import { Keyfeatures } from "@/app/components/keyfeatures";
 import { OurClients } from "@/app/components/our-clients";
 import { Pricing } from "@/app/components/pricing";
 import { CTA } from "@/app/components/cta";
@@ -22,6 +23,7 @@ export default function Home() {
         <IndustrySolutions />
         <Implementation />
         <OurClients />
+        <Keyfeatures />
         <Benefits />
         <Stats /> {/* Moved here */}
         <Pricing />

@@ -220,9 +220,10 @@ body {
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
+  background-color: #43063b;
   min-height: 740px;
   color: #fff;
-  padding: 200px 0 0 0;
+  padding: 220px 0 0 0;
   line-height: normal;
   position: relative;
 }
@@ -257,6 +258,10 @@ body {
   font-family: DMSans;
   color: #fff;
   padding: 0 10px;
+}
+
+.main_nav_box button:hover {
+  background-color: transparent !important;
 }
 
 .main_nav_box button:hover {
@@ -534,8 +539,8 @@ body {
 
 /* -----------------ANALYTICS-SECTION-END-------------- */
 
-/* -----------------BENEFITS-SECTION-START-------------- */
-.benefits_section {
+/* -----------------KEYFEATURES-SECTION-START-------------- */
+.keyfetures_section {
   background-color: #01172f;
   background-image: url("/images/benefits_bg.png");
   background-repeat: repeat-y;
@@ -554,7 +559,7 @@ body {
 }
 
 .achieve_heading span {
-  background-color: #199648;
+  background-color: #57a776;
   padding: 6px 10px 16px 10px;
   border-radius: 10px;
   clip-path: polygon(100% 0, 100% 100%, 82% 75%, 0 75%, 0 0);
@@ -564,16 +569,16 @@ body {
   top: -5px;
 }
 
-.benefits_list {
+.keyfetures_list {
   margin: 0 0 100px 0;
   text-align: center;
 }
 
-.benefits_list:nth-of-type(2n) .row {
+.keyfetures_list:nth-of-type(2n) .row {
   flex-direction: row-reverse;
 }
 
-.benefits_icon {
+.keyfetures_icon {
   background-color: #199648;
   padding: 6px 10px 26px 10px;
   border-radius: 10px;
@@ -586,19 +591,19 @@ body {
   align-items: center;
 }
 
-.benefits_icon svg {
+.keyfetures_icon svg {
   margin: 0 auto;
   color: #fff;
   width: auto;
   height: 30px;
 }
 
-.benefits_head {
+.keyfetures_head {
   font-size: 31px;
   font-family: DMSerifDisplay-Regular;
 }
 
-.benefits_img {
+.keyfetures_img {
   background-color: #fff;
   width: 100%;
   min-height: 300px;
@@ -606,7 +611,7 @@ body {
   opacity: 0.2;
 }
 
-.benefits_content span {
+.keyfetures_content span {
   width: 100%;
   float: left;
   margin: 0 0 7px 0;
@@ -614,7 +619,7 @@ body {
   justify-content: center;
 }
 
-.benefits_content span::before {
+.keyfetures_content span::before {
   content: "";
   background-image: url("/images/benefits_tick.png");
   background-repeat: no-repeat;
@@ -624,6 +629,27 @@ body {
   height: 15px;
   position: relative;
   margin: 4px 10px 0 0px;
+}
+
+/* -----------------KEYFEATURES-SECTION-END-------------- */
+
+/* -----------------BENEFITS-SECTION-START-------------- */
+.benefits_list {
+  border: 1px solid #ebebeb;
+  padding: 30px;
+  border-radius: 20px;
+  box-shadow: 0 0 10px #e9e9e9;
+}
+
+.benefits_icon svg {
+  width: 50px;
+  height: 50px;
+  color: #ccc;
+}
+
+.benefits_heading {
+  font-weight: bold;
+  font-size: 18px;
 }
 
 /* -----------------BENEFITS-SECTION-END-------------- */
@@ -748,6 +774,7 @@ body {
   float: left;
   width: 100%;
   margin: -60px 0 100px 0;
+  position: relative;
 }
 
 .demobox_img {
@@ -1017,13 +1044,16 @@ body {
     margin-bottom: 3rem !important;
   }
 
-  /* -----------------BENEFITS-SECTION-START-------------- */
-  .benefits_list {
+  /* -----------------KEYFEATURES-SECTION-START-------------- */
+  .keyfetures_list {
     margin: 0 0 100px 0;
     text-align: left;
   }
 
-  /* -----------------BENEFITS-SECTION-END-------------- */
+  /* -----------------KEYFEATURES-SECTION-END-------------- */
+
+
+
 
   /* -----------------PRICING-SECTION-START-------------- */
   .pricing_box {
@@ -1045,6 +1075,14 @@ body {
 
   /* -----------------DEMOBOX-SECTION-END-------------- */
 
+
+
+  /* -----------------CONTACT-START-------------- */
+  .contact_info_list {
+    text-align: center;
+  }
+
+  /* -----------------CONTACT-END-------------- */
 
 }
 
@@ -1142,7 +1180,11 @@ body {
   }
 
   .banner_head1 {
-    font-size: 30px;
+    font-size: 25px;
+  }
+
+  .banner_section {
+    padding: 140px 0 0 0;
   }
 
   .banner_head2 {
@@ -1160,8 +1202,67 @@ body {
     min-height: inherit;
   }
 
+  .solution_list_inner:hover .solution_list_icon {
+    margin: 0 auto 20px;
+  }
+
   /* --------------SOLUTION-SECTION-END-------------- */
 
+  /* --------------OUR-CLIENT-START-------------- */
+  .clientlogo_list img {
+    max-width: 130px;
+  }
+
+  /* --------------OUR-CLIENT-END-------------- */
+
+
+  /* -----------------DEMOBOX-SECTION-START-------------- */
+  .demobox {
+    margin: -60px 0 50px 0;
+  }
+
+  .demobox_text {
+    font-size: 18px;
+    padding: 20px 0;
+  }
+
+  .demobox_text span {
+    font-size: 20px;
+  }
+
+  .demobox_btn {
+    padding: 9px 0;
+    width: 150px;
+    bottom: -30px;
+  }
+
+  /* -----------------DEMOBOX-SECTION-END-------------- */
+
+
+  /* -----------------FOOTER-SECTION-START-------------- */
+  .footer_box {
+    padding: 0 25px 50px 25px;
+    text-align: center;
+  }
+
+  .footer_list a::before {
+    display: none;
+  }
+
+  .footer_list a {
+    border-bottom: 1px dashed #203c68;
+    padding: 6px 0;
+  }
+
+  .footer_list {
+    width: 50%;
+  }
+
+  .footer_list3 {
+    width: 100%;
+  }
+
+  /* -----------------FOOTER-SECTION-END-------------- */
 
 
 }

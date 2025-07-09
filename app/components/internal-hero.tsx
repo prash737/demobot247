@@ -1,23 +1,26 @@
-"use client"
+"use client";
 
-import { cn } from "@/lib/utils"
-import type { ReactNode } from "react"
+import { cn } from "@/lib/utils";
+import type { ReactNode } from "react";
 
 interface InternalHeroProps {
-  title?: string // Made optional
-  description?: string // Made optional
-  icon?: ReactNode
-  className?: string
+  title?: string; // Made optional
+  description?: string; // Made optional
+  icon?: ReactNode;
+  className?: string;
 }
 
-export function InternalHero({ title, description, icon, className }: InternalHeroProps) {
+export function InternalHero({
+  title,
+  description,
+  icon,
+  className,
+}: InternalHeroProps) {
   return (
-
     <section className="relative justify-center overflow-hidden">
       <div className="absolute inset-0">
-
         {/* Floating Grid Dots */}
-        <div className="absolute inset-0">
+        {/* <div className="absolute inset-0">
           {[...Array(20)].map((_, i) => (
             <div
               key={i}
@@ -30,19 +33,15 @@ export function InternalHero({ title, description, icon, className }: InternalHe
               }}
             />
           ))}
-        </div>
-
-
+        </div> */}
       </div>
       <div className="solution_innerheading_box">
         <div className="relative z-10 container mx-auto flex flex-col items-center justify-center text-center">
           {/* {icon && <div className="mb-4 flex justify-center">{icon}</div>} */}
           {title && <h1 className="heading70">{title}</h1>}
-          {description && (
-            <p className="">{description}</p>
-          )}
+          {description && <p className="">{description}</p>}
         </div>
       </div>
     </section>
-  )
+  );
 }

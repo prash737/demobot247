@@ -1,17 +1,23 @@
-"use client" // Make this a client component to handle form submission
+"use client"; // Make this a client component to handle form submission
 
-import type React from "react"
+import type React from "react";
 
-import { useState } from "react"
-import { InternalHero } from "@/app/components/internal-hero"
-import { Footer } from "@/app/components/footer"
-import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
-import { Textarea } from "@/components/ui/textarea"
-import { MarketingPageWrapper } from "@/app/components/marketing-page-wrapper"
-import { useToast } from "@/components/ui/use-toast" // Import useToast
-import { Loader2 } from "lucide-react" // Import Loader2 for loading state
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
+import { useState } from "react";
+import { InternalHero } from "@/app/components/internal-hero";
+import { Footer } from "@/app/components/footer";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
+import { MarketingPageWrapper } from "@/app/components/marketing-page-wrapper";
+import { useToast } from "@/components/ui/use-toast"; // Import useToast
+import { Loader2 } from "lucide-react"; // Import Loader2 for loading state
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 
 const countryCodes = [
   { code: "+1", country: "USA/Canada", minLen: 10, maxLen: 10 },
@@ -82,7 +88,7 @@ const countryCodes = [
   { code: "+994", country: "Azerbaijan", minLen: 9, maxLen: 9 },
   { code: "+995", country: "Georgia", minLen: 9, maxLen: 9 },
   { code: "+998", country: "Uzbekistan", minLen: 9, maxLen: 9 },
-]
+];
 
 const allowedEmailDomains = new Set([
   "gmail.com",
@@ -137,128 +143,161 @@ const allowedEmailDomains = new Set([
   ".az",
   ".ge",
   ".uz",
-])
+]);
 
 // Validation functions (copied from signup page)
-function validateName(name: string, fieldName: string): { isValid: boolean; message: string } {
+function validateName(
+  name: string,
+  fieldName: string,
+): { isValid: boolean; message: string } {
   if (!name.trim()) {
-    return { isValid: false, message: `${fieldName} is required` }
+    return { isValid: false, message: `${fieldName} is required` };
   }
-  const nameRegex = /^[a-zA-Z\s]+$/
+  const nameRegex = /^[a-zA-Z\s]+$/;
   if (!nameRegex.test(name.trim())) {
-    return { isValid: false, message: `${fieldName} should only contain alphabetic characters` }
+    return {
+      isValid: false,
+      message: `${fieldName} should only contain alphabetic characters`,
+    };
   }
   if (name.trim().length < 2) {
-    return { isValid: false, message: `${fieldName} must be at least 2 characters long` }
+    return {
+      isValid: false,
+      message: `${fieldName} must be at least 2 characters long`,
+    };
   }
   if (name.trim().length > 50) {
-    return { isValid: false, message: `${fieldName} must be less than 50 characters` }
+    return {
+      isValid: false,
+      message: `${fieldName} must be less than 50 characters`,
+    };
   }
-  return { isValid: true, message: "" }
+  return { isValid: true, message: "" };
 }
 
-function validatePhoneNumber(number: string, code: string): { isValid: boolean; message: string } {
+function validatePhoneNumber(
+  number: string,
+  code: string,
+): { isValid: boolean; message: string } {
   if (!number.trim()) {
-    return { isValid: false, message: "Phone number is required" }
+    return { isValid: false, message: "Phone number is required" };
   }
-  const selectedCountry = countryCodes.find((c) => c.code === code)
+  const selectedCountry = countryCodes.find((c) => c.code === code);
   if (!selectedCountry) {
-    return { isValid: false, message: "Invalid country code selected" }
+    return { isValid: false, message: "Invalid country code selected" };
   }
-  const cleanedNumber = number.replace(/\D/g, "")
-  if (cleanedNumber.length < selectedCountry.minLen || cleanedNumber.length > selectedCountry.maxLen) {
+  const cleanedNumber = number.replace(/\D/g, "");
+  if (
+    cleanedNumber.length < selectedCountry.minLen ||
+    cleanedNumber.length > selectedCountry.maxLen
+  ) {
     return {
       isValid: false,
       message: `Phone number must be between ${selectedCountry.minLen} and ${selectedCountry.maxLen} digits for ${selectedCountry.country}`,
-    }
+    };
   }
-  return { isValid: true, message: "" }
+  return { isValid: true, message: "" };
 }
 
 function validateEmail(email: string): { isValid: boolean; message: string } {
   if (!email.trim()) {
-    return { isValid: false, message: "Email is required" }
+    return { isValid: false, message: "Email is required" };
   }
   const emailRegex =
-    /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)+$/
+    /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)+$/;
   if (!emailRegex.test(email.trim())) {
-    return { isValid: false, message: "Please enter a valid email address (e.g., user@example.com)" }
+    return {
+      isValid: false,
+      message: "Please enter a valid email address (e.g., user@example.com)",
+    };
   }
   if (email.trim().length > 320) {
-    return { isValid: false, message: "Email address is too long" }
+    return { isValid: false, message: "Email address is too long" };
   }
-  const domainPart = email.split("@")[1]?.toLowerCase()
+  const domainPart = email.split("@")[1]?.toLowerCase();
   if (!domainPart) {
-    return { isValid: false, message: "Email address is missing a domain part." }
+    return {
+      isValid: false,
+      message: "Email address is missing a domain part.",
+    };
   }
   if (allowedEmailDomains.has(domainPart)) {
-    return { isValid: true, message: "" }
+    return { isValid: true, message: "" };
   }
-  let domainAllowed = false
+  let domainAllowed = false;
   for (const allowedSuffix of allowedEmailDomains) {
     if (allowedSuffix.startsWith(".")) {
       if (domainPart.endsWith(allowedSuffix)) {
-        domainAllowed = true
-        break
+        domainAllowed = true;
+        break;
       }
     }
   }
   if (!domainAllowed) {
-    return { isValid: false, message: "Email domain is not allowed. Please use a recognized domain." }
+    return {
+      isValid: false,
+      message: "Email domain is not allowed. Please use a recognized domain.",
+    };
   }
-  return { isValid: true, message: "" }
+  return { isValid: true, message: "" };
 }
 
 export default function ContactPage() {
-  const [name, setName] = useState("")
-  const [email, setEmail] = useState("")
-  const [phoneNumber, setPhoneNumber] = useState("")
-  const [countryCode, setCountryCode] = useState("+91") // Default to +91 (India)
-  const [message, setMessage] = useState("")
-  const [isSubmitting, setIsSubmitting] = useState(false)
-  const { toast } = useToast() // Initialize useToast
-  const [submissionMessage, setSubmissionMessage] = useState<{ type: "success" | "error"; text: string } | null>(null)
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [phoneNumber, setPhoneNumber] = useState("");
+  const [countryCode, setCountryCode] = useState("+91"); // Default to +91 (India)
+  const [message, setMessage] = useState("");
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const { toast } = useToast(); // Initialize useToast
+  const [submissionMessage, setSubmissionMessage] = useState<{
+    type: "success" | "error";
+    text: string;
+  } | null>(null);
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault()
-    setSubmissionMessage(null)
-    setIsSubmitting(true)
+    e.preventDefault();
+    setSubmissionMessage(null);
+    setIsSubmitting(true);
 
     // Validate Name
-    const nameValidation = validateName(name, "Name")
+    const nameValidation = validateName(name, "Name");
     if (!nameValidation.isValid) {
       toast({
         title: "Validation Error",
         description: nameValidation.message,
         variant: "destructive",
-      })
-      setIsSubmitting(false)
-      return
+      });
+      setIsSubmitting(false);
+      return;
     }
 
     // Validate Email
-    const emailValidation = validateEmail(email)
+    const emailValidation = validateEmail(email);
     if (!emailValidation.isValid) {
       toast({
         title: "Validation Error",
         description: emailValidation.message,
         variant: "destructive",
-      })
-      setIsSubmitting(false)
-      return
+      });
+      setIsSubmitting(false);
+      return;
     }
 
     // Validate Phone Number (if provided, otherwise it's optional)
     if (phoneNumber.trim()) {
-      const phoneNumberValidation = validatePhoneNumber(phoneNumber, countryCode)
+      const phoneNumberValidation = validatePhoneNumber(
+        phoneNumber,
+        countryCode,
+      );
       if (!phoneNumberValidation.isValid) {
         toast({
           title: "Validation Error",
           description: phoneNumberValidation.message,
           variant: "destructive",
-        })
-        setIsSubmitting(false)
-        return
+        });
+        setIsSubmitting(false);
+        return;
       }
     }
 
@@ -267,19 +306,20 @@ export default function ContactPage() {
         title: "Validation Error",
         description: "Country code is required.",
         variant: "destructive",
-      })
-      setIsSubmitting(false)
-      return
+      });
+      setIsSubmitting(false);
+      return;
     }
 
     if (!message.trim()) {
       toast({
         title: "Validation Error",
-        description: "Message cannot be empty and must contain at least one letter.",
+        description:
+          "Message cannot be empty and must contain at least one letter.",
         variant: "destructive",
-      })
-      setIsSubmitting(false)
-      return
+      });
+      setIsSubmitting(false);
+      return;
     }
 
     try {
@@ -289,121 +329,73 @@ export default function ContactPage() {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({ name, email, phoneNumber, message }),
-      })
+      });
 
       if (!response.ok) {
-        const errorData = await response.json()
-        throw new Error(errorData.message || "Failed to send message.")
+        const errorData = await response.json();
+        throw new Error(errorData.message || "Failed to send message.");
       }
 
       // Success toast notification
       toast({
         title: "Success!",
-        description: "Your message has been sent successfully. We will get back to you soon!",
-      })
+        description:
+          "Your message has been sent successfully. We will get back to you soon!",
+      });
 
       // Set persistent success message
       setSubmissionMessage({
         type: "success",
         text: "Your message has been sent successfully. We will get back to you soon!",
-      })
+      });
 
       // Clear form fields
-      setName("")
-      setEmail("")
-      setPhoneNumber("")
-      setMessage("")
-      setCountryCode("+91") // Reset country code to default
+      setName("");
+      setEmail("");
+      setPhoneNumber("");
+      setMessage("");
+      setCountryCode("+91"); // Reset country code to default
     } catch (error) {
-      console.error("Contact form submission error:", error)
+      console.error("Contact form submission error:", error);
       // Error toast notification
       toast({
         title: "Error",
-        description: error instanceof Error ? error.message : "An unexpected error occurred. Please try again.",
+        description:
+          error instanceof Error
+            ? error.message
+            : "An unexpected error occurred. Please try again.",
         variant: "destructive",
-      })
+      });
 
       // Set persistent error message
       setSubmissionMessage({
         type: "error",
-        text: error instanceof Error ? error.message : "An unexpected error occurred. Please try again.",
-      })
+        text:
+          error instanceof Error
+            ? error.message
+            : "An unexpected error occurred. Please try again.",
+      });
     } finally {
-      setIsSubmitting(false)
+      setIsSubmitting(false);
     }
-  }
+  };
 
   return (
     <>
-    
       <MarketingPageWrapper>
         <InternalHero title="Contact Us" />
         <section className="mb-8">
-          <div className="container">            
-            <div className="row" style={{alignItems:"center"}}>
-              <div className="col-lg-6">
-                <div className="row">
-                  <div className="col-lg-12 text-center mb-5" style={{ fontSize: "19px" }}>
-                    Have questions or want to learn more about <span style={{ fontSize: "19px", color: "#25d366", fontWeight: "bold" }}>Bot247.live?</span> <br></br>We're here to help. Fill out the form below, and we'll get back to you as soon as possible.
-                  </div>
-                </div>
-                <div className="row">
-                  <div className="col-lg-6 mb-3">
-                    <div className="contact_info_list">
-                      <div className="row" style={{alignItems:"center"}}>
-                        <div className="col-lg-3 text-center"><img src="/images/contact_email_icon.png" className="img-fluid" ></img></div>
-                        <div className="col-lg-9">
-                          <div className="row">
-                            <div className="col-lg-12">Email</div>
-                            <div className="col-lg-12"><a href="mailto:hello@bot247.live" className="info_link">hello@bot247.live</a></div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="col-lg-6 mb-3">
-                    <div className="contact_info_list">
-                      <div className="row" style={{ alignItems: "center" }}>
-                        <div className="col-lg-3 text-center"><img src="/images/contact_phone_icon.png" className="img-fluid" ></img></div>
-                        <div className="col-lg-9">
-                          <div className="row">
-                            <div className="col-lg-12">Phone</div>
-                            <div className="col-lg-12"><a href="tel:7620369733" className="info_link">+91 7620369733</a></div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="col-lg-12 mb-3">
-                    <div className="contact_info_list">
-                      <div className="row" style={{ alignItems: "center" }}>
-                        <div className="col-lg-2 text-center"><img src="/images/contact_address_icon.png" className="img-fluid" ></img></div>
-                        <div className="col-lg-10">
-                          <div className="row">
-                            <div className="col-lg-12">Address</div>
-                            <div className="col-lg-12 info_link">
-                              Akruti Avenues, 402-403, Datta Mandir Rd, Shankar Kalat Nagar, Wakad, Pune, Maharashtra 411057
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div className="row">
-                  <div className="col-lg-12"></div>
-                </div>
-                <div className="row">
-                  <div className="col-lg-12"></div>
-                </div>
-              </div>
+          <div className="container">
+            <div className="row" style={{ alignItems: "center" }}>
               <div className="col-lg-6">
                 <div className="contact_rightbox">
                   <form className="space-y-6" onSubmit={handleSubmit}>
                     <div className="row">
                       <div className="col-lg-6 mb-3">
                         <div className="row">
-                          <div className="col-lg-12 mb-1"><div className="label">Your Name</div></div>
+                          <div className="col-lg-12 mb-1">
+                            <div className="label">Your Name</div>
+                          </div>
                           <div className="col-lg-12">
                             <Input
                               type="text"
@@ -412,9 +404,9 @@ export default function ContactPage() {
                               required
                               value={name}
                               onChange={(e) => {
-                                const value = e.target.value
+                                const value = e.target.value;
                                 // Removed: const filteredValue = value.replace(/[^a-zA-Z]/g, "")
-                                setName(value) // Set the value directly
+                                setName(value); // Set the value directly
                               }}
                             />
                           </div>
@@ -422,7 +414,9 @@ export default function ContactPage() {
                       </div>
                       <div className="col-lg-6 mb-3">
                         <div className="row">
-                          <div className="col-lg-12 mb-1"><div className="label">Your Email ID</div></div>
+                          <div className="col-lg-12 mb-1">
+                            <div className="label">Your Email ID</div>
+                          </div>
                           <div className="col-lg-12">
                             <Input
                               type="email"
@@ -435,17 +429,25 @@ export default function ContactPage() {
                           </div>
                         </div>
                       </div>
-                      <div className="col-lg-6 mb-3">
+                      <div className="col-lg-6 col-sm-6 mb-3">
                         <div className="row">
-                          <div className="col-lg-12 mb-1"><div className="label">Country Code</div></div>
+                          <div className="col-lg-12 mb-1">
+                            <div className="label">Country Code</div>
+                          </div>
                           <div className="col-lg-12 countrycode_box">
-                            <Select value={countryCode} onValueChange={setCountryCode}>
+                            <Select
+                              value={countryCode}
+                              onValueChange={setCountryCode}
+                            >
                               <SelectTrigger>
                                 <SelectValue placeholder="Select country code" />
                               </SelectTrigger>
                               <SelectContent className="max-h-60 overflow-y-auto">
                                 {countryCodes.map((option) => (
-                                  <SelectItem key={option.code} value={option.code}>
+                                  <SelectItem
+                                    key={option.code}
+                                    value={option.code}
+                                  >
                                     {option.code} ({option.country})
                                   </SelectItem>
                                 ))}
@@ -454,9 +456,11 @@ export default function ContactPage() {
                           </div>
                         </div>
                       </div>
-                      <div className="col-lg-6 mb-3">
+                      <div className="col-lg-6 col-sm-6 mb-3">
                         <div className="row">
-                          <div className="col-lg-12 mb-1"><div className="label">Mobile Number</div></div>
+                          <div className="col-lg-12 mb-1">
+                            <div className="label">Mobile Number</div>
+                          </div>
                           <div className="col-lg-12">
                             <Input
                               type="tel"
@@ -465,13 +469,23 @@ export default function ContactPage() {
                               required
                               value={phoneNumber}
                               onChange={(e) => {
-                                const value = e.target.value
-                                const filteredValue = value.replace(/\D/g, "")
-                                const selectedCountry = countryCodes.find((c) => c.code === countryCode)
-                                if (selectedCountry && filteredValue.length > selectedCountry.maxLen) {
-                                  setPhoneNumber(filteredValue.slice(0, selectedCountry.maxLen))
+                                const value = e.target.value;
+                                const filteredValue = value.replace(/\D/g, "");
+                                const selectedCountry = countryCodes.find(
+                                  (c) => c.code === countryCode,
+                                );
+                                if (
+                                  selectedCountry &&
+                                  filteredValue.length > selectedCountry.maxLen
+                                ) {
+                                  setPhoneNumber(
+                                    filteredValue.slice(
+                                      0,
+                                      selectedCountry.maxLen,
+                                    ),
+                                  );
                                 } else {
-                                  setPhoneNumber(filteredValue)
+                                  setPhoneNumber(filteredValue);
                                 }
                               }}
                             />
@@ -480,7 +494,9 @@ export default function ContactPage() {
                       </div>
                       <div className="col-lg-12 mb-4">
                         <div className="row">
-                          <div className="col-lg-12 mb-1"><div className="label">Message</div></div>
+                          <div className="col-lg-12 mb-1">
+                            <div className="label">Message</div>
+                          </div>
                           <div className="col-lg-12">
                             <Textarea
                               id="message"
@@ -494,7 +510,11 @@ export default function ContactPage() {
                         </div>
                       </div>
                       <div className="col-lg-12">
-                        <Button type="submit" className="black_btn" disabled={isSubmitting}>
+                        <Button
+                          type="submit"
+                          className="black_btn"
+                          disabled={isSubmitting}
+                        >
                           {isSubmitting ? (
                             <>
                               <Loader2 className="mr-2 h-4 w-4 animate-spin" />
@@ -506,10 +526,11 @@ export default function ContactPage() {
                         </Button>
                         {submissionMessage && (
                           <div
-                            className={`mt-4 p-3 rounded-md text-center ${submissionMessage.type === "success"
+                            className={`mt-4 p-3 rounded-md text-center ${
+                              submissionMessage.type === "success"
                                 ? "bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200"
                                 : "bg-red-100 text-red-800 dark:bg-red-900 dark:text-red-200"
-                              }`}
+                            }`}
                           >
                             {submissionMessage.text}
                           </div>
@@ -520,6 +541,103 @@ export default function ContactPage() {
                       <div className="col-lg-12"></div>
                     </div>
                   </form>
+                </div>
+              </div>
+              <div className="col-lg-6">
+                <div className="row">
+                  <div
+                    className="col-lg-12 text-center mb-5"
+                    style={{ fontSize: "19px" }}
+                  >
+                    Have questions or want to learn more about{" "}
+                    <span
+                      style={{
+                        fontSize: "19px",
+                        color: "#25d366",
+                        fontWeight: "bold",
+                      }}
+                    >
+                      Bot247.live?
+                    </span>{" "}
+                    <br></br>We're here to help. Fill out the form below, and
+                    we'll get back to you as soon as possible.
+                  </div>
+                </div>
+                <div className="row">
+                  <div className="col-lg-6 col-sm-6 mb-3">
+                    <div className="contact_info_list">
+                      <div className="row" style={{ alignItems: "center" }}>
+                        <div className="col-lg-3 text-center">
+                          <img
+                            src="/images/contact_email_icon.png"
+                            className="img-fluid"
+                          ></img>
+                        </div>
+                        <div className="col-lg-9">
+                          <div className="row">
+                            <div className="col-lg-12">Email</div>
+                            <div className="col-lg-12">
+                              <a
+                                href="mailto:hello@bot247.live"
+                                className="info_link"
+                              >
+                                hello@bot247.live
+                              </a>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="col-lg-6 col-sm-6 mb-3">
+                    <div className="contact_info_list">
+                      <div className="row" style={{ alignItems: "center" }}>
+                        <div className="col-lg-3 text-center">
+                          <img
+                            src="/images/contact_phone_icon.png"
+                            className="img-fluid"
+                          ></img>
+                        </div>
+                        <div className="col-lg-9">
+                          <div className="row">
+                            <div className="col-lg-12">Phone</div>
+                            <div className="col-lg-12">
+                              <a href="tel:7620369733" className="info_link">
+                                +91 7620369733
+                              </a>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="col-lg-12 mb-3">
+                    <div className="contact_info_list">
+                      <div className="row" style={{ alignItems: "center" }}>
+                        <div className="col-lg-2 text-center">
+                          <img
+                            src="/images/contact_address_icon.png"
+                            className="img-fluid"
+                          ></img>
+                        </div>
+                        <div className="col-lg-10">
+                          <div className="row">
+                            <div className="col-lg-12">Address</div>
+                            <div className="col-lg-12 info_link">
+                              Akruti Avenues, 402-403, Datta Mandir Rd, Shankar
+                              Kalat Nagar, Wakad, Pune, Maharashtra 411057
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div className="row">
+                  <div className="col-lg-12"></div>
+                </div>
+                <div className="row">
+                  <div className="col-lg-12"></div>
                 </div>
               </div>
             </div>
@@ -665,5 +783,5 @@ export default function ContactPage() {
       </MarketingPageWrapper>
       <Footer />
     </>
-  )
+  );
 }

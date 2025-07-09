@@ -28,7 +28,7 @@ export function Stats() {
         </div>
         <div className="row">
           {stats.map((stat, index) => (
-            <div key={index} className="col-lg-3 col-sm-6 mb-4 text-center">
+            <div key={index} className="col-lg-3 col-6 mb-4 text-center">
               <div className="system_count">{stat.value}</div>
               <div>{stat.label}</div>
             </div>

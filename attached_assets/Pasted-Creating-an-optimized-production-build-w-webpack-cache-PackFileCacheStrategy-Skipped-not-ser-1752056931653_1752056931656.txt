@@ -1,0 +1,45 @@
+Creating an optimized production build ...
+<w> [webpack.cache.PackFileCacheStrategy] Skipped not serializable cache item 'Compilation/modules|javascript/auto|/home/ec2-user/bot247.live/node_modules/next/dist/build/webpack/loaders/next-flight-client-module-loader.js!/home/ec2-user/bot247.live/node_modules/next/dist/build/webpack/loaders/next-swc-loader.js??ruleSet[1].rules[16].oneOf[6].use[1]!/home/ec2-user/bot247.live/node_modules/react-owl-carousel/umd/OwlCarousel.js|ssr': No serializer registered for ProvidedDependency
+<w> while serializing webpack/lib/cache/PackFileCacheStrategy.PackContentItems -> webpack/lib/NormalModule -> Array { 16 items } -> ProvidedDependency
+<w> [webpack.cache.PackFileCacheStrategy] Skipped not serializable cache item 'Compilation/modules|javascript/auto|/home/ec2-user/bot247.live/node_modules/next/dist/build/webpack/loaders/next-flight-client-module-loader.js!/home/ec2-user/bot247.live/node_modules/next/dist/build/webpack/loaders/next-swc-loader.js??ruleSet[1].rules[16].oneOf[5].use[1]!/home/ec2-user/bot247.live/node_modules/react-owl-carousel/umd/OwlCarousel.js|app-pages-browser': No serializer registered for ProvidedDependency
+<w> while serializing webpack/lib/cache/PackFileCacheStrategy.PackContentItems -> webpack/lib/NormalModule -> Array { 16 items } -> ProvidedDependency
+ ✓ Compiled successfully
+   Skipping validation of types
+   Skipping linting
+ ✓ Collecting page data
+   Generating static pages (16/58)  [  ==]Error checking for table: {
+  code: '42P01',
+  details: null,
+  hint: null,
+  message: 'relation "public.pg_tables" does not exist'
+}
+   Generating static pages (43/58)  [    ]ReferenceError: window is not defined
+    at n (/home/ec2-user/bot247.live/.next/server/app/page.js:1:143078)
+    at 66746 (/home/ec2-user/bot247.live/.next/server/app/page.js:1:168336)
+    at t (/home/ec2-user/bot247.live/.next/server/webpack-runtime.js:1:143)
+    at 91186 (/home/ec2-user/bot247.live/.next/server/app/page.js:1:5070)
+    at Object.t [as require] (/home/ec2-user/bot247.live/.next/server/webpack-runtime.js:1:143)
+    at require (/home/ec2-user/bot247.live/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:16:18839)
+    at i (/home/ec2-user/bot247.live/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:88296)
+    at /home/ec2-user/bot247.live/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:98819
+    at /home/ec2-user/bot247.live/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:98906
+    at t (/home/ec2-user/bot247.live/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:99109) {
+  digest: '3001580738'
+}
+
+Error occurred prerendering page "/". Read more: https://nextjs.org/docs/messages/prerender-error
+
+ReferenceError: window is not defined
+    at n (/home/ec2-user/bot247.live/.next/server/app/page.js:1:143078)
+    at 66746 (/home/ec2-user/bot247.live/.next/server/app/page.js:1:168336)
+    at t (/home/ec2-user/bot247.live/.next/server/webpack-runtime.js:1:143)
+    at 91186 (/home/ec2-user/bot247.live/.next/server/app/page.js:1:5070)
+    at Object.t [as require] (/home/ec2-user/bot247.live/.next/server/webpack-runtime.js:1:143)
+    at require (/home/ec2-user/bot247.live/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:16:18839)
+    at i (/home/ec2-user/bot247.live/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:88296)
+    at /home/ec2-user/bot247.live/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:98819
+    at /home/ec2-user/bot247.live/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:98906
+    at t (/home/ec2-user/bot247.live/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:99109)
+ ✓ Generating static pages (58/58)
+
+> Export encountered errors on following paths:

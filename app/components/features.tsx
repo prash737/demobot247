@@ -15,13 +15,9 @@ import {
 } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 
-import React, { useState, useEffect } from "react";
-import dynamic from "next/dynamic";
+import React from "react";
+import OwlCarousel from "react-owl-carousel";
 import { Carousel } from "@/components/ui/carousel";
-
-const OwlCarousel = dynamic(() => import("react-owl-carousel"), {
-  ssr: false,
-});
 
 const features = [
   {
@@ -119,37 +115,15 @@ const options = {
 // OWL-Carousel-END
 
 export function Features() {
-  const [isClient, setIsClient] = useState(false);
-
-  useEffect(() => {
-    setIsClient(true);
-  }, []);
-
-  if (!isClient) {
-    return (
-      <section className="keyfeatures_section mb-8" id="features">
-        <div className="container">
-          <div className="row">
-            <div className="col-lg-12">
-              <div className="flex justify-center items-center h-32">
-                <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-500"></div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-    );
-  }
-
   return (
-    <section className="keyfeatures_section mb-8" id="features">
+    <section className="keyfeatures_section mb-8">
       <div className="container">
         <div className="row">
           <div className="col-lg-12">
             <OwlCarousel className="owl-theme" items={5} {...options}>
               {features.map((feature, index) => (
-                <div key={`feature-${index}`} className="item">
-                  <div className="key_list">
+                <div className="item">
+                  <div key={index} className="key_list">
                     <div className="key_icon">
                       <feature.icon className="text-blue-500" strokeWidth={1} />
                     </div>

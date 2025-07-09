@@ -1,8 +1,9 @@
-"use client"
+"use client";
 
-import type React from "react"
+import type React from "react";
+import { Footer } from "@/app/components/footer";
 
-import { useState, useEffect } from "react"
+import { useState, useEffect } from "react";
 import {
   Search,
   Book,
@@ -13,37 +14,41 @@ import {
   ChevronRight,
   ChevronDown,
   ArrowUp,
-} from "lucide-react"
-import { Input } from "@/components/ui/input"
-import { Button } from "@/components/ui/button"
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-import { Badge } from "@/components/ui/badge"
-import { ScrollArea } from "@/components/ui/scroll-area"
-import { InternalHero } from "@/app/components/internal-hero"
+} from "lucide-react";
+import { Input } from "@/components/ui/input";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
+import { ScrollArea } from "@/components/ui/scroll-area";
+import { InternalHero } from "@/app/components/internal-hero";
 
 interface DocSection {
-  id: string
-  title: string
-  icon: React.ReactNode
-  description: string
+  id: string;
+  title: string;
+  icon: React.ReactNode;
+  description: string;
   subsections: {
-    id: string
-    title: string
-    content: React.ReactNode
-  }[]
+    id: string;
+    title: string;
+    content: React.ReactNode;
+  }[];
 }
 
 export default function DocsPage() {
-  const [searchQuery, setSearchQuery] = useState("")
-  const [activeSection, setActiveSection] = useState("getting-started")
-  const [expandedSections, setExpandedSections] = useState<string[]>(["getting-started"])
-  const [showScrollToTop, setShowScrollToTop] = useState(false)
+  const [searchQuery, setSearchQuery] = useState("");
+  const [activeSection, setActiveSection] = useState("getting-started");
+  const [expandedSections, setExpandedSections] = useState<string[]>([
+    "getting-started",
+  ]);
+  const [showScrollToTop, setShowScrollToTop] = useState(false);
 
   const toggleSection = (sectionId: string) => {
     setExpandedSections((prev) =>
-      prev.includes(sectionId) ? prev.filter((id) => id !== sectionId) : [...prev, sectionId],
-    )
-  }
+      prev.includes(sectionId)
+        ? prev.filter((id) => id !== sectionId)
+        : [...prev, sectionId],
+    );
+  };
 
   const docSections: DocSection[] = [
     {
@@ -59,9 +64,11 @@ export default function DocsPage() {
             <div className="space-y-4">
               <h3 className="text-2xl font-bold">Welcome to Bot247</h3>
               <p className="text-gray-600 dark:text-gray-300">
-                Bot247 is a powerful AI-powered chatbot platform designed specifically for organizations. Our platform
-                enables you to create, customize, and deploy intelligent chatbots that provide 24/7 automated inquiry
-                handling, streamlining your entire operational process with intelligent responses and efficient
+                Bot247 is a powerful AI-powered chatbot platform designed
+                specifically for organizations. Our platform enables you to
+                create, customize, and deploy intelligent chatbots that provide
+                24/7 automated inquiry handling, streamlining your entire
+                operational process with intelligent responses and efficient
                 handling.
               </p>
 
@@ -112,9 +119,13 @@ export default function DocsPage() {
                   </CardHeader>
                   <CardContent>
                     <ul className="space-y-2 text-sm">
-                      <li>• Modern web browser (Chrome, Firefox, Safari, Edge)</li>
+                      <li>
+                        • Modern web browser (Chrome, Firefox, Safari, Edge)
+                      </li>
                       <li>• Internet connection</li>
-                      <li>• Basic knowledge of your organization's processes</li>
+                      <li>
+                        • Basic knowledge of your organization's processes
+                      </li>
                       <li>• No special hardware requirements</li>
                     </ul>
                   </CardContent>
@@ -122,7 +133,9 @@ export default function DocsPage() {
               </div>
 
               <div className="bg-blue-50 dark:bg-blue-900/20 p-4 rounded-lg mt-6">
-                <h4 className="font-semibold text-blue-900 dark:text-blue-100 mb-2">Quick Start Guide</h4>
+                <h4 className="font-semibold text-blue-900 dark:text-blue-100 mb-2">
+                  Quick Start Guide
+                </h4>
                 <ol className="list-decimal list-inside space-y-1 text-sm text-blue-800 dark:text-blue-200">
                   <li>Create your Bot247 account</li>
                   <li>Select a subscription plan</li>
@@ -167,7 +180,9 @@ export default function DocsPage() {
                     <div className="grid md:grid-cols-4 gap-4">
                       <div className="border rounded-lg p-3">
                         <h4 className="font-semibold">Free Trial</h4>
-                        <p className="text-sm text-gray-600 dark:text-gray-300">Explore Bot247 features</p>
+                        <p className="text-sm text-gray-600 dark:text-gray-300">
+                          Explore Bot247 features
+                        </p>
                         <Badge variant="outline">Free Trial</Badge>
                         <ul className="mt-2 space-y-1 text-xs text-gray-500 dark:text-gray-400">
                           <li>Upto 50 chat sessions/month</li>
@@ -176,7 +191,9 @@ export default function DocsPage() {
                       </div>
                       <div className="border rounded-lg p-3">
                         <h4 className="font-semibold">Basic Plan</h4>
-                        <p className="text-sm text-gray-600 dark:text-gray-300">Perfect for small organizations</p>
+                        <p className="text-sm text-gray-600 dark:text-gray-300">
+                          Perfect for small organizations
+                        </p>
                         <Badge variant="secondary">₹3,000/month</Badge>
                         <ul className="mt-2 space-y-1 text-xs text-gray-500 dark:text-gray-400">
                           <li>Upto 200 chat sessions/month</li>
@@ -185,7 +202,9 @@ export default function DocsPage() {
                       </div>
                       <div className="border rounded-lg p-3">
                         <h4 className="font-semibold">Pro Plan</h4>
-                        <p className="text-sm text-gray-600 dark:text-gray-300">Advanced features and analytics</p>
+                        <p className="text-sm text-gray-600 dark:text-gray-300">
+                          Advanced features and analytics
+                        </p>
                         <Badge variant="default">₹7,000/month</Badge>
                         <ul className="mt-2 space-y-1 text-xs text-gray-500 dark:text-gray-400">
                           <li>Upto 1500 chat sessions/month</li>
@@ -194,7 +213,9 @@ export default function DocsPage() {
                       </div>
                       <div className="border rounded-lg p-3">
                         <h4 className="font-semibold">Advanced Plan</h4>
-                        <p className="text-sm text-gray-600 dark:text-gray-300">Enterprise-grade solution</p>
+                        <p className="text-sm text-gray-600 dark:text-gray-300">
+                          Enterprise-grade solution
+                        </p>
                         <Badge variant="destructive">₹10,000/month</Badge>
                         <ul className="mt-2 space-y-1 text-xs text-gray-500 dark:text-gray-400">
                           <li>Upto 4000 chat sessions/month</li>
@@ -221,13 +242,17 @@ export default function DocsPage() {
           title: "Basic Setup",
           content: (
             <div className="space-y-4">
-              <h3 className="text-2xl font-bold">Creating Your First Chatbot</h3>
+              <h3 className="text-2xl font-bold">
+                Creating Your First Chatbot
+              </h3>
 
               <div className="bg-yellow-50 dark:bg-yellow-900/20 p-4 rounded-lg">
-                <h4 className="font-semibold text-yellow-900 dark:text-yellow-100 mb-2">Before You Start</h4>
+                <h4 className="font-semibold text-yellow-900 dark:text-yellow-100 mb-2">
+                  Before You Start
+                </h4>
                 <p className="text-sm text-yellow-800 dark:text-yellow-200">
-                  Ensure you have your organization's information, FAQs, and any specific requirements ready before
-                  creating your chatbot.
+                  Ensure you have your organization's information, FAQs, and any
+                  specific requirements ready before creating your chatbot.
                 </p>
               </div>
 
@@ -241,16 +266,20 @@ export default function DocsPage() {
                       <h5 className="font-medium mb-2">Basic Settings</h5>
                       <ul className="space-y-2 text-sm">
                         <li>
-                          <strong>Chatbot Name:</strong> Choose a friendly, professional name
+                          <strong>Chatbot Name:</strong> Choose a friendly,
+                          professional name
                         </li>
                         <li>
-                          <strong>Welcome Message:</strong> First message users see
+                          <strong>Welcome Message:</strong> First message users
+                          see
                         </li>
                         <li>
-                          <strong>Response Tone:</strong> Formal, friendly, or casual
+                          <strong>Response Tone:</strong> Formal, friendly, or
+                          casual
                         </li>
                         <li>
-                          <strong>Response Length:</strong> Concise, detailed, or adaptive
+                          <strong>Response Length:</strong> Concise, detailed,
+                          or adaptive
                         </li>
                       </ul>
                     </div>
@@ -259,16 +288,20 @@ export default function DocsPage() {
                       <h5 className="font-medium mb-2">Advanced Settings</h5>
                       <ul className="space-y-2 text-sm">
                         <li>
-                          <strong>Fallback Responses:</strong> What to say when unsure
+                          <strong>Fallback Responses:</strong> What to say when
+                          unsure
                         </li>
                         <li>
-                          <strong>Escalation Rules:</strong> When to transfer to human representatives
+                          <strong>Escalation Rules:</strong> When to transfer to
+                          human representatives
                         </li>
                         <li>
-                          <strong>Operating Hours:</strong> When the bot is active
+                          <strong>Operating Hours:</strong> When the bot is
+                          active
                         </li>
                         <li>
-                          <strong>Language Detection:</strong> Auto-detect user language
+                          <strong>Language Detection:</strong> Auto-detect user
+                          language
                         </li>
                       </ul>
                     </div>
@@ -283,11 +316,14 @@ export default function DocsPage() {
           title: "Knowledge Base",
           content: (
             <div className="space-y-4">
-              <h3 className="text-2xl font-bold">Building Your Knowledge Base</h3>
+              <h3 className="text-2xl font-bold">
+                Building Your Knowledge Base
+              </h3>
 
               <p className="text-gray-600 dark:text-gray-300">
-                The knowledge base is the foundation of your chatbot's intelligence. It contains all the information
-                your chatbot uses to answer user inquiries.
+                The knowledge base is the foundation of your chatbot's
+                intelligence. It contains all the information your chatbot uses
+                to answer user inquiries.
               </p>
 
               <div className="grid gap-6">
@@ -334,30 +370,42 @@ export default function DocsPage() {
                         <div>
                           <strong>Maximum File Size: 10MB per document</strong>
                           <p className="mt-1">
-                            Each individual file (PDF, DOCX, CSV) must not exceed 10 megabytes in size.
+                            Each individual file (PDF, DOCX, CSV) must not
+                            exceed 10 megabytes in size.
                           </p>
                         </div>
                         <div>
                           <strong>Supported File Types:</strong>
                           <ul className="list-disc list-inside mt-1 ml-4">
                             <li>
-                              <strong>PDF:</strong> Portable Document Format (.pdf) - Text-based PDFs work best
+                              <strong>PDF:</strong> Portable Document Format
+                              (.pdf) - Text-based PDFs work best
                             </li>
                             <li>
-                              <strong>Word Documents:</strong> Microsoft Word format (.docx) - Modern format only
+                              <strong>Word Documents:</strong> Microsoft Word
+                              format (.docx) - Modern format only
                             </li>
                             <li>
-                              <strong>CSV:</strong> Comma-separated values (.csv) - For structured data
+                              <strong>CSV:</strong> Comma-separated values
+                              (.csv) - For structured data
                             </li>
                           </ul>
                         </div>
                         <div>
                           <strong>Processing Guidelines:</strong>
                           <ul className="list-disc list-inside mt-1 ml-4">
-                            <li>Ensure text is selectable in PDFs (not scanned images)</li>
-                            <li>Use clear formatting and structure in documents</li>
+                            <li>
+                              Ensure text is selectable in PDFs (not scanned
+                              images)
+                            </li>
+                            <li>
+                              Use clear formatting and structure in documents
+                            </li>
                             <li>Avoid password-protected files</li>
-                            <li>Files with complex layouts may take longer to process</li>
+                            <li>
+                              Files with complex layouts may take longer to
+                              process
+                            </li>
                           </ul>
                         </div>
                       </div>
@@ -372,7 +420,9 @@ export default function DocsPage() {
                   <CardContent>
                     <div className="space-y-3">
                       <div className="bg-green-50 dark:bg-green-900/20 p-3 rounded">
-                        <h6 className="font-medium text-green-900 dark:text-green-100">✓ Do</h6>
+                        <h6 className="font-medium text-green-900 dark:text-green-100">
+                          ✓ Do
+                        </h6>
                         <ul className="text-sm text-green-800 dark:text-green-200 mt-1 space-y-1">
                           <li>• Keep information current and accurate</li>
                           <li>• Use clear, simple language</li>
@@ -382,7 +432,9 @@ export default function DocsPage() {
                         </ul>
                       </div>
                       <div className="bg-red-50 dark:bg-red-900/20 p-3 rounded">
-                        <h6 className="font-medium text-red-900 dark:text-red-100">✗ Don't</h6>
+                        <h6 className="font-medium text-red-900 dark:text-red-100">
+                          ✗ Don't
+                        </h6>
                         <ul className="text-sm text-red-800 dark:text-red-200 mt-1 space-y-1">
                           <li>• Upload outdated information</li>
                           <li>• Use overly technical jargon</li>
@@ -411,10 +463,13 @@ export default function DocsPage() {
           title: "Theme Customization",
           content: (
             <div className="space-y-4">
-              <h3 className="text-2xl font-bold">Customizing Your Chatbot's Appearance</h3>
+              <h3 className="text-2xl font-bold">
+                Customizing Your Chatbot's Appearance
+              </h3>
 
               <p className="text-gray-600 dark:text-gray-300">
-                Make your chatbot match your organization's branding with our comprehensive theming options.
+                Make your chatbot match your organization's branding with our
+                comprehensive theming options.
               </p>
 
               <div className="grid gap-6">
@@ -464,12 +519,15 @@ export default function DocsPage() {
                   </CardHeader>
                   <CardContent>
                     <p className="text-gray-600 dark:text-gray-300 mb-3">
-                      Enhance user engagement with a subtle pulsating effect on your chatbot widget. This visual cue
-                      draws attention without being intrusive, indicating activity or a new message.
+                      Enhance user engagement with a subtle pulsating effect on
+                      your chatbot widget. This visual cue draws attention
+                      without being intrusive, indicating activity or a new
+                      message.
                     </p>
                     <div className="space-y-2 text-sm">
                       <li>
-                        <strong>Enable/Disable:</strong> Toggle the pulsating effect on or off.
+                        <strong>Enable/Disable:</strong> Toggle the pulsating
+                        effect on or off.
                       </li>
                     </div>
                     <div className="flex justify-center items-center gap-8 my-6">
@@ -480,7 +538,9 @@ export default function DocsPage() {
                           <div className="absolute h-full w-full animate-pulse rounded-full bg-blue-300 opacity-50"></div>
                           <MessageSquare className="h-12 w-12 text-white relative z-10 drop-shadow-lg" />
                         </div>
-                        <p className="text-sm font-medium mt-2 text-blue-600">Pulsating</p>
+                        <p className="text-sm font-medium mt-2 text-blue-600">
+                          Pulsating
+                        </p>
                       </div>
 
                       {/* Non-Pulsating Effect */}
@@ -488,7 +548,9 @@ export default function DocsPage() {
                         <div className="relative flex h-24 w-24 items-center justify-center rounded-full bg-gray-600 shadow-lg">
                           <MessageSquare className="h-12 w-12 text-white relative z-10 drop-shadow-lg" />
                         </div>
-                        <p className="text-sm font-medium mt-2 text-gray-600">Non-Pulsating</p>
+                        <p className="text-sm font-medium mt-2 text-gray-600">
+                          Non-Pulsating
+                        </p>
                       </div>
                     </div>
                   </CardContent>
@@ -505,7 +567,8 @@ export default function DocsPage() {
               <h3 className="text-2xl font-bold">Embedding Your Chatbot</h3>
 
               <p className="text-gray-600 dark:text-gray-300">
-                Integrate your chatbot seamlessly into your website with our flexible embedding options.
+                Integrate your chatbot seamlessly into your website with our
+                flexible embedding options.
               </p>
 
               <div className="grid gap-6">
@@ -516,9 +579,12 @@ export default function DocsPage() {
                   <CardContent>
                     <div className="space-y-4">
                       <div className="border rounded p-4">
-                        <h5 className="font-medium mb-2">JavaScript Widget (Recommended)</h5>
+                        <h5 className="font-medium mb-2">
+                          JavaScript Widget (Recommended)
+                        </h5>
                         <p className="text-sm text-gray-600 dark:text-gray-300 mb-3">
-                          Add a floating chat widget to any page with a simple script tag.
+                          Add a floating chat widget to any page with a simple
+                          script tag.
                         </p>
                         <div className="bg-gray-100 dark:bg-gray-800 p-3 rounded text-sm font-mono">
                           {`<script src="https://chat.bot247.live/widget.js" 
@@ -530,7 +596,8 @@ export default function DocsPage() {
                       <div className="border rounded p-4">
                         <h5 className="font-medium mb-2">Iframe Embed</h5>
                         <p className="text-sm text-gray-600 dark:text-gray-300 mb-3">
-                          Embed the chatbot directly into a specific area of your page.
+                          Embed the chatbot directly into a specific area of
+                          your page.
                         </p>
                         <div className="bg-gray-100 dark:bg-gray-800 p-3 rounded text-sm font-mono">
                           {`<iframe src="https://chat.bot247.live/embed/your-chatbot-id" 
@@ -548,21 +615,30 @@ export default function DocsPage() {
                   </CardHeader>
                   <CardContent>
                     <p className="text-gray-600 dark:text-gray-300 mb-3">
-                      Control where your chatbot can be embedded by specifying allowed domains. This security feature
-                      prevents unauthorized use of your chatbot on other websites.
+                      Control where your chatbot can be embedded by specifying
+                      allowed domains. This security feature prevents
+                      unauthorized use of your chatbot on other websites.
                     </p>
                     <div className="space-y-4">
                       <div className="bg-blue-50 dark:bg-blue-900/20 p-4 rounded-lg">
-                        <h5 className="font-medium text-blue-900 dark:text-blue-100 mb-2">Domain Configuration</h5>
+                        <h5 className="font-medium text-blue-900 dark:text-blue-100 mb-2">
+                          Domain Configuration
+                        </h5>
                         <ul className="text-sm text-blue-800 dark:text-blue-200 space-y-1">
-                          <li>• Add your website domains (e.g., yourcompany.com)</li>
-                          <li>• Support for subdomains (e.g., *.yourcompany.com)</li>
+                          <li>
+                            • Add your website domains (e.g., yourcompany.com)
+                          </li>
+                          <li>
+                            • Support for subdomains (e.g., *.yourcompany.com)
+                          </li>
                           <li>• Multiple domain support</li>
                           <li>• Localhost support for testing</li>
                         </ul>
                       </div>
                       <div className="border rounded p-4">
-                        <h5 className="font-medium mb-2">Example Configuration</h5>
+                        <h5 className="font-medium mb-2">
+                          Example Configuration
+                        </h5>
                         <div className="bg-gray-100 dark:bg-gray-800 p-3 rounded text-sm font-mono">
                           {`Allowed Domains:
 • https://yourcompany.com
@@ -572,12 +648,16 @@ export default function DocsPage() {
                         </div>
                       </div>
                       <div className="bg-yellow-50 dark:bg-yellow-900/20 p-3 rounded">
-                        <h6 className="font-medium text-yellow-900 dark:text-yellow-100">Security Benefits</h6>
+                        <h6 className="font-medium text-yellow-900 dark:text-yellow-100">
+                          Security Benefits
+                        </h6>
                         <ul className="text-sm text-yellow-800 dark:text-yellow-200 mt-1 space-y-1">
                           <li>• Prevents unauthorized chatbot usage</li>
                           <li>• Protects your usage quotas</li>
                           <li>• Maintains brand integrity</li>
-                          <li>• Ensures compliance with organizational policies</li>
+                          <li>
+                            • Ensures compliance with organizational policies
+                          </li>
                         </ul>
                       </div>
                     </div>
@@ -593,7 +673,8 @@ export default function DocsPage() {
       id: "analytics",
       title: "Analytics & Reporting",
       icon: <BarChart3 className="h-5 w-5" />,
-      description: "Monitor performance and gain insights from your chatbot data",
+      description:
+        "Monitor performance and gain insights from your chatbot data",
       subsections: [
         {
           id: "dashboard-overview",
@@ -603,7 +684,8 @@ export default function DocsPage() {
               <h3 className="text-2xl font-bold">Analytics Dashboard</h3>
 
               <p className="text-gray-600 dark:text-gray-300">
-                Get comprehensive insights into your chatbot's performance and user interactions.
+                Get comprehensive insights into your chatbot's performance and
+                user interactions.
               </p>
 
               <div className="grid gap-6">
@@ -614,20 +696,36 @@ export default function DocsPage() {
                   <CardContent>
                     <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-4">
                       <div className="text-center p-4 border rounded">
-                        <div className="text-2xl font-bold text-blue-600">1,245</div>
-                        <div className="text-sm text-gray-600 dark:text-gray-300">Total Conversations</div>
+                        <div className="text-2xl font-bold text-blue-600">
+                          1,245
+                        </div>
+                        <div className="text-sm text-gray-600 dark:text-gray-300">
+                          Total Conversations
+                        </div>
                       </div>
                       <div className="text-center p-4 border rounded">
-                        <div className="text-2xl font-bold text-green-600">5,678</div>
-                        <div className="text-sm text-gray-600 dark:text-gray-300">User Queries</div>
+                        <div className="text-2xl font-bold text-green-600">
+                          5,678
+                        </div>
+                        <div className="text-sm text-gray-600 dark:text-gray-300">
+                          User Queries
+                        </div>
                       </div>
                       <div className="text-center p-4 border rounded">
-                        <div className="text-2xl font-bold text-purple-600">89%</div>
-                        <div className="text-sm text-gray-600 dark:text-gray-300">Resolution Rate</div>
+                        <div className="text-2xl font-bold text-purple-600">
+                          89%
+                        </div>
+                        <div className="text-sm text-gray-600 dark:text-gray-300">
+                          Resolution Rate
+                        </div>
                       </div>
                       <div className="text-center p-4 border rounded">
-                        <div className="text-2xl font-bold text-orange-600">2.4m</div>
-                        <div className="text-sm text-gray-600 dark:text-gray-300">Avg Response Time</div>
+                        <div className="text-2xl font-bold text-orange-600">
+                          2.4m
+                        </div>
+                        <div className="text-sm text-gray-600 dark:text-gray-300">
+                          Avg Response Time
+                        </div>
                       </div>
                     </div>
                   </CardContent>
@@ -645,7 +743,9 @@ export default function DocsPage() {
                           <div className="w-24 h-2 bg-gray-200 rounded">
                             <div className="w-20 h-2 bg-blue-600 rounded"></div>
                           </div>
-                          <span className="text-sm text-gray-600 dark:text-gray-300">456</span>
+                          <span className="text-sm text-gray-600 dark:text-gray-300">
+                            456
+                          </span>
                         </div>
                       </div>
                       <div className="flex items-center justify-between">
@@ -654,7 +754,9 @@ export default function DocsPage() {
                           <div className="w-24 h-2 bg-gray-200 rounded">
                             <div className="w-16 h-2 bg-green-600 rounded"></div>
                           </div>
-                          <span className="text-sm text-gray-600 dark:text-gray-300">345</span>
+                          <span className="text-sm text-gray-600 dark:text-gray-300">
+                            345
+                          </span>
                         </div>
                       </div>
                       <div className="flex items-center justify-between">
@@ -663,7 +765,9 @@ export default function DocsPage() {
                           <div className="w-24 h-2 bg-gray-200 rounded">
                             <div className="w-12 h-2 bg-purple-600 rounded"></div>
                           </div>
-                          <span className="text-sm text-gray-600 dark:text-gray-300">234</span>
+                          <span className="text-sm text-gray-600 dark:text-gray-300">
+                            234
+                          </span>
                         </div>
                       </div>
                     </div>
@@ -728,11 +832,13 @@ export default function DocsPage() {
           title: "Conversation History",
           content: (
             <div className="space-y-4">
-              <h3 className="text-2xl font-bold">Managing Conversation History</h3>
+              <h3 className="text-2xl font-bold">
+                Managing Conversation History
+              </h3>
 
               <p className="text-gray-600 dark:text-gray-300">
-                Access and analyze all conversations to improve your chatbot's performance and understand user behavior
-                patterns.
+                Access and analyze all conversations to improve your chatbot's
+                performance and understand user behavior patterns.
               </p>
 
               <div className="grid gap-6">
@@ -742,7 +848,9 @@ export default function DocsPage() {
                   </CardHeader>
                   <CardContent>
                     <div className="bg-blue-50 dark:bg-blue-900/20 p-4 rounded">
-                      <h5 className="font-medium text-blue-900 dark:text-blue-100 mb-2">Data Protection</h5>
+                      <h5 className="font-medium text-blue-900 dark:text-blue-100 mb-2">
+                        Data Protection
+                      </h5>
                       <ul className="text-sm text-blue-800 dark:text-blue-200 space-y-1">
                         <li>• All conversations are encrypted</li>
                         <li>• GDPR and relevant data privacy compliant</li>
@@ -778,7 +886,9 @@ export default function DocsPage() {
                   </CardHeader>
                   <CardContent className="space-y-3">
                     <div className="bg-red-50 dark:bg-red-900/20 p-3 rounded">
-                      <h5 className="font-medium text-red-900 dark:text-red-100 mb-2">Symptoms</h5>
+                      <h5 className="font-medium text-red-900 dark:text-red-100 mb-2">
+                        Symptoms
+                      </h5>
                       <ul className="text-sm text-red-800 dark:text-red-200 space-y-1">
                         <li>• Chatbot widget not appearing</li>
                         <li>• Messages not being sent</li>
@@ -787,9 +897,13 @@ export default function DocsPage() {
                     </div>
 
                     <div className="bg-green-50 dark:bg-green-900/20 p-3 rounded">
-                      <h5 className="font-medium text-green-900 dark:text-green-100 mb-2">Solutions</h5>
+                      <h5 className="font-medium text-green-900 dark:text-green-100 mb-2">
+                        Solutions
+                      </h5>
                       <ol className="text-sm text-green-800 dark:text-green-200 space-y-1 list-decimal list-inside">
-                        <li>Check if chatbot status is "Active" in dashboard</li>
+                        <li>
+                          Check if chatbot status is "Active" in dashboard
+                        </li>
                         <li>Verify embed code is correctly placed</li>
                         <li>Clear browser cache and cookies</li>
                         <li>Check browser console for JavaScript errors</li>
@@ -805,7 +919,9 @@ export default function DocsPage() {
                   </CardHeader>
                   <CardContent className="space-y-3">
                     <div className="bg-red-50 dark:bg-red-900/20 p-3 rounded">
-                      <h5 className="font-medium text-red-900 dark:text-red-100 mb-2">Symptoms</h5>
+                      <h5 className="font-medium text-red-900 dark:text-red-100 mb-2">
+                        Symptoms
+                      </h5>
                       <ul className="text-sm text-red-800 dark:text-red-200 space-y-1">
                         <li>• Chatbot giving incorrect answers</li>
                         <li>• "I don't know" responses too frequent</li>
@@ -814,7 +930,9 @@ export default function DocsPage() {
                     </div>
 
                     <div className="bg-green-50 dark:bg-green-900/20 p-3 rounded">
-                      <h5 className="font-medium text-green-900 dark:text-green-100 mb-2">Solutions</h5>
+                      <h5 className="font-medium text-green-900 dark:text-green-100 mb-2">
+                        Solutions
+                      </h5>
                       <ol className="text-sm text-green-800 dark:text-green-200 space-y-1 list-decimal list-inside">
                         <li>Review and update knowledge base content</li>
                         <li>Add more variations of common questions</li>
@@ -832,7 +950,9 @@ export default function DocsPage() {
                   </CardHeader>
                   <CardContent className="space-y-3">
                     <div className="bg-red-50 dark:bg-red-900/20 p-3 rounded">
-                      <h5 className="font-medium text-red-900 dark:text-red-100 mb-2">Symptoms</h5>
+                      <h5 className="font-medium text-red-900 dark:text-red-100 mb-2">
+                        Symptoms
+                      </h5>
                       <ul className="text-sm text-red-800 dark:text-red-200 space-y-1">
                         <li>• Slow response times</li>
                         <li>• Widget loading slowly</li>
@@ -841,7 +961,9 @@ export default function DocsPage() {
                     </div>
 
                     <div className="bg-green-50 dark:bg-green-900/20 p-3 rounded">
-                      <h5 className="font-medium text-green-900 dark:text-green-100 mb-2">Solutions</h5>
+                      <h5 className="font-medium text-green-900 dark:text-green-100 mb-2">
+                        Solutions
+                      </h5>
                       <ol className="text-sm text-green-800 dark:text-green-200 space-y-1 list-decimal list-inside">
                         <li>Check your internet connection</li>
                         <li>Optimize knowledge base size</li>
@@ -858,189 +980,214 @@ export default function DocsPage() {
         },
       ],
     },
-  ]
+  ];
 
   const filteredSections = docSections.filter(
     (section) =>
       searchQuery === "" ||
       section.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
       section.description.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      section.subsections.some((sub) => sub.title.toLowerCase().includes(searchQuery.toLowerCase())),
-  )
+      section.subsections.some((sub) =>
+        sub.title.toLowerCase().includes(searchQuery.toLowerCase()),
+      ),
+  );
 
   useEffect(() => {
     const handleScroll = () => {
-      const sections = document.querySelectorAll("[data-section]")
-      const scrollPosition = window.scrollY + 200 // Increased offset for better detection
+      const sections = document.querySelectorAll("[data-section]");
+      const scrollPosition = window.scrollY + 200; // Increased offset for better detection
 
-      let currentSection = ""
+      let currentSection = "";
       sections.forEach((section) => {
-        const element = section as HTMLElement
-        const top = element.offsetTop - 100
-        const bottom = top + element.offsetHeight
+        const element = section as HTMLElement;
+        const top = element.offsetTop - 100;
+        const bottom = top + element.offsetHeight;
 
         if (scrollPosition >= top && scrollPosition < bottom) {
-          currentSection = element.dataset.section || ""
+          currentSection = element.dataset.section || "";
         }
-      })
+      });
 
       if (currentSection) {
-        setActiveSection(currentSection)
+        setActiveSection(currentSection);
       }
 
       // For "Back to Top" button visibility
       if (window.scrollY > 300) {
-        setShowScrollToTop(true)
+        setShowScrollToTop(true);
       } else {
-        setShowScrollToTop(false)
+        setShowScrollToTop(false);
       }
-    }
+    };
 
-    window.addEventListener("scroll", handleScroll)
-    return () => window.removeEventListener("scroll", handleScroll)
-  }, [])
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   const scrollToSection = (sectionId: string) => {
-    const element = document.querySelector(`[data-section="${sectionId}"]`)
+    const element = document.querySelector(`[data-section="${sectionId}"]`);
     if (element) {
-      element.scrollIntoView({ behavior: "smooth", block: "start" })
+      element.scrollIntoView({ behavior: "smooth", block: "start" });
     }
-  }
+  };
 
   return (
-    <div className="min-h-screen bg-gray-50 dark:bg-gray-900">
-      <InternalHero title="Documentation" />
+    <>
+      <div className="min-h-screen bg-gray-50 dark:bg-gray-900">
+        <InternalHero title="Documentation" />
 
-      <div className="container mx-auto px-4 py-8">
-        <div className="flex flex-col lg:flex-row gap-8">
-          {/* Sidebar */}
-          <div className="lg:w-80 flex-shrink-0">
-            <div className="sticky top-24 space-y-6">
-              {/* Search */}
-              <div className="relative">
-                <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400" />
-                <Input
-                  placeholder="Search documentation..."
-                  value={searchQuery}
-                  onChange={(e) => setSearchQuery(e.target.value)}
-                  className="pl-10"
-                />
+        <div className="container mx-auto px-4 py-8">
+          <div className="flex flex-col lg:flex-row gap-8">
+            {/* Sidebar */}
+            <div className="lg:w-80 flex-shrink-0">
+              <div className="sticky top-24 space-y-6">
+                {/* Search */}
+                <div className="relative">
+                  <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400" />
+                  <Input
+                    placeholder="Search documentation..."
+                    value={searchQuery}
+                    onChange={(e) => setSearchQuery(e.target.value)}
+                    className="pl-10"
+                  />
+                </div>
+
+                {/* Navigation */}
+                <Card>
+                  <CardHeader>
+                    <CardTitle className="text-lg">Contents</CardTitle>
+                  </CardHeader>
+                  <CardContent className="p-0">
+                    <ScrollArea className="h-[calc(100vh-300px)]">
+                      <div className="space-y-2 p-4">
+                        {filteredSections.map((section) => (
+                          <div key={section.id}>
+                            <Button
+                              variant="ghost"
+                              className={`w-full justify-start text-left h-auto p-2 ${
+                                activeSection === section.id ||
+                                section.subsections.some(
+                                  (sub) => sub.id === activeSection,
+                                )
+                                  ? "bg-blue-50 dark:bg-blue-900/20 text-blue-600 dark:text-blue-400"
+                                  : ""
+                              }`}
+                              onClick={() => {
+                                toggleSection(section.id);
+                                scrollToSection(section.id);
+                              }}
+                            >
+                              <div className="flex items-center space-x-2 w-full">
+                                {section.icon}
+                                <span className="flex-1">{section.title}</span>
+                                {expandedSections.includes(section.id) ? (
+                                  <ChevronDown className="h-4 w-4" />
+                                ) : (
+                                  <ChevronRight className="h-4 w-4" />
+                                )}
+                              </div>
+                            </Button>
+
+                            {expandedSections.includes(section.id) && (
+                              <div className="ml-6 mt-2 space-y-1">
+                                {section.subsections.map((subsection) => (
+                                  <Button
+                                    key={subsection.id}
+                                    variant="ghost"
+                                    size="sm"
+                                    className="w-full justify-start text-left text-sm text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400"
+                                    onClick={() =>
+                                      scrollToSection(subsection.id)
+                                    }
+                                  >
+                                    {subsection.title}
+                                  </Button>
+                                ))}
+                              </div>
+                            )}
+                          </div>
+                        ))}
+                      </div>
+                    </ScrollArea>
+                  </CardContent>
+                </Card>
               </div>
+            </div>
 
-              {/* Navigation */}
-              <Card>
-                <CardHeader>
-                  <CardTitle className="text-lg">Contents</CardTitle>
-                </CardHeader>
-                <CardContent className="p-0">
-                  <ScrollArea className="h-[calc(100vh-300px)]">
-                    <div className="space-y-2 p-4">
-                      {filteredSections.map((section) => (
-                        <div key={section.id}>
-                          <Button
-                            variant="ghost"
-                            className={`w-full justify-start text-left h-auto p-2 ${
-                              activeSection === section.id ||
-                              section.subsections.some((sub) => sub.id === activeSection)
-                                ? "bg-blue-50 dark:bg-blue-900/20 text-blue-600 dark:text-blue-400"
-                                : ""
-                            }`}
-                            onClick={() => {
-                              toggleSection(section.id)
-                              scrollToSection(section.id)
-                            }}
-                          >
-                            <div className="flex items-center space-x-2 w-full">
-                              {section.icon}
-                              <span className="flex-1">{section.title}</span>
-                              {expandedSections.includes(section.id) ? (
-                                <ChevronDown className="h-4 w-4" />
-                              ) : (
-                                <ChevronRight className="h-4 w-4" />
-                              )}
-                            </div>
-                          </Button>
+            {/* Main Content */}
+            <div className="flex-1 min-w-0">
+              <div className="space-y-12">
+                {filteredSections.map((section) => (
+                  <div
+                    key={section.id}
+                    data-section={section.id}
+                    className="scroll-mt-24"
+                  >
+                    <div className="mb-8">
+                      <div className="flex items-center space-x-3 mb-4">
+                        {section.icon}
+                        <h2 className="text-3xl font-bold">{section.title}</h2>
+                      </div>
+                      <p className="text-gray-600 dark:text-gray-300 text-lg">
+                        {section.description}
+                      </p>
+                    </div>
 
-                          {expandedSections.includes(section.id) && (
-                            <div className="ml-6 mt-2 space-y-1">
-                              {section.subsections.map((subsection) => (
-                                <Button
-                                  key={subsection.id}
-                                  variant="ghost"
-                                  size="sm"
-                                  className="w-full justify-start text-left text-sm text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400"
-                                  onClick={() => scrollToSection(subsection.id)}
-                                >
-                                  {subsection.title}
-                                </Button>
-                              ))}
-                            </div>
-                          )}
-                        </div>
+                    <div className="space-y-8">
+                      {section.subsections.map((subsection) => (
+                        <Card
+                          key={subsection.id}
+                          data-section={subsection.id}
+                          className="scroll-mt-24"
+                        >
+                          <CardContent className="p-8">
+                            {subsection.content}
+                          </CardContent>
+                        </Card>
                       ))}
                     </div>
-                  </ScrollArea>
+                  </div>
+                ))}
+              </div>
+
+              {/* Support CTA */}
+              <Card className="mt-12 bg-gradient-to-r from-blue-50 to-green-50 dark:from-blue-900/20 dark:to-green-900/20 border-blue-200 dark:border-blue-800">
+                <CardContent className="p-8 text-center">
+                  <h3 className="text-2xl font-bold mb-4">
+                    Still have questions?
+                  </h3>
+                  <p className="text-gray-600 dark:text-gray-300 mb-6">
+                    Our intelligent assistant is here to help you navigate
+                    Bot247 and answer any questions you might have about our
+                    platform.
+                  </p>
+                  <div className="flex flex-col items-center gap-4">
+                    <div className="flex items-center gap-2 text-blue-600 dark:text-blue-400">
+                      <MessageSquare className="h-5 w-5" />
+                      <span className="font-medium">
+                        You can chat with our AI assistant using the widget in
+                        the bottom-left corner
+                      </span>
+                    </div>
+                  </div>
                 </CardContent>
               </Card>
             </div>
           </div>
-
-          {/* Main Content */}
-          <div className="flex-1 min-w-0">
-            <div className="space-y-12">
-              {filteredSections.map((section) => (
-                <div key={section.id} data-section={section.id} className="scroll-mt-24">
-                  <div className="mb-8">
-                    <div className="flex items-center space-x-3 mb-4">
-                      {section.icon}
-                      <h2 className="text-3xl font-bold">{section.title}</h2>
-                    </div>
-                    <p className="text-gray-600 dark:text-gray-300 text-lg">{section.description}</p>
-                  </div>
-
-                  <div className="space-y-8">
-                    {section.subsections.map((subsection) => (
-                      <Card key={subsection.id} data-section={subsection.id} className="scroll-mt-24">
-                        <CardContent className="p-8">{subsection.content}</CardContent>
-                      </Card>
-                    ))}
-                  </div>
-                </div>
-              ))}
-            </div>
-
-            {/* Support CTA */}
-            <Card className="mt-12 bg-gradient-to-r from-blue-50 to-green-50 dark:from-blue-900/20 dark:to-green-900/20 border-blue-200 dark:border-blue-800">
-              <CardContent className="p-8 text-center">
-                <h3 className="text-2xl font-bold mb-4">Still have questions?</h3>
-                <p className="text-gray-600 dark:text-gray-300 mb-6">
-                  Our intelligent assistant is here to help you navigate Bot247 and answer any questions you might have
-                  about our platform.
-                </p>
-                <div className="flex flex-col items-center gap-4">
-                  <div className="flex items-center gap-2 text-blue-600 dark:text-blue-400">
-                    <MessageSquare className="h-5 w-5" />
-                    <span className="font-medium">
-                      You can chat with our AI assistant using the widget in the bottom-left corner
-                    </span>
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
-          </div>
         </div>
-      </div>
 
-      {/* Back to Top Button */}
-      {showScrollToTop && (
-        <Button
-          onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
-          className="fixed bottom-8 right-8 p-3 rounded-full shadow-lg z-50 bg-blue-600 hover:bg-blue-700 text-white"
-          aria-label="Scroll to top"
-        >
-          <ArrowUp className="h-6 w-6" />
-        </Button>
-      )}
-    </div>
-  )
+        {/* Back to Top Button */}
+        {showScrollToTop && (
+          <Button
+            onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+            className="fixed bottom-8 right-8 p-3 rounded-full shadow-lg z-50 bg-blue-600 hover:bg-blue-700 text-white"
+            aria-label="Scroll to top"
+          >
+            <ArrowUp className="h-6 w-6" />
+          </Button>
+        )}
+      </div>
+      <Footer />
+    </>
+  );
 }
