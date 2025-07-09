@@ -3,11 +3,11 @@
 import { useEffect } from "react"
 import { usePathname } from "next/navigation"
 
-export function useScrollToHash() {
-  const pathname = usePathname()
-
+export const useScrollToHash = () => {
   useEffect(() => {
-    if (pathname === "/") {
+    if (typeof window === "undefined") return;
+
+    if (usePathname() === "/") {
       const hash = window.location.hash
       if (hash) {
         setTimeout(() => {
@@ -25,5 +25,5 @@ export function useScrollToHash() {
         }, 100) // Small delay to ensure the DOM has updated
       }
     }
-  }, [pathname])
+  }, [usePathname()])
 }

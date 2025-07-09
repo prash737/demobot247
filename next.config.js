@@ -12,6 +12,9 @@ const nextConfig = {
   images: {
     unoptimized: true,
   },
+  experimental: {
+    esmExternals: "loose",
+  },
   webpack: (config, { isServer }) => {
     config.plugins.push(
       new webpack.ProvidePlugin({
