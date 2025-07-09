@@ -1,3 +1,4 @@
+
 "use client";
 import {
   HelpCircle,
@@ -15,9 +16,8 @@ import {
 } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 
-import React from "react";
-import OwlCarousel from "react-owl-carousel";
-import { Carousel } from "@/components/ui/carousel";
+import React, { useState, useEffect } from "react";
+import dynamic from "next/dynamic";
 
 const features = [
   {
@@ -94,6 +94,21 @@ const features = [
   },
 ];
 
+// Dynamically import OwlCarousel with no SSR
+const OwlCarousel = dynamic(() => import("react-owl-carousel"), {
+  ssr: false,
+  loading: () => <div className="keyfeatures_inner">
+    {features.map((feature, index) => (
+      <div key={index} className="key_list">
+        <div className="key_icon">
+          <feature.icon className="text-blue-500" strokeWidth={1} />
+        </div>
+        <div className="key_text">{feature.title}</div>
+      </div>
+    ))}
+  </div>
+});
+
 // OWL-Carousel-START
 const options = {
   loop: false,
@@ -115,6 +130,35 @@ const options = {
 // OWL-Carousel-END
 
 export function Features() {
+  const [isClient, setIsClient] = useState(false);
+
+  useEffect(() => {
+    setIsClient(true);
+  }, []);
+
+  if (!isClient) {
+    return (
+      <section className="keyfeatures_section mb-8">
+        <div className="container">
+          <div className="row">
+            <div className="col-lg-12">
+              <div className="keyfeatures_inner">
+                {features.map((feature, index) => (
+                  <div key={`fallback-feature-${index}`} className="key_list">
+                    <div className="key_icon">
+                      <feature.icon className="text-blue-500" strokeWidth={1} />
+                    </div>
+                    <div className="key_text">{feature.title}</div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    );
+  }
+
   return (
     <section className="keyfeatures_section mb-8">
       <div className="container">
@@ -122,53 +166,19 @@ export function Features() {
           <div className="col-lg-12">
             <OwlCarousel className="owl-theme" items={5} {...options}>
               {features.map((feature, index) => (
-                <div className="item">
-                  <div key={index} className="key_list">
+                <div className="item" key={`feature-${index}`}>
+                  <div className="key_list">
                     <div className="key_icon">
                       <feature.icon className="text-blue-500" strokeWidth={1} />
                     </div>
                     <div className="key_text">{feature.title}</div>
-                    {/* <p className="text-gray-600 dark:text-gray-300">{feature.description}</p> */}
                   </div>
                 </div>
               ))}
             </OwlCarousel>
           </div>
         </div>
-        {/* <div className="row">
-          <div className="col-lg-12">
-            <div className="keyfeatures_inner">
-              {features.map((feature, index) => (
-                <div key={index} className="key_list">
-                  <div className="key_icon">
-                    <feature.icon className="w-12 h-12 text-blue-500 mb-4" />
-                  </div>
-                  <div className="key_text">{feature.title}</div>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div> */}
       </div>
     </section>
-    // <section id="features" className="py-20 bg-gray-50 dark:bg-gray-900 w-full">
-    //   <div className="container mx-auto px-4 md:px-6 lg:px-8">
-    //     <h2 className="text-3xl md:text-4xl font-bold text-center mb-12 text-gray-900 dark:text-white">Key Features</h2>
-    //     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-    //       {features.map((feature, index) => (
-    //         <Card
-    //           key={index}
-    //           className="bg-white dark:bg-gray-800 shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1 hover:scale-[1.01]"
-    //         >
-    //           <CardContent className="p-6">
-    //             <feature.icon className="w-12 h-12 text-blue-500 mb-4" />
-    //             <h3 className="text-xl font-semibold mb-2 text-gray-900 dark:text-white">{feature.title}</h3>
-    //             <p className="text-gray-600 dark:text-gray-300">{feature.description}</p>
-    //           </CardContent>
-    //         </Card>
-    //       ))}
-    //     </div>
-    //   </div>
-    // </section>
   );
 }
