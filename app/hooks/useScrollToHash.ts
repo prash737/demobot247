@@ -1,23 +1,31 @@
+import { useEffect } from 'react';
+import { useRouter } from 'next/navigation';
 
-import { useEffect } from "react"
-import { usePathname } from "next/navigation"
-
-export const useScrollToHash = () => {
-  const pathname = usePathname()
+export function useScrollToHash() {
+  const router = useRouter();
 
   useEffect(() => {
-    if (typeof window === "undefined") return;
+    // Only run on client side
+    if (typeof window === 'undefined') return;
 
-    if (pathname === "/") {
-      const hash = window.location.hash
+    const handleHashChange = () => {
+      const hash = window.location.hash;
       if (hash) {
-        setTimeout(() => {
-          const element = document.querySelector(hash)
-          if (element) {
-            element.scrollIntoView({ behavior: "smooth" })
-          }
-        }, 100) // Small delay to ensure the DOM has updated
+        const element = document.querySelector(hash);
+        if (element) {
+          element.scrollIntoView({ behavior: 'smooth' });
+        }
       }
-    }
-  }, [pathname])
+    };
+
+    // Handle initial hash on page load
+    handleHashChange();
+
+    // Listen for hash changes
+    window.addEventListener('hashchange', handleHashChange);
+
+    return () => {
+      window.removeEventListener('hashchange', handleHashChange);
+    };
+  }, [router]);
 }
