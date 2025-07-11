@@ -326,7 +326,13 @@ export function Nav() {
           <div className="flex items-center">
             <a href={isAdminRoute ? "/admin" : "/"} className="flex-shrink-0">
               <div className="logo">
-                <img src="/images/logo.png" alt="Bot247 Logo" />
+                <Image 
+                  src="/images/logo.png" 
+                  alt="Bot247 Logo" 
+                  width={120} 
+                  height={40}
+                  priority
+                />
               </div>
             </a>
             {isAdminRoute && (
