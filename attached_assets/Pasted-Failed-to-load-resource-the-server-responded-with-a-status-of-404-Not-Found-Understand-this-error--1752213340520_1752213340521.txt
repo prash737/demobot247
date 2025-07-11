@@ -1,0 +1,145 @@
+Failed to load resource: the server responded with a status of 404 (Not Found)Understand this error
+analytics_img.png:1 
+            
+            
+           Failed to load resource: the server responded with a status of 404 (Not Found)Understand this error
+eee517bc19902057.css:1 
+            
+            
+           Failed to load resource: the server responded with a status of 404 (Not Found)Understand this error
+5e965143684c3e19.css:1 
+            
+            
+           Failed to load resource: the server responded with a status of 404 (Not Found)Understand this error
+846695c83c40e8f1.css:1 
+            
+            
+           Failed to load resource: the server responded with a status of 404 (Not Found)Understand this error
+shape1.png:1 
+            
+            
+           Failed to load resource: the server responded with a status of 404 (Not Found)Understand this error
+purple_shade.png:1 
+            
+            
+           Failed to load resource: the server responded with a status of 404 (Not Found)Understand this error
+system_globe_img.png:1 
+            
+            
+           Failed to load resource: the server responded with a status of 404 (Not Found)Understand this error
+price_line.png:1 
+            
+            
+           Failed to load resource: the server responded with a status of 404 (Not Found)Understand this error
+demo_icon.png:1 
+            
+            
+           Failed to load resource: the server responded with a status of 404 (Not Found)Understand this error
+logo.png:1 
+            
+            
+           Failed to load resource: the server responded with a status of 404 (Not Found)Understand this error
+analytics_img.png:1 
+            
+            
+           Failed to load resource: the server responded with a status of 404 (Not Found)Understand this error
+purple_shade.png:1 
+            
+            
+           Failed to load resource: the server responded with a status of 404 (Not Found)Understand this error
+webpack-a80da71babc21e2b.js:1 
+            
+            
+           Failed to load resource: the server responded with a status of 404 (Not Found)Understand this error
+2117-6b4d8a89d28efe27.js:1 
+            
+            
+           Failed to load resource: the server responded with a status of 404 (Not Found)Understand this error
+fd9d1056-b405a3f157a0ee8b.js:1 
+            
+            
+           Failed to load resource: the server responded with a status of 404 (Not Found)Understand this error
+main-app-54ee1bbff8a49f6d.js:1 
+            
+            
+           Failed to load resource: the server responded with a status of 404 (Not Found)Understand this error
+6137-03d2cd0024eec2f8.js:1 
+            
+            
+           Failed to load resource: the server responded with a status of 404 (Not Found)Understand this error
+3448-681ff428bfe130c4.js:1 
+            
+            
+           Failed to load resource: the server responded with a status of 404 (Not Found)Understand this error
+4493-d6458508dfab2a89.js:1 
+            
+            
+           Failed to load resource: the server responded with a status of 404 (Not Found)Understand this error
+7213-ece30bc50679716c.js:1 
+            
+            
+           Failed to load resource: the server responded with a status of 404 (Not Found)Understand this error
+7482-b92b039f2595bc8d.js:1 
+            
+            
+           Failed to load resource: the server responded with a status of 404 (Not Found)Understand this error
+2899-68dad307b817f790.js:1 
+            
+            
+           Failed to load resource: the server responded with a status of 404 (Not Found)Understand this error
+page-50effedf1c3f806a.js:1 
+            
+            
+           Failed to load resource: the server responded with a status of 404 (Not Found)Understand this error
+2961-e5b18b5e12205d51.js:1 
+            
+            
+           Failed to load resource: the server responded with a status of 404 (Not Found)Understand this error
+3405-b4905ac8394d74ed.js:1 
+            
+            
+           Failed to load resource: the server responded with a status of 404 (Not Found)Understand this error
+6668-7f41152608e11c64.js:1 
+            
+            
+           Failed to load resource: the server responded with a status of 404 (Not Found)Understand this error
+8068-4bc3ab9efdf8fea9.js:1 
+            
+            
+           Failed to load resource: the server responded with a status of 404 (Not Found)Understand this error
+1240-4862ddfdeb98da91.js:1 
+            
+            
+           Failed to load resource: the server responded with a status of 404 (Not Found)Understand this error
+763-356011a0ffec0d56.js:1 
+            
+            
+           Failed to load resource: the server responded with a status of 404 (Not Found)Understand this error
+layout-a8a61885a8349c28.js:1 
+            
+            
+           Failed to load resource: the server responded with a status of 404 (Not Found)Understand this error
+/images/default-avatar.png:1 
+            
+            
+           Failed to load resource: the server responded with a status of 404 (Not Found)Understand this error
+www.bot247.live/:1 The resource https://chat.bot247.live/api/chatbot-script was preloaded using link preload but not used within a few seconds from the window's load event. Please make sure it has an appropriate `as` value and it is preloaded intentionally.Understand this warning
+www.bot247.live/:1 The resource https://www.bot247.live/_next/static/media/e4af272ccee01ff0-s.p.woff2 was preloaded using link preload but not used within a few seconds from the window's load event. Please make sure it has an appropriate `as` value and it is preloaded intentionally.Understand this warning
+e37fee21c68534ad.css:1 
+            
+            
+           Failed to load resource: the server responded with a status of 404 (Not Found)Understand this error
+eee517bc19902057.css:1 
+            
+            
+           Failed to load resource: the server responded with a status of 404 (Not Found)Understand this error
+5e965143684c3e19.css:1 
+            
+            
+           Failed to load resource: the server responded with a status of 404 (Not Found)Understand this error
+846695c83c40e8f1.css:1 
+            
+            
+           Failed to load resource: the server responded with a status of 404 (Not Found)Understand this error
+www.bot247.live/:1 The resource https://chat.bot247.live/api/chatbot-script was preloaded using link preload but not used within a few seconds from the window's load event. Please make sure it has an appropriate `as` value and it is preloaded intentionally.Understand this warning
+www.bot247.live/:1 The resource https://www.bot247.live/_next/static/media/e4af272ccee01ff0-s.p.woff2 was preloaded using link preload but not used within a few seconds from the window's load event. Please make sure it has an appropriate `as` value and it is preloaded intentionally.Understand this warning
