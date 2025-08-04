@@ -22,6 +22,14 @@ const nextConfig = {
       },
       {
         protocol: 'https',
+        hostname: 'zsivtypgrrcttzhtfjsf.supabase.co',
+      },
+      {
+        protocol: 'https',
+        hostname: '*.supabase.co',
+      },
+      {
+        protocol: 'https',
         hostname: 'vercel.com',
       },
       {
