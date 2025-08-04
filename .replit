@@ -6,8 +6,8 @@ channel = "stable-24_05"
 
 [deployment]
 build = ["sh", "-c", "npm run build"]
-deploymentTarget = "static"
-publicDir = ".next/out"
+deploymentTarget = "gce"
+run = ["sh", "-c", "npm start"]
 
 [[deployment.rewrites]]
 from = "/*"
