@@ -1,9 +1,11 @@
+
 // This script fixes the unrs-resolver dependency issue
 console.log("Running dependency fix script...");
 
 try {
   const fs = require("fs");
   const path = require("path");
+  const { execSync } = require("child_process");
 
   // Check if node_modules exists
   const nodeModulesPath = path.join(process.cwd(), "node_modules");
@@ -12,24 +14,29 @@ try {
     process.exit(0);
   }
 
-  // Check if unrs-resolver exists
-  const unrsPath = path.join(nodeModulesPath, "unrs-resolver");
-  if (fs.existsSync(unrsPath)) {
-    console.log("Found unrs-resolver, applying fix...");
+  // Remove problematic packages that cause build timeouts
+  const problematicPaths = [
+    path.join(nodeModulesPath, "unrs-resolver"),
+    path.join(nodeModulesPath, "@napi-rs/simple-git"),
+    path.join(nodeModulesPath, ".cache")
+  ];
 
-    // Remove the problematic package
-    fs.rmSync(unrsPath, { recursive: true, force: true });
+  problematicPaths.forEach(problematicPath => {
+    if (fs.existsSync(problematicPath)) {
+      console.log(`Removing ${path.basename(problematicPath)}...`);
+      fs.rmSync(problematicPath, { recursive: true, force: true });
+    }
+  });
 
-    // Install the replacement package
-    const { execSync } = require("child_process");
-    execSync("npm install @napi-rs/simple-git@0.1.19 --no-save", {
-      stdio: "inherit",
-    });
-
-    console.log("Successfully applied dependency fix");
-  } else {
-    console.log("unrs-resolver not found, no fix needed");
+  // Clear npm cache to prevent conflicts
+  try {
+    execSync("npm cache clean --force", { stdio: "inherit" });
+    console.log("npm cache cleared");
+  } catch (cacheError) {
+    console.warn("Failed to clear npm cache:", cacheError.message);
   }
+
+  console.log("Successfully applied dependency fix");
 } catch (error) {
   console.error("Error fixing dependencies:", error);
   // Don't fail the build if the fix script has an error

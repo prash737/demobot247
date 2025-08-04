@@ -1,9 +1,8 @@
+
 /** @type {import('next').NextConfig} */
 import webpack from 'webpack';
 
 const nextConfig = {
-  output: 'export',
-  trailingSlash: true,
   eslint: {
     ignoreDuringBuilds: true,
   },
@@ -11,13 +10,6 @@ const nextConfig = {
     ignoreBuildErrors: true,
   },
   swcMinify: true,
-  onDemandEntries: {
-    maxInactiveAge: 25 * 1000,
-    pagesBufferLength: 2,
-  },
-  images: {
-    unoptimized: true,
-  },
   experimental: {
     esmExternals: "loose",
   },
