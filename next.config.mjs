@@ -1,4 +1,3 @@
-
 /** @type {import('next').NextConfig} */
 import webpack from 'webpack';
 
@@ -11,7 +10,7 @@ const nextConfig = {
   typescript: {
     ignoreBuildErrors: true,
   },
-  swcMinify: false,
+  swcMinify: true,
   onDemandEntries: {
     maxInactiveAge: 25 * 1000,
     pagesBufferLength: 2,
