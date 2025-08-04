@@ -3,6 +3,8 @@
 import webpack from 'webpack';
 
 const nextConfig = {
+  output: 'export',
+  trailingSlash: true,
   eslint: {
     ignoreDuringBuilds: true,
   },
