@@ -86,7 +86,7 @@ export function Benefits() {
                     <ul className="p-0">
                       {benefit.features.map((feature, featureIndex) => (
                         <li
-                          key={featureIndex}
+                          key={`${index}-${featureIndex}`}
                           className="flex items-center gap-2"
                         >
                           <Check className="w-5 h-5 text-green-500 dark:text-green-400 flex-shrink-0" />
@@ -139,3 +139,6 @@ export function Benefits() {
     // </section>
   );
 }
+
+// Add default export for lazy loading
+export default Benefits;

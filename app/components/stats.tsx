@@ -57,3 +57,6 @@ export function Stats() {
     // </section>
   );
 }
+
+// Add default export for lazy loading
+export default Stats;

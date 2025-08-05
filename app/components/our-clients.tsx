@@ -147,3 +147,6 @@ export function OurClients() {
     </section>
   );
 }
+
+// Add default export for lazy loading
+export default OurClients;

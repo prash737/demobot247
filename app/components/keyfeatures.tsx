@@ -210,4 +210,5 @@ export function Keyfeatures() {
   )
 }
 
-
+// Add default export for lazy loading
+export default Keyfeatures;

@@ -49,3 +49,6 @@ export function CTA() {
     </section>
   )
 }
+
+// Add default export for lazy loading
+export default CTA;

@@ -33,8 +33,8 @@ export default function RootLayout({
       <head>
         <link rel="preload" href="/images/logo.png" as="image" type="image/png" />
         <link rel="preload" href="/images/banner_img.png" as="image" type="image/png" />
-        <link rel="preload" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" as="style" onLoad="this.onload=null;this.rel='stylesheet'" />
-        <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" /></noscript>
+        <link rel="preload" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" as="style" />
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" />
       </head>
       <body className={inter.className}>
         <Script
