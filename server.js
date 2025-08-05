@@ -7,14 +7,26 @@ const dev = process.env.NODE_ENV !== 'production'
 const hostname = '0.0.0.0'
 const port = process.env.PORT || 3000
 
-// Optimize for production
+// Optimize for both development and production
 const app = next({ 
   dev, 
   hostname, 
   port,
   conf: {
     compress: true,
-    poweredByHeader: false
+    poweredByHeader: false,
+    generateEtags: false,
+    experimental: {
+      optimizePackageImports: ['lucide-react', '@radix-ui/react-icons'],
+      turbo: {
+        rules: {
+          '*.svg': {
+            loaders: ['@svgr/webpack'],
+            as: '*.js'
+          }
+        }
+      }
+    }
   }
 })
 const handle = app.getRequestHandler()

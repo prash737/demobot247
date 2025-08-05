@@ -10,6 +10,8 @@ const nextConfig = {
     ignoreBuildErrors: true,
   },
   swcMinify: true,
+  compress: true,
+  poweredByHeader: false,
   images: {
     remotePatterns: [
       {

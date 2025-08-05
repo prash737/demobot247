@@ -12,7 +12,11 @@ import "owl.carousel/dist/assets/owl.theme.default.css";
 import Script from "next/script";
 import { Nav } from "@/app/components/nav"; // Ensure Nav is imported
 
-const inter = Inter({ subsets: ["latin"] });
+const inter = Inter({ 
+  subsets: ["latin"],
+  display: 'swap',
+  preload: true
+});
 
 export const metadata = {
   title: "Bot247.live",
@@ -31,6 +35,8 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
+        <link rel="preload" href="/images/logo.png" as="image" type="image/png" />
+        <link rel="preload" href="/images/banner_img.png" as="image" type="image/png" />
       </head>
       <body className={inter.className}>
         <Script

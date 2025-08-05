@@ -159,20 +159,7 @@ export function Hero() {
             </div>
           </div>
         </div>
-        {/* <div className="absolute inset-0">
-          {[...Array(20)].map((_, i) => (
-            <div
-              key={i}
-              className="absolute w-2 h-2 bg-blue-500/40 dark:bg-blue-400/25 rounded-full animate-drift transition-transform duration-300 hover:animate-none hover:scale-150"
-              style={{
-                left: `${Math.random() * 100}%`,
-                top: `${Math.random() * 100}%`,
-                "--duration": `${5 + Math.random() * 5}s`, // Increased speed for homepage (5s to 10s)
-                "--delay": `${Math.random() * 0.1}s`,
-              }}
-            />
-          ))}
-        </div> */}
+        
       </section>
     </section>
   );
