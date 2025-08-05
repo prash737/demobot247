@@ -134,6 +134,7 @@ export function OurClients() {
                       src={client.logo || "/placeholder.svg"}
                       alt={client.alt}
                       fill
+                      sizes="(max-width: 768px) 50vw, (max-width: 1200px) 25vw, 16vw"
                       style={{ objectFit: 'contain' }}
                     />
                   </div>
@@ -144,20 +145,5 @@ export function OurClients() {
         </div>
       </div>
     </section>
-    // <section id="our-clients" className="py-24 bg-white dark:bg-gray-900 w-full">
-    //   <div className="container mx-auto px-4 md:px-6 lg:px-8">
-    //     <h2 className="text-3xl font-bold text-center mb-12 text-gray-900 dark:text-white">Our Clients</h2>
-
-    //     <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-8 items-center justify-items-center">
-    //       {clients.map((client, index) => (
-    //         <div key={index} className="w-full flex items-center justify-center">
-    //           <div className="relative w-full h-24 md:h-32">
-    //             <Image src={client.logo || "/placeholder.svg"} alt={client.alt} fill />
-    //           </div>
-    //         </div>
-    //       ))}
-    //     </div>
-    //   </div>
-    // </section>
   );
 }

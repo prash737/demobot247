@@ -69,7 +69,7 @@ export function Benefits() {
         </div>
         <div className="row">
           {benefits.map((benefit, index) => (
-            <div className="col-lg-4 mb-4">
+            <div key={index} className="col-lg-4 mb-4">
               <div className="benefits_list">
                 <div className="row">
                   <div className="col-lg-12 benefits_icon">

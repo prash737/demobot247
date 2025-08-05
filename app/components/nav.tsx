@@ -7,7 +7,6 @@ import Link from "next/link";
 import { useState, useEffect, useCallback } from "react";
 import { usePathname } from "next/navigation";
 import { useRouter } from "next/navigation";
-import { createClient } from "@supabase/supabase-js";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -17,15 +16,8 @@ import {
 import { useScrollToHash } from "../hooks/useScrollToHash";
 import { scrollToSection } from "../utils/scrollToSection";
 import { useToast } from "@/components/ui/use-toast";
+import { supabase } from "../utils/supabaseClient";
 import type React from "react";
-
-// Initialize Supabase client
-const supabase = createClient(
-  process.env.NEXT_PUBLIC_SUPABASE_URL ||
-    "https://zsivtypgrrcttzhtfjsf.supabase.co",
-  process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY ||
-    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InpzaXZ0eXBncnJjdHR6aHRmanNmIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MzgzMzU5NTUsImV4cCI6MjA1MzkxMTk1NX0.3cAMZ4LPTqgIc8z6D8LRkbZvEhP_ffI3Wka0-QDSIys",
-);
 
 export function Nav() {
   // Ensure this line is not commented out
@@ -332,6 +324,7 @@ export function Nav() {
                   width={120} 
                   height={40}
                   priority
+                  style={{ width: "auto", height: "auto" }}
                 />
               </div>
             </a>
