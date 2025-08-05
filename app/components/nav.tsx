@@ -206,8 +206,8 @@ export function Nav() {
     setMounted(true);
     checkAuthStatus();
 
-    // Check auth status periodically to ensure consistency
-    const interval = setInterval(checkAuthStatus, 1000);
+    // Check auth status only when needed - much less frequent
+    const interval = setInterval(checkAuthStatus, 30000); // Every 30 seconds instead of 1 second
 
     // Listen for storage changes
     const handleStorageChange = (e: StorageEvent) => {

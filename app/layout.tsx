@@ -3,19 +3,15 @@ import { Inter } from "next/font/google";
 import { ThemeProvider } from "@/components/theme-provider";
 import { NavbarWrapper } from "@/app/components/navbar-wrapper";
 import { ScrollToTop } from "@/app/utils/scroll-to-top";
-import "bootstrap/dist/css/bootstrap.min.css";
 import { ChatbotThemeProvider } from "@/app/contexts/chatbot-theme-context";
 import type React from "react";
-import "aos/dist/aos.css";
-import "owl.carousel/dist/assets/owl.carousel.css";
-import "owl.carousel/dist/assets/owl.theme.default.css";
 import Script from "next/script";
 import { Nav } from "@/app/components/nav"; // Ensure Nav is imported
 
 const inter = Inter({ 
   subsets: ["latin"],
   display: 'swap',
-  preload: true
+  preload: false // Change to false to reduce initial load
 });
 
 export const metadata = {
@@ -37,6 +33,8 @@ export default function RootLayout({
       <head>
         <link rel="preload" href="/images/logo.png" as="image" type="image/png" />
         <link rel="preload" href="/images/banner_img.png" as="image" type="image/png" />
+        <link rel="preload" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" as="style" onLoad="this.onload=null;this.rel='stylesheet'" />
+        <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" /></noscript>
       </head>
       <body className={inter.className}>
         <Script

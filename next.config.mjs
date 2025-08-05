@@ -12,6 +12,8 @@ const nextConfig = {
   swcMinify: true,
   compress: true,
   poweredByHeader: false,
+  optimizeFonts: true,
+  optimizeCss: true,
   images: {
     remotePatterns: [
       {
@@ -54,6 +56,15 @@ const nextConfig = {
   },
   experimental: {
     esmExternals: "loose",
+    optimizePackageImports: ['lucide-react', '@radix-ui/react-icons'],
+    turbo: {
+      rules: {
+        '*.svg': {
+          loaders: ['@svgr/webpack'],
+          as: '*.js'
+        }
+      }
+    }
   },
   webpack: (config, { isServer }) => {
     config.plugins.push(

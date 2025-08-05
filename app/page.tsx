@@ -1,41 +1,67 @@
-"use client";
-import dynamic from "next/dynamic";
-import { Hero } from "@/app/components/hero";
-import { Features } from "@/app/components/features";
-import { Stats } from "@/app/components/stats";
-import { Implementation } from "@/app/components/implementation";
-import { Benefits } from "@/app/components/benefits";
-import { Keyfeatures } from "@/app/components/keyfeatures";
-import { Pricing } from "@/app/components/pricing";
-import { CTA } from "@/app/components/cta";
-import { Footer } from "@/app/components/footer";
-import { IndustrySolutions } from "@/app/components/industry-solutions";
-import { useScrollToHash } from "./hooks/useScrollToHash";
 
-// Dynamically import components that might use browser APIs
-const OurClients = dynamic(() => import("@/app/components/our-clients").then(mod => ({ default: mod.OurClients })), {
-  ssr: false,
-  loading: () => <div>Loading...</div>
-});
+"use client";
+
+import { Hero } from "@/app/components/hero";
+import { Suspense, lazy } from "react";
+
+// Lazy load heavy components
+const Features = lazy(() => import("@/app/components/features").then(mod => ({ default: mod.Features })));
+const KeyFeatures = lazy(() => import("@/app/components/keyfeatures").then(mod => ({ default: mod.KeyFeatures })));
+const Benefits = lazy(() => import("@/app/components/benefits").then(mod => ({ default: mod.Benefits })));
+const OurClients = lazy(() => import("@/app/components/our-clients").then(mod => ({ default: mod.OurClients })));
+const TestimonialCarousel = lazy(() => import("@/app/components/testimonial-carousel").then(mod => ({ default: mod.TestimonialCarousel })));
+const Pricing = lazy(() => import("@/app/components/pricing").then(mod => ({ default: mod.Pricing })));
+const Stats = lazy(() => import("@/app/components/stats").then(mod => ({ default: mod.Stats })));
+const CTA = lazy(() => import("@/app/components/cta").then(mod => ({ default: mod.CTA })));
+const FAQ = lazy(() => import("@/app/components/faq").then(mod => ({ default: mod.FAQ })));
+
+// Loading component
+const LoadingComponent = () => (
+  <div className="flex justify-center items-center py-20">
+    <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600"></div>
+  </div>
+);
 
 export default function Home() {
-  useScrollToHash();
-
   return (
-    <div className="flex flex-col min-h-screen">
-      <main className="flex-grow">
-        <Hero />
+    <main className="min-h-screen">
+      <Hero />
+      
+      <Suspense fallback={<LoadingComponent />}>
         <Features />
-        <IndustrySolutions />
-        <Implementation />
-        <OurClients />
-        <Keyfeatures />
+      </Suspense>
+      
+      <Suspense fallback={<LoadingComponent />}>
+        <KeyFeatures />
+      </Suspense>
+      
+      <Suspense fallback={<LoadingComponent />}>
         <Benefits />
-        <Stats /> {/* Moved here */}
+      </Suspense>
+      
+      <Suspense fallback={<LoadingComponent />}>
+        <OurClients />
+      </Suspense>
+      
+      <Suspense fallback={<LoadingComponent />}>
+        <TestimonialCarousel />
+      </Suspense>
+      
+      <Suspense fallback={<LoadingComponent />}>
         <Pricing />
-        {/* <CTA /> */}
-      </main>
-      <Footer />
-    </div>
+      </Suspense>
+      
+      <Suspense fallback={<LoadingComponent />}>
+        <Stats />
+      </Suspense>
+      
+      <Suspense fallback={<LoadingComponent />}>
+        <CTA />
+      </Suspense>
+      
+      <Suspense fallback={<LoadingComponent />}>
+        <FAQ />
+      </Suspense>
+    </main>
   );
 }
