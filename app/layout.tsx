@@ -11,7 +11,7 @@ import { Nav } from "@/app/components/nav"; // Ensure Nav is imported
 const inter = Inter({ 
   subsets: ["latin"],
   display: 'swap',
-  preload: false // Change to false to reduce initial load
+  preload: true // Enable preloading for better performance
 });
 
 export const metadata = {
