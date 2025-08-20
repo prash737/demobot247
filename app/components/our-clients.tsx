@@ -3,8 +3,6 @@
 import Image from "next/image";
 import dynamic from "next/dynamic";
 import { useState, useEffect } from "react";
-import "owl.carousel/dist/assets/owl.carousel.css";
-import "owl.carousel/dist/assets/owl.theme.default.css";
 
 const OwlCarousel = dynamic(() => import("react-owl-carousel"), {
   ssr: false,
