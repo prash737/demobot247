@@ -109,7 +109,7 @@ export function OurClients() {
   }
 
   return (
-    <section className="mb-5 pt-5" id="our-clients">
+    <section className="mb-5 pt-5" id="our-clients" suppressHydrationWarning>
       <div className="container">
         <div className="row">
           <div className="col-lg-12 heading70 text-center mb-5">
