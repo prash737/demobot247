@@ -96,83 +96,70 @@ export function Hero() {
   };
 
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-slate-50 via-white to-blue-50 dark:from-gray-900 dark:via-gray-800 dark:to-blue-900">
-      {/* Animated background elements */}
-      <div className="absolute inset-0 overflow-hidden">
-        <div className="absolute -top-40 -right-40 w-80 h-80 bg-purple-400 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-blob"></div>
-        <div className="absolute -bottom-40 -left-40 w-80 h-80 bg-blue-400 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-blob animation-delay-2000"></div>
-        <div className="absolute top-40 left-40 w-80 h-80 bg-indigo-400 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-blob animation-delay-4000"></div>
-      </div>
+    <section className="relative min-h-screen justify-center overflow-hidden">
+      <section className="banner_section">
+        <div className="container">
+          <div className="row mb-5">
+            <div className="col-lg-12 banner_head1 text-center">
+              Build Your Own AI Chatbot for
+            </div>
+            <div className="col-lg-12 banner_head2 text-center">
+              Your website
+            </div>
+            <div className="col-lg-2"></div>
+            <div className="col-lg-8 banner_head3 text-center">
+              <span>24/7</span> automated inquiry handling system that
+              streamlines your entire operational process with intelligent
+              responses and efficient handling.
+            </div>
 
-      <section className="banner_section relative z-10 w-full">
-        <div className="container mx-auto px-4">
-          {/* Header Section with Smooth Fade In */}
-          <div className="text-center space-y-8 mb-12 animate-fade-in">
-            <div className="space-y-4">
-              <h1 className="banner_head1 text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 dark:text-white leading-tight">
-                Build Your Own AI Chatbot for
-              </h1>
-              <h2 className="banner_head2 text-3xl md:text-4xl lg:text-5xl font-semibold bg-gradient-to-r from-purple-600 to-blue-600 bg-clip-text text-transparent">
-                Your website
-              </h2>
-            </div>
-            
-            <div className="max-w-4xl mx-auto">
-              <p className="banner_head3 text-lg md:text-xl text-gray-700 dark:text-gray-300 leading-relaxed">
-                <span className="inline-block bg-gradient-to-r from-purple-600 to-blue-600 text-white px-3 py-1 rounded-full text-sm font-semibold mr-2 animate-pulse">
-                  24/7
-                </span>
-                automated inquiry handling system that streamlines your entire operational process with intelligent responses and efficient handling.
-              </p>
-            </div>
+            {/* <div className="col-lg-2">
+              <div className="banner_arrow">
+                <img src="images/round_arrow.png" className="img-fluid" alt="Round arrow icon"></img>
+              </div>
+            </div> */}
           </div>
-
-          {/* Launch Box with Enhanced Styling */}
-          <div className="launch_box max-w-4xl mx-auto mb-8">
-            <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-xl border border-gray-200 dark:border-gray-700 p-8 backdrop-blur-sm bg-opacity-90 dark:bg-opacity-90 transition-all duration-300 hover:shadow-2xl">
-              <div className="flex flex-col sm:flex-row gap-4 items-center justify-center">
-                <div className="flex-1 w-full sm:max-w-md">
-                  <Input
-                    type="url"
-                    placeholder="Enter your website URL (e.g., https://example.com)"
-                    className="w-full h-12 text-base border-2 border-gray-200 dark:border-gray-600 rounded-xl focus:border-purple-500 dark:focus:border-purple-400 transition-all duration-300 bg-gray-50 dark:bg-gray-700 hover:bg-white dark:hover:bg-gray-600"
-                    value={websiteUrl}
-                    onChange={(e) => setWebsiteUrl(e.target.value)}
-                    onKeyPress={(e) => {
-                      if (e.key === "Enter") {
-                        handleLaunchDemo();
-                      }
-                    }}
-                  />
-                </div>
+          <div className="row launch_box">
+            <div className="col-lg-3"></div>
+            <div className="col-lg-6">
+              <div className="flex flex-col sm:flex-row gap-3 items-center justify-center">
+                <Input
+                  type="url"
+                  placeholder="Enter your website URL (e.g., https://example.com)"
+                  className=""
+                  value={websiteUrl}
+                  onChange={(e) => setWebsiteUrl(e.target.value)}
+                  onKeyPress={(e) => {
+                    if (e.key === "Enter") {
+                      handleLaunchDemo();
+                    }
+                  }}
+                />
                 <Button
                   size="lg"
                   onClick={handleLaunchDemo}
-                  className="h-12 px-8 bg-gradient-to-r from-purple-500 to-indigo-600 text-white hover:from-purple-600 hover:to-indigo-700 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 hover:-translate-y-1 flex items-center justify-center rounded-xl text-base font-semibold whitespace-nowrap"
+                  className="bg-gradient-to-r from-purple-500 to-indigo-600 text-white hover:from-purple-600 hover:to-indigo-700 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 flex items-center justify-center rounded-lg px-6 py-3 text-base font-semibold"
                   disabled={launchLoading || !websiteUrl.trim()}
                 >
                   {launchLoading ? (
                     <>
-                      <Loader2 className="mr-2 h-5 w-5 animate-spin" />
+                      <Loader2 className="mr-2 h-5 w-5 animate-spin" />{" "}
                       Launching...
                     </>
                   ) : (
-                    <>
-                      Launch 🚀
-                    </>
+                    "Launch 🚀"
                   )}
                 </Button>
               </div>
             </div>
           </div>
-
-          {/* Subtitle with Fade In Animation */}
-          <div className="text-center animate-fade-in-delayed">
-            <p className="text-gray-600 dark:text-gray-400 text-base md:text-lg transition-opacity duration-500 hover:opacity-100 opacity-70">
+          <div className="row mt-3 mb-5">
+            <div className="col-lg-12 text-center" style={{ opacity: "0.5" }}>
               See how an AI chatbot can instantly enhance your website.
-            </p>
+            </div>
           </div>
         </div>
+        
       </section>
     </section>
   );
