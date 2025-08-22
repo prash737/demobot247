@@ -24,44 +24,64 @@ const LoadingComponent = () => (
 
 export default function Home() {
   return (
-    <main className="min-h-screen">
+    <main className="min-h-screen bg-gradient-to-b from-white to-gray-50 dark:from-gray-900 dark:to-gray-800 transition-colors duration-300">
       <Hero />
 
-      <Suspense fallback={<LoadingComponent />}>
-        <Features />
-      </Suspense>
+      <div className="space-y-16 md:space-y-24">
+        <Suspense fallback={<LoadingComponent />}>
+          <div className="section-padding animate-slide-up">
+            <Features />
+          </div>
+        </Suspense>
 
-      <Suspense fallback={<LoadingComponent />}>
-        <KeyFeatures />
-      </Suspense>
+        <Suspense fallback={<LoadingComponent />}>
+          <div className="section-padding-sm animate-slide-up">
+            <KeyFeatures />
+          </div>
+        </Suspense>
 
-      <Suspense fallback={<LoadingComponent />}>
-        <Benefits />
-      </Suspense>
+        <Suspense fallback={<LoadingComponent />}>
+          <div className="section-padding animate-slide-up">
+            <Benefits />
+          </div>
+        </Suspense>
 
-      <Suspense fallback={<LoadingComponent />}>
-        <OurClients />
-      </Suspense>
+        <Suspense fallback={<LoadingComponent />}>
+          <div className="section-padding-sm animate-slide-up">
+            <OurClients />
+          </div>
+        </Suspense>
 
-      <Suspense fallback={<LoadingComponent />}>
-        <TestimonialCarousel />
-      </Suspense>
+        <Suspense fallback={<LoadingComponent />}>
+          <div className="section-padding animate-slide-up">
+            <TestimonialCarousel />
+          </div>
+        </Suspense>
 
-      <Suspense fallback={<LoadingComponent />}>
-        <Pricing />
-      </Suspense>
+        <Suspense fallback={<LoadingComponent />}>
+          <div className="section-padding animate-slide-up">
+            <Pricing />
+          </div>
+        </Suspense>
 
-      <Suspense fallback={<LoadingComponent />}>
-        <Stats />
-      </Suspense>
+        <Suspense fallback={<LoadingComponent />}>
+          <div className="section-padding-sm animate-slide-up">
+            <Stats />
+          </div>
+        </Suspense>
 
-      <Suspense fallback={<LoadingComponent />}>
-        <CTA />
-      </Suspense>
+        <Suspense fallback={<LoadingComponent />}>
+          <div className="section-padding animate-slide-up">
+            <CTA />
+          </div>
+        </Suspense>
 
-      <Suspense fallback={<LoadingComponent />}>
-        <FAQ />
-      </Suspense>
+        <Suspense fallback={<LoadingComponent />}>
+          <div className="section-padding-sm animate-slide-up">
+            <FAQ />
+          </div>
+        </Suspense>
+      </div>
     </main>
   );
 }
