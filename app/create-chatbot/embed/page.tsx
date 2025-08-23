@@ -76,7 +76,7 @@ export default function EmbedPage() {
   }, [])
 
   const generatePopupCode = () => {
-    return `<script src="https://chatbot247.vercel.app/embed.js" data-chatbot-id="${chatbotId}"></script>`
+    return `<script src="https://chat.bot247.live/api/chatbot-script" data-chatbot-id="${chatbotId}"></script>`
   }
 
   const getEmbedCode = () => {
