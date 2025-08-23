@@ -159,7 +159,7 @@ export async function GET() {
       chatFrameContainer.className = \`bot247-chat-frame \${position}\`;
       
       const chatFrame = document.createElement('iframe');
-      chatFrame.src = 'https://www.bot247.live/embed/\${chatbotId}';
+      chatFrame.src = 'https://chatbot247.vercel.app/embed/\${chatbotId}';
       chatFrame.title = 'Bot247 Chat';
       chatFrame.allow = 'microphone';
       chatFrameContainer.appendChild(chatFrame);
@@ -188,7 +188,7 @@ export async function GET() {
       inlineContainer.className = 'bot247-inline-container';
       
       const inlineFrame = document.createElement('iframe');
-      inlineFrame.src = 'https://www.bot247.live/embed/\${chatbotId}';
+      inlineFrame.src = 'https://chatbot247.vercel.app/embed/\${chatbotId}';
       inlineFrame.title = 'Bot247 Chat';
       inlineFrame.allow = 'microphone';
       inlineFrame.style.width = '100%';
