@@ -9,12 +9,16 @@ if (!supabaseUrl || !supabaseServiceKey) {
   throw new Error("Missing Supabase environment variables for server-side operations.")
 }
 
-// Create a single instance to avoid multiple client warnings
-const supabase = createClient(supabaseUrl, supabaseServiceKey, {
-  auth: {
-    persistSession: false
+// Use singleton pattern to avoid multiple instances
+let supabaseInstance: any = null
+const getSupabase = () => {
+  if (!supabaseInstance) {
+    supabaseInstance = createClient(supabaseUrl, supabaseServiceKey)
   }
-})
+  return supabaseInstance
+}
+
+const supabase = getSupabase()
 
 const MAX_WEBSITES_PER_LEAD = 5
 
