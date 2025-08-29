@@ -1,14 +1,37 @@
 import { NextResponse } from "next/server"
 import { createClient } from "@supabase/supabase-js"
 
-// Initialize Supabase client using environment variables
-const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL || ""
-const supabaseKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || ""
+// Initialize Supabase client for server-side operations
+const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL
+const supabaseServiceKey = process.env.SUPABASE_SERVICE_KEY
 
-const supabase = createClient(supabaseUrl, supabaseKey)
+if (!supabaseUrl || !supabaseServiceKey) {
+  console.warn("Missing Supabase environment variables for server-side operations.")
+  // Return a mock client during build time
+  const mockClient = {
+    from: () => ({
+      select: () => Promise.resolve({ data: [], error: null }),
+      insert: () => Promise.resolve({ data: [], error: null }),
+      update: () => Promise.resolve({ data: [], error: null }),
+      delete: () => Promise.resolve({ data: [], error: null })
+    }),
+    rpc: () => Promise.resolve({ data: [], error: null })
+  }
+}
+
+const supabase = (supabaseUrl && supabaseServiceKey) ? 
+  createClient(supabaseUrl, supabaseServiceKey) : 
+  null
 
 export async function GET() {
   try {
+    // Return early if no Supabase client (build time)
+    if (!supabase) {
+      return NextResponse.json({ 
+        message: "Database operations not available during build time" 
+      }, { status: 200 })
+    }
+
     // Check if the table exists
     const { data: tables, error: tablesError } = await supabase
       .from("pg_tables")
@@ -74,3 +97,21 @@ export async function GET() {
     )
   }
 }
+
+export async function POST() {
+  try {
+    // Return early if no Supabase client (build time)
+    if (!supabase) {
+      return NextResponse.json({ 
+        message: "Database operations not available during build time" 
+      }, { status: 200 })
+    }
+
+    // First, check if the table exists
+    const { data: existingTables, error: tableCheckError } = await supabase.rpc('check_table_exists', { table_name: 'theme' })
+
+    console.log('Table check result:', { existingTables, tableCheckError })
+
+    if (tableCheckError) {
+      console.error('Error checking for table:', tableCheckError)
+    }

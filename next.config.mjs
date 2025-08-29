@@ -13,6 +13,8 @@ const nextConfig = {
   compress: true,
   poweredByHeader: false,
   optimizeFonts: true,
+  output: 'standalone',
+  trailingSlash: false,
   images: {
     remotePatterns: [
       {

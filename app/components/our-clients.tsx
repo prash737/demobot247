@@ -1,9 +1,18 @@
 "use client"
 
 import Image from "next/image"
-import OwlCarousel from 'react-owl-carousel';
-import 'owl.carousel/dist/assets/owl.carousel.css';
-import 'owl.carousel/dist/assets/owl.theme.default.css';
+import dynamic from 'next/dynamic';
+
+const OwlCarousel = dynamic(() => {
+  // Import CSS files on client side only
+  if (typeof window !== 'undefined') {
+    require('owl.carousel/dist/assets/owl.carousel.css');
+    require('owl.carousel/dist/assets/owl.theme.default.css');
+  }
+  return import('react-owl-carousel');
+}, {
+  ssr: false,
+});
 
 const clients = [
   {
