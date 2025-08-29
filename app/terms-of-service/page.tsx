@@ -6,7 +6,7 @@ export default function TermsOfServicePage() {
     <>
       <InternalHero title="Terms of Service" />
       <div className="container">
-        <div className="text-center">
+        <div className="text-center mb-8">
           <p>
             Welcome to Bot247.live. By using our services, you agree to comply with and be bound by the following terms
             and conditions of use. Please review these terms carefully.

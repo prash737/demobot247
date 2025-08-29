@@ -1,5 +1,11 @@
 import { type NextRequest, NextResponse } from "next/server"
-import { supabase } from "../../utils/supabaseClient"
+import { createClient } from "@supabase/supabase-js"
+
+// Initialize Supabase client
+const supabase = createClient(
+  "https://zsivtypgrrcttzhtfjsf.supabase.co",
+  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InpzaXZ0eXBncnJjdHR6aHRmanNmIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MzgzMzU5NTUsImV4cCI6MjA1MzkxMTk1NX0.3cAMZ4LPTqgIc8z6D8LRkbZvEhP_ffI3Wka0-QDSIys",
+)
 
 // Update the GET function to include response_tone and response_length in the response
 export async function GET(request: NextRequest) {

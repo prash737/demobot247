@@ -1,25 +1,27 @@
-"use client";
+'use client'
 
-import Link from "next/link"; // Import Link
-import { industrySolutionsContent } from "@/app/data/industry-solutions-content"; // Import the content data
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import Link from "next/link" // Import Link
+import { industrySolutionsContent } from "@/app/data/industry-solutions-content" // Import the content data
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 
 // AOS-EFFECT-START
-import AOS from "aos";
+import AOS from 'aos';
 import { useEffect } from "react";
 // AOS-EFFECT-END
 
 export function IndustrySolutions() {
+
   // AOS-EFFECT-START
   useEffect(() => {
     AOS.init({
       duration: 20, // animation duration
-      once: false, // whether animation should happen only once
+      once: false,    // whether animation should happen only once
     });
   }, []);
   // AOS-EFFECT-END
 
   return (
+    
     // <section
     //   id="solutions"
     //   className="py-20 bg-gradient-to-br from-purple-50 to-pink-50 dark:from-purple-900/10 dark:to-pink-900/10 w-full"
@@ -59,15 +61,13 @@ export function IndustrySolutions() {
     <section className="mb-5">
       <div className="container">
         <div className="row">
-          <div className="col-lg-12 heading70 text-center">
-            Solutions for Every Industry
-          </div>
+          <div className="col-lg-12 heading70 text-center">Solutions for Every Industry</div>
         </div>
         <div className="row">
           <div className="col-lg-3"></div>
           <div className="col-lg-6 text-center mb-5">
-            Our AI-powered chatbots are designed to adapt and excel across
-            diverse business needs, driving efficiency and engagement.
+            Our AI-powered chatbots are designed to adapt and excel across diverse business needs, driving
+            efficiency and engagement.
           </div>
         </div>
         {/* <div className="row">
@@ -203,13 +203,9 @@ export function IndustrySolutions() {
         <div className="row">
           <div className="col-lg-12">
             {industrySolutionsContent.map((solution, index) => {
-              const IconComponent = solution.icon; // Get the icon component
+              const IconComponent = solution.icon // Get the icon component
               return (
-                <Link
-                  href={`/solutions/${solution.id}`}
-                  key={index}
-                  className="block"
-                >
+                <Link href={`/solutions/${solution.id}`} key={index} className="block">
                   <div className="solution_list">
                     <div className="solution_list_inner">
                       <div className="row" style={{ alignItems: "center" }}>
@@ -220,9 +216,7 @@ export function IndustrySolutions() {
                         </div>
                         <div className="col-lg-9">
                           <div className="row">
-                            <div className="col-lg-12 solution_head mb-2">
-                              {solution.title}
-                            </div>
+                            <div className="col-lg-12 solution_head mb-2">{solution.title}</div>
                             <div className="col-lg-12 solution_content mb-3">
                               {solution.description}
                             </div>
@@ -248,11 +242,11 @@ export function IndustrySolutions() {
                     </CardContent>
                   </Card> */}
                 </Link>
-              );
+              )
             })}
           </div>
         </div>
       </div>
     </section>
-  );
+  )
 }

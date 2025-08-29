@@ -84,6 +84,3 @@ export function TestimonialCarousel() {
     </div>
   )
 }
-
-// Add default export for lazy loading
-export default TestimonialCarousel;

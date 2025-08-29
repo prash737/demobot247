@@ -6,7 +6,7 @@ export default function CookiePolicyPage() {
     <>
       <InternalHero title="Cookie Policy" />
       <div className="container">
-        <div className="text-center">
+        <div className="text-center mb-8">
           <p>
             This Cookie Policy explains how Bot247.live uses cookies and similar technologies to recognize you when you
             visit our website. It explains what these technologies are and why we use them, as well as your rights to

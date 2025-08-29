@@ -1,48 +1,50 @@
-"use client";
+"use client"
 
-import { Facebook, Twitter, Linkedin, Instagram } from "lucide-react";
-import Image from "next/image";
-import Link from "next/link";
-import { useTheme } from "next-themes";
-import { usePathname } from "next/navigation";
-import { useScrollToHash } from "../hooks/useScrollToHash";
+import { Facebook, Twitter, Linkedin, Instagram } from "lucide-react"
+import Image from "next/image"
+import Link from "next/link"
+import { useTheme } from "next-themes"
+import { usePathname } from "next/navigation"
+import { useScrollToHash } from "../hooks/useScrollToHash"
 
 // AOS-EFFECT-START
-import AOS from "aos";
+import AOS from 'aos';
 import { useEffect } from "react";
 // AOS-EFFECT-END
 
 export function Footer() {
+
   // AOS-EFFECT-START
   useEffect(() => {
     AOS.init({
       duration: 1000, // animation duration
-      once: false, // whether animation should happen only once
+      once: false,    // whether animation should happen only once
     });
   }, []);
   // AOS-EFFECT-END
 
-  const { theme } = useTheme();
-  const pathname = usePathname();
-  useScrollToHash(); // Use the custom hook
+
+  const { theme } = useTheme()
+  const pathname = usePathname()
+  useScrollToHash() // Use the custom hook
 
   const handleSectionClick = (sectionId: string) => {
     if (pathname !== "/") {
-      window.location.href = `/#${sectionId}`;
+      window.location.href = `/#${sectionId}`
     } else {
-      const element = document.getElementById(sectionId);
+      const element = document.getElementById(sectionId)
       if (element) {
-        const navHeight = 80; // Adjust this value based on your navbar height
-        const elementPosition = element.getBoundingClientRect().top;
-        const offsetPosition = elementPosition + window.pageYOffset - navHeight;
+        const navHeight = 80 // Adjust this value based on your navbar height
+        const elementPosition = element.getBoundingClientRect().top
+        const offsetPosition = elementPosition + window.pageYOffset - navHeight
 
         window.scrollTo({
           top: offsetPosition,
           behavior: "smooth",
-        });
+        })
       }
     }
-  };
+  }
 
   return (
     // <footer className="bg-gray-50 dark:bg-gray-900 border-t border-gray-200 dark:border-gray-800">
@@ -182,11 +184,7 @@ export function Footer() {
           <div className="col-lg-10">
             <div className="demobox">
               <div className="demobox_img">
-                <img
-                  src="/images/demo_icon.png"
-                  className="img-fluid"
-                  alt="Demo icon"
-                ></img>
+                <img src="/images/demo_icon.png" className="img-fluid" alt="Demo icon"></img>
               </div>
               <div className="demobox_text">
                 Ready to Transform Your <br></br>
@@ -210,13 +208,10 @@ export function Footer() {
                 ></img>
               </div>
               <div className="col-lg-12 mb-4">
-                <span style={{ color: "#44cc78", fontSize: "28px" }}>
-                  Bot247.live{" "}
-                </span>
+                <span style={{ color: "#44cc78", fontSize: "28px" }}>Bot247.live </span>
                 <br></br>
-                Provides intelligent inquiry handling solutions for
-                organizations worldwide, streamlining operational processes with
-                AI-powered automation.
+                Provides intelligent inquiry handling solutions for organizations worldwide, streamlining
+                operational processes with AI-powered automation.
               </div>
             </div>
           </div>
@@ -256,7 +251,7 @@ export function Footer() {
                   <div className="footer_menu_heading mb-3 pb-2">Company</div>
                 </div>
                 <div className="col-lg-12 footer_menu">
-                  {["about", "contact"].map((item) => (
+                  {["about", "contact",].map((item) => (
                     <div key={item}>
                       <a
                         href={`/${item}`}
@@ -277,12 +272,7 @@ export function Footer() {
                   <div className="footer_menu_heading mb-3 pb-2">Legal</div>
                 </div>
                 <div className="col-lg-12 footer_menu">
-                  {[
-                    "privacy-policy",
-                    "terms-of-service",
-                    "cookie-policy",
-                    "security",
-                  ].map((item) => (
+                  {["privacy-policy", "terms-of-service", "cookie-policy", "security"].map((item) => (
                     <div key={item}>
                       <a
                         href={`/${item}`}
@@ -290,10 +280,7 @@ export function Footer() {
                       >
                         {item
                           .split("-")
-                          .map(
-                            (word) =>
-                              word.charAt(0).toUpperCase() + word.slice(1),
-                          )
+                          .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
                           .join(" ")}
                       </a>
                     </div>
@@ -304,9 +291,7 @@ export function Footer() {
           </div>
         </div>
         <div className="row">
-          <div className="col-lg-12 text-center pb-5">
-            © {new Date().getFullYear()} Bot247.live. All rights reserved.
-          </div>
+          <div className="col-lg-12 text-center pb-5">© {new Date().getFullYear()} Bot247.live. All rights reserved.</div>
           {/* <div className="col-lg-6 pb-5">
             <div className="footer_menu2">
               <a href="/privacy-policy">Privacy</a>
@@ -316,5 +301,5 @@ export function Footer() {
         </div>
       </div>
     </footer>
-  );
+  )
 }

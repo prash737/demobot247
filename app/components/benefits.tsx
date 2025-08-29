@@ -1,4 +1,4 @@
-"use client";
+'use client'
 import {
   HelpCircle,
   Zap,
@@ -12,15 +12,15 @@ import {
   Globe,
   CreditCard,
   Lock,
-  Building2,
-  UserCog,
-  Check,
-} from "lucide-react";
-import { Card, CardContent } from "@/components/ui/card";
+  Building2, UserCog,
+  Check
+} from "lucide-react"
+import { Card, CardContent } from "@/components/ui/card"
 
-import React from "react";
-import OwlCarousel from "react-owl-carousel";
+import React from 'react';
+import OwlCarousel from 'react-owl-carousel';
 import { Carousel } from "@/components/ui/carousel";
+
 
 const benefits = [
   {
@@ -56,43 +56,32 @@ const benefits = [
       "Optimized workload",
     ],
   },
-];
+]
 
 export function Benefits() {
   return (
     <section className="mb-8" id="benefits">
       <div className="container">
         <div className="row">
-          <div className="col-lg-12 heading70 text-center mb-5">
-            Benefits for All Stakeholders
-          </div>
+          <div className="col-lg-12 heading70 text-center mb-5">Benefits for All Stakeholders</div>
         </div>
         <div className="row">
           {benefits.map((benefit, index) => (
-            <div key={index} className="col-lg-4 mb-4">
+            <div className="col-lg-4 mb-4">
               <div className="benefits_list">
                 <div className="row">
-                  <div className="col-lg-12 benefits_icon">
-                    <benefit.icon className="w-6 h-6 text-blue-600 dark:text-blue-400" />
-                  </div>
+                  <div className="col-lg-12 benefits_icon"><benefit.icon className="w-6 h-6 text-blue-600 dark:text-blue-400" /></div>
                 </div>
                 <div className="row">
-                  <div className="col-lg-12 mb-2 mt-3 benefits_heading">
-                    {benefit.title}
-                  </div>
+                  <div className="col-lg-12 mb-2 mt-3 benefits_heading">{benefit.title}</div>
                 </div>
                 <div className="row">
                   <div className="col-lg-12">
                     <ul className="p-0">
                       {benefit.features.map((feature, featureIndex) => (
-                        <li
-                          key={`${index}-${featureIndex}`}
-                          className="flex items-center gap-2"
-                        >
+                        <li key={featureIndex} className="flex items-center gap-2">
                           <Check className="w-5 h-5 text-green-500 dark:text-green-400 flex-shrink-0" />
-                          <span className="text-gray-700 dark:text-gray-300">
-                            {feature}
-                          </span>
+                          <span className="text-gray-700 dark:text-gray-300">{feature}</span>
                         </li>
                       ))}
                     </ul>
@@ -137,8 +126,6 @@ export function Benefits() {
     //     </div>
     //   </div>
     // </section>
-  );
+  )
 }
 
-// Add default export for lazy loading
-export default Benefits;

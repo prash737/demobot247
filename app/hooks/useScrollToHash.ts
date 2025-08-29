@@ -1,31 +1,29 @@
-import { useEffect } from 'react';
-import { useRouter } from 'next/navigation';
+"use client"
+
+import { useEffect } from "react"
+import { usePathname } from "next/navigation"
 
 export function useScrollToHash() {
-  const router = useRouter();
+  const pathname = usePathname()
 
   useEffect(() => {
-    // Only run on client side
-    if (typeof window === 'undefined') return;
-
-    const handleHashChange = () => {
-      const hash = window.location.hash;
+    if (pathname === "/") {
+      const hash = window.location.hash
       if (hash) {
-        const element = document.querySelector(hash);
-        if (element) {
-          element.scrollIntoView({ behavior: 'smooth' });
-        }
+        setTimeout(() => {
+          const element = document.getElementById(hash.slice(1))
+          if (element) {
+            const navHeight = 80 // Adjust this value based on your navbar height
+            const elementPosition = element.getBoundingClientRect().top
+            const offsetPosition = elementPosition + window.pageYOffset - navHeight
+
+            window.scrollTo({
+              top: offsetPosition,
+              behavior: "smooth",
+            })
+          }
+        }, 100) // Small delay to ensure the DOM has updated
       }
-    };
-
-    // Handle initial hash on page load
-    handleHashChange();
-
-    // Listen for hash changes
-    window.addEventListener('hashchange', handleHashChange);
-
-    return () => {
-      window.removeEventListener('hashchange', handleHashChange);
-    };
-  }, [router]);
+    }
+  }, [pathname])
 }

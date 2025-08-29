@@ -53,6 +53,3 @@ export function FAQ() {
     </section>
   )
 }
-
-// Add default export for lazy loading
-export default FAQ;

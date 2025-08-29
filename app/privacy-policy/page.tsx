@@ -6,7 +6,7 @@ export default function PrivacyPolicyPage() {
     <>
       <InternalHero title="Privacy Policy" />
       <div className="container">
-        <div className="text-center">
+        <div className="text-center mb-8">
           <p>
             At Bot247.live, we are committed to protecting your privacy and ensuring the security of your personal
             information. This Privacy Policy outlines how we collect, use, disclose, and safeguard your data when you

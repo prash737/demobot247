@@ -34,14 +34,9 @@ export async function POST(req: Request) {
     try {
       // Fetch the raw HTML content of the website
       // Set a reasonable timeout for the fetch request
-      const controller = new AbortController()
-      const timeoutId = setTimeout(() => controller.abort(), 15000)
-      
       response = await fetch(url, {
-        signal: controller.signal,
+        signal: AbortSignal.timeout(15000), // 15 seconds timeout
       })
-      
-      clearTimeout(timeoutId)
     } catch (fetchError: any) {
       console.error(`Network error fetching ${url}:`, fetchError)
       let errorMessage =

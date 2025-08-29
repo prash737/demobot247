@@ -6,7 +6,7 @@ export default function SecurityPage() {
     <>
       <InternalHero title="Security at Bot247.live" />
       <div className="container">
-        <div className="text-center">
+        <div className="text-center mb-8">
           <p>
             At Bot247.live, we take the security of your data and our systems very seriously. We employ
             industry-standard security measures to protect your information and ensure the integrity of our services.

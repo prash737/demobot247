@@ -31,9 +31,9 @@ export function AdminHeader({
       router.back()
     }
   }
-
   return (
     <header className="bg-white dark:bg-gray-900 border-b border-gray-200 dark:border-gray-700 shadow-sm">
+      
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
         {/* Actions positioned at top right */}
         {actions && <div className="flex justify-end mb-4">{actions}</div>}

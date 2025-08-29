@@ -1,67 +1,36 @@
-"use client";
-
-import { Hero } from "@/app/components/hero";
-import { Suspense, lazy } from "react";
-
-// Lazy load heavy components with direct imports
-const Features = lazy(() => import("@/app/components/features"));
-const KeyFeatures = lazy(() => import("@/app/components/keyfeatures"));
-const Benefits = lazy(() => import("@/app/components/benefits"));
-const OurClients = lazy(() => import("@/app/components/our-clients"));
-const TestimonialCarousel = lazy(() => import("@/app/components/testimonial-carousel"));
-const Pricing = lazy(() => import("@/app/components/pricing"));
-const Stats = lazy(() => import("@/app/components/stats"));
-const CTA = lazy(() => import("@/app/components/cta"));
-const FAQ = lazy(() => import("@/app/components/faq"));
-
-// Loading component
-const LoadingComponent = () => (
-  <div className="flex justify-center items-center py-20">
-    <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600"></div>
-    <span className="ml-3 text-gray-600">Loading...</span>
-  </div>
-);
+"use client"
+import { Hero } from "@/app/components/hero"
+import { Features } from "@/app/components/features"
+import { Stats } from "@/app/components/stats"
+import { Implementation } from "@/app/components/implementation"
+import { Benefits } from "@/app/components/benefits"
+import { Keyfeatures } from "@/app/components/keyfeatures"
+import { OurClients } from "@/app/components/our-clients"
+import { Pricing } from "@/app/components/pricing"
+import { CTA } from "@/app/components/cta"
+import { Footer } from "@/app/components/footer"
+import { IndustrySolutions } from "@/app/components/industry-solutions" // Import the new component
+import { useScrollToHash } from "./hooks/useScrollToHash"
 
 export default function Home() {
+  useScrollToHash()
+
   return (
-    <main className="min-h-screen">
-      <Hero />
-
-      <Suspense fallback={<LoadingComponent />}>
+    <div className="flex flex-col min-h-screen">
+      <main className="flex-grow">
+        <Hero />
         <Features />
-      </Suspense>
-
-      <Suspense fallback={<LoadingComponent />}>
-        <KeyFeatures />
-      </Suspense>
-
-      <Suspense fallback={<LoadingComponent />}>
-        <Benefits />
-      </Suspense>
-
-      <Suspense fallback={<LoadingComponent />}>
+        <IndustrySolutions />
+        <Implementation />
         <OurClients />
-      </Suspense>
-
-      <Suspense fallback={<LoadingComponent />}>
-        <TestimonialCarousel />
-      </Suspense>
-
-      <Suspense fallback={<LoadingComponent />}>
+        
+        <Keyfeatures />
+        <Benefits />
+        <Stats /> {/* Moved here */}        
         <Pricing />
-      </Suspense>
-
-      <Suspense fallback={<LoadingComponent />}>
-        <Stats />
-      </Suspense>
-
-      <Suspense fallback={<LoadingComponent />}>
-        <CTA />
-      </Suspense>
-
-      <Suspense fallback={<LoadingComponent />}>
-        <FAQ />
-      </Suspense>
-    </main>
-  );
+        {/* <CTA /> */}
+      </main>
+      <Footer />
+    </div>
+  )
 }

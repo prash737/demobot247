@@ -1,19 +1,19 @@
-"use client";
+"use client"
 
-import { Button } from "@/components/ui/button";
-import Image from "next/image";
-import { useState, useEffect } from "react";
-import { Input } from "@/components/ui/input"; // Import Input
-import { Loader2 } from "lucide-react"; // Import Loader2 icon
-import { useRouter } from "next/navigation"; // Import useRouter
+import { Button } from "@/components/ui/button"
+import Image from "next/image"
+import { useState, useEffect } from "react"
+import { Input } from "@/components/ui/input" // Import Input
+import { Loader2 } from "lucide-react" // Import Loader2 icon
+import { useRouter } from "next/navigation" // Import useRouter
 
-const words = ["Intelligence", "Efficiency", "Precision", "Innovation"];
+const words = ["Intelligence", "Efficiency", "Precision", "Innovation"]
 const gradients = [
   "from-blue-600 to-green-600",
   "from-purple-600 to-pink-600",
   "from-orange-600 to-red-600",
   "from-teal-600 to-cyan-600",
-];
+]
 
 const illustrations = [
   {
@@ -32,85 +32,76 @@ const illustrations = [
     src: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/option%201.jpg-9Zstp5nNue81bmROCITBkEMSAWTzps.jpeg",
     alt: "Mobile chat interface with multiple conversations",
   },
-];
+]
 
 export function Hero() {
-  const [currentIndex, setCurrentIndex] = useState(0);
-  const [displayText, setDisplayText] = useState("");
-  const [isDeleting, setIsDeleting] = useState(false);
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [websiteUrl, setWebsiteUrl] = useState("https://www."); // New state for website URL input
-  const [launchLoading, setLaunchLoading] = useState(false); // New state for launch button loading
-  const router = useRouter(); // Initialize useRouter
+  const [currentIndex, setCurrentIndex] = useState(0)
+  const [displayText, setDisplayText] = useState("")
+  const [isDeleting, setIsDeleting] = useState(false)
+  const [isLoggedIn, setIsLoggedIn] = useState(false)
+  const [websiteUrl, setWebsiteUrl] = useState("https://www.") // New state for website URL input
+  const [launchLoading, setLaunchLoading] = useState(false) // New state for launch button loading
+  const router = useRouter() // Initialize useRouter
 
   useEffect(() => {
     const checkAuthStatus = () => {
-      const adminData = localStorage.getItem("adminData");
-      const userData = localStorage.getItem("userData");
-      setIsLoggedIn(!!(adminData || userData));
-    };
+      const adminData = localStorage.getItem("adminData")
+      const userData = localStorage.getItem("userData")
+      setIsLoggedIn(!!(adminData || userData))
+    }
 
-    checkAuthStatus();
-    const interval = setInterval(checkAuthStatus, 1000);
-    return () => clearInterval(interval);
-  }, []);
+    checkAuthStatus()
+    const interval = setInterval(checkAuthStatus, 1000)
+    return () => clearInterval(interval)
+  }, [])
 
   useEffect(() => {
-    let timer: NodeJS.Timeout;
+    let timer: NodeJS.Timeout
 
     const animateText = () => {
-      const currentWord = words[currentIndex];
-      const currentGradient = gradients[currentIndex];
+      const currentWord = words[currentIndex]
+      const currentGradient = gradients[currentIndex]
 
       if (!isDeleting && displayText === currentWord) {
-        timer = setTimeout(() => setIsDeleting(true), 3000);
+        timer = setTimeout(() => setIsDeleting(true), 3000)
       } else if (isDeleting && displayText === "") {
-        setIsDeleting(false);
-        setCurrentIndex((prevIndex) => (prevIndex + 1) % words.length);
+        setIsDeleting(false)
+        setCurrentIndex((prevIndex) => (prevIndex + 1) % words.length)
       } else {
         timer = setTimeout(
           () => {
-            setDisplayText(
-              currentWord.substring(
-                0,
-                isDeleting ? displayText.length - 1 : displayText.length + 1,
-              ),
-            );
+            setDisplayText(currentWord.substring(0, isDeleting ? displayText.length - 1 : displayText.length + 1))
           },
           isDeleting ? 50 : 100,
-        );
+        )
       }
-    };
+    }
 
-    animateText();
+    animateText()
 
-    return () => clearTimeout(timer);
-  }, [currentIndex, displayText, isDeleting]);
+    return () => clearTimeout(timer)
+  }, [currentIndex, displayText, isDeleting])
 
   const handleLaunchDemo = () => {
     if (websiteUrl.trim()) {
-      setLaunchLoading(true);
+      setLaunchLoading(true)
       // Encode the URL to ensure it's safely passed as a query parameter
-      router.push(`/demo?url=${encodeURIComponent(websiteUrl)}`);
+      router.push(`/demo?url=${encodeURIComponent(websiteUrl)}`)
     }
-  };
+  }
 
   return (
     <section className="relative min-h-screen justify-center overflow-hidden">
+      
       <section className="banner_section">
         <div className="container">
           <div className="row mb-5">
-            <div className="col-lg-12 banner_head1 text-center">
-              Build Your Own AI Chatbot for
-            </div>
-            <div className="col-lg-12 banner_head2 text-center">
-              Your website
-            </div>
+            <div className="col-lg-12 banner_head1 text-center">Build Your Own AI Chatbot for</div>
+            <div className="col-lg-12 banner_head2 text-center">Your website</div>
             <div className="col-lg-2"></div>
             <div className="col-lg-8 banner_head3 text-center">
-              <span>24/7</span> automated inquiry handling system that
-              streamlines your entire operational process with intelligent
-              responses and efficient handling.
+              <span>24/7</span> automated inquiry handling system that streamlines your entire operational
+              process with intelligent responses and efficient handling.
             </div>
 
             {/* <div className="col-lg-2">
@@ -123,15 +114,13 @@ export function Hero() {
             <div className="col-lg-3"></div>
             <div className="col-lg-6">
               <div className="flex flex-col sm:flex-row gap-3 items-center justify-center">
-                <Input
-                  type="url"
-                  placeholder="Enter your website URL (e.g., https://example.com)"
+                <Input type="url" placeholder="Enter your website URL (e.g., https://example.com)"
                   className=""
                   value={websiteUrl}
                   onChange={(e) => setWebsiteUrl(e.target.value)}
                   onKeyPress={(e) => {
                     if (e.key === "Enter") {
-                      handleLaunchDemo();
+                      handleLaunchDemo()
                     }
                   }}
                 />
@@ -143,8 +132,7 @@ export function Hero() {
                 >
                   {launchLoading ? (
                     <>
-                      <Loader2 className="mr-2 h-5 w-5 animate-spin" />{" "}
-                      Launching...
+                      <Loader2 className="mr-2 h-5 w-5 animate-spin" /> Launching...
                     </>
                   ) : (
                     "Launch 🚀"
@@ -154,13 +142,26 @@ export function Hero() {
             </div>
           </div>
           <div className="row mt-3 mb-5">
-            <div className="col-lg-12 text-center" style={{ opacity: "0.5" }}>
+            <div className="col-lg-12 text-center" style={{opacity:"0.5"}}>
               See how an AI chatbot can instantly enhance your website.
             </div>
           </div>
         </div>
-        
+        {/* <div className="absolute inset-0">
+          {[...Array(20)].map((_, i) => (
+            <div
+              key={i}
+              className="absolute w-2 h-2 bg-blue-500/40 dark:bg-blue-400/25 rounded-full animate-drift transition-transform duration-300 hover:animate-none hover:scale-150"
+              style={{
+                left: `${Math.random() * 100}%`,
+                top: `${Math.random() * 100}%`,
+                "--duration": `${5 + Math.random() * 5}s`, // Increased speed for homepage (5s to 10s)
+                "--delay": `${Math.random() * 0.1}s`,
+              }}
+            />
+          ))}
+        </div> */}
       </section>
     </section>
-  );
+  )
 }

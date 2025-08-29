@@ -41,7 +41,7 @@ export default function AboutPage() {
           </div>
 
           {/* Team Section */}
-          <div className="mt-20">
+          <div className="mt-20 mb-8">
             <h2 className="text-3xl font-bold text-center mb-12">Meet Our Team</h2>
 
             {/* Leadership */}
@@ -81,11 +81,11 @@ export default function AboutPage() {
             </div>
           </div>
 
-          <div className="mt-16 text-center">
+          {/* <div className="mt-16 text-center">
             <Link href="/contact">
               <Button>Contact Us</Button>
             </Link>
-          </div>
+          </div> */}
         </div>
       </MarketingPageWrapper>
       <Footer />

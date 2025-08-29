@@ -1,5 +1,5 @@
-import { Zap, Settings2, Scale, Gauge } from "lucide-react";
-import { Card, CardContent } from "@/components/ui/card";
+import { Zap, Settings2, Scale, Gauge } from "lucide-react"
+import { Card, CardContent } from "@/components/ui/card"
 
 const steps = [
   {
@@ -20,10 +20,9 @@ const steps = [
   {
     icon: Gauge,
     title: "Low Requirements",
-    description:
-      "Minimal hardware and software requirements for maximum efficiency",
+    description: "Minimal hardware and software requirements for maximum efficiency",
   },
-];
+]
 
 export function Implementation() {
   return (
@@ -51,58 +50,44 @@ export function Implementation() {
     //   </div>
     // </section>
     <section className="analytics_section mb-5">
-      <div
-        className="container text-center"
-        style={{ position: "relative", zIndex: "5" }}
-      >
-        <div className="row">
-          <div
-            className="col-lg-12 heading70 text-center"
-            style={{ color: "#fff" }}
-          >
-            Analytics Visualizations
-          </div>
+    <div className="container text-center" style={{position:"relative", zIndex:"5"}}>
+      <div className="row">
+        <div className="col-lg-12 heading70 text-center" style={{color:"#fff"}}>Analytics Visualizations</div>
+      </div>
+      <div className="row">
+        <div className="col-lg-2"></div>
+        <div className="col-lg-8 text-center mb-5" style={{color:"#fff"}}>
+          Our AI-powered chatbots are designed to adapt and excel across diverse business needs, driving efficiency and engagement.
         </div>
-        <div className="row">
-          <div className="col-lg-2"></div>
-          <div className="col-lg-8 text-center mb-5" style={{ color: "#fff" }}>
-            Our AI-powered chatbots are designed to adapt and excel across
-            diverse business needs, driving efficiency and engagement.
-          </div>
-        </div>
+      </div>
 
-        <div className="row text-center">
-          {steps.map((step, index) => (
-            <div key={index} className="col-lg-6 col-sm-6 pt-5 pb-4 analytis_rightboder analytis_bottomboder">
-              <div className="row" style={{ alignItems: "center" }}>
-                <div className="col-lg-6">
-                  <img
-                    src="images/analytics_img.png"
-                    className="img-fluid"
-                  ></img>
-                </div>
-                <div className="col-lg-6">
-                  <div className="row">
-                    <div className="col-lg-12 mb-3 analytis_heading mt-4">
-                      {step.title}
-                    </div>
-                    <div className="col-lg-12 mb-4">{step.description}</div>
-                  </div>
+      
+      <div className="row text-center">
+        {steps.map((step, index) => (
+        <div className="col-lg-6 col-sm-6 pt-5 pb-4 analytis_rightboder analytis_bottomboder">
+          <div className="row" style={{alignItems:"center"}}>
+            <div className="col-lg-6">
+              <img src="images/analytics_img.png" className="img-fluid"></img>
+            </div>
+            <div className="col-lg-6">
+              <div className="row">
+                <div className="col-lg-12 mb-3 analytis_heading mt-4">{step.title}</div>
+                <div className="col-lg-12 mb-4">
+                    {step.description}
                 </div>
               </div>
             </div>
-          ))}
-          {/* <div className="col-lg-12">
+          </div>
+        </div>
+        ))}
+        {/* <div className="col-lg-12">
           <div className="analytis_sept"><img src="images/analytis_sept.png" className="img-fluid"></img></div>
         </div> */}
-        </div>
       </div>
-      <div className="shape1_box">
-        <img src="images/shape1.png" className="img-fluid"></img>
-      </div>
-      <div className="purple_shape_btm">
-        <img src="images/purple_shade.png" className="img-fluid"></img>
-      </div>
-    </section>
-  );
+      
+    </div>
+    <div className="shape1_box"><img src="images/shape1.png" className="img-fluid"></img></div>
+    <div className="purple_shape_btm"><img src="images/purple_shade.png" className="img-fluid"></img></div>
+  </section>
+  )
 }

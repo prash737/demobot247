@@ -152,7 +152,7 @@ export function Keyfeatures() {
             {features.map((feature, index) => (
               <div className="keyfetures_list" key={index}>
                 <div className="row text-center" style={{ alignItems: "center" }}>
-                  <div className="col-lg-6 col-sm-6">
+                  <div className="col-lg-6 col-sm-6" data-aos="fade-down">
                     <div className="keyfetures_icon"><feature.icon className="text-blue-500" strokeWidth={1} /></div>
                     <div className="keyfetures_head mb-3">{feature.title}</div>
                     <div className="keyfetures_content mb-4">
@@ -164,7 +164,7 @@ export function Keyfeatures() {
                       </div>
                     </div>
                   </div>
-                  <div className="col-lg-6 col-sm-6">
+                  <div className="col-lg-6 col-sm-6" data-aos="fade-up">
                     <div className="keyfetures_img"></div>
                   </div>
                 </div>
@@ -210,5 +210,4 @@ export function Keyfeatures() {
   )
 }
 
-// Add default export for lazy loading
-export default Keyfeatures;
+

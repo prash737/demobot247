@@ -1,14 +1,9 @@
-"use client";
+"use client"
 
-import Image from "next/image";
-import dynamic from "next/dynamic";
-import { useState, useEffect } from "react";
-import "owl.carousel/dist/assets/owl.carousel.css";
-import "owl.carousel/dist/assets/owl.theme.default.css";
-
-const OwlCarousel = dynamic(() => import("react-owl-carousel"), {
-  ssr: false,
-});
+import Image from "next/image"
+import OwlCarousel from 'react-owl-carousel';
+import 'owl.carousel/dist/assets/owl.carousel.css';
+import 'owl.carousel/dist/assets/owl.theme.default.css';
 
 const clients = [
   {
@@ -43,12 +38,12 @@ const clients = [
   },
   {
     name: "Evonix",
-    logo: "/images/evonix.png",
+    logo: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Client%201.jpg-qGhjSFqpkZOsu4SpSQ3OTBh4uSMJUA.jpeg",
     alt: "Evonix Logo",
   },
   {
     name: "QuickKart",
-    logo: "/images/quickart.png",
+    logo: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Client%203.jpg-LK7mmtOjwp93cdUw3znRgvNwP480KI.jpeg",
     alt: "QuickKart Logo",
   },
   {
@@ -58,10 +53,10 @@ const clients = [
   },
   {
     name: "Hyp Mobility",
-    logo: "/images/hyp-mobility.png",
+    logo: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Client%202.jpg-MEkWjv90KVWIPmWXMexx6i9jRO1yIi.jpeg",
     alt: "Hyp Mobility Logo",
   },
-];
+]
 
 // OWL-Carousel-START
 const options = {
@@ -70,73 +65,32 @@ const options = {
   nav: false,
   responsive: {
     0: {
-      items: 2, // 👈 Show 2 items on small screens (e.g. mobile)
+      items: 2,  // 👈 Show 2 items on small screens (e.g. mobile)
     },
     600: {
       items: 2,
     },
     1000: {
       items: 5,
-    },
-  },
+    }
+  }
 };
 // OWL-Carousel-END
 
 export function OurClients() {
-  const [isClient, setIsClient] = useState(false);
-
-  useEffect(() => {
-    setIsClient(true);
-  }, []);
-
-  if (!isClient) {
-    return (
-      <section className="mb-5 pt-5" id="our-clients">
-        <div className="container">
-          <div className="row">
-            <div className="col-lg-12 heading70 text-center mb-5">
-              Our Clients
-            </div>
-          </div>
-          <div className="row">
-            <div className="col-lg-12">
-              <div className="flex justify-center items-center h-32">
-                <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-500"></div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-    );
-  }
-
   return (
     <section className="mb-5 pt-5" id="our-clients">
       <div className="container">
         <div className="row">
-          <div className="col-lg-12 heading70 text-center mb-5">
-            Our Clients
-          </div>
+          <div className="col-lg-12 heading70 text-center mb-5">Our Clients</div>
         </div>
         <div className="row">
           <div className="col-lg-12">
-            <OwlCarousel
-              className="owl-theme"
-              loop
-              items={5}
-              {...options}
-              autoplay
-            >
+            <OwlCarousel className='owl-theme' loop items={5} {...options} autoplay>
               {clients.map((client, index) => (
-                <div key={`client-${index}`} className="clientlogo_list">
-                  <div className="clientlogo_list_inner relative">
-                    <Image
-                      src={client.logo || "/placeholder.svg"}
-                      alt={client.alt}
-                      fill
-                      sizes="(max-width: 768px) 50vw, (max-width: 1200px) 25vw, 16vw"
-                      style={{ objectFit: 'contain' }}
-                    />
+                <div key={index} className="clientlogo_list">
+                  <div className="clientlogo_list_inner">
+                    <Image src={client.logo || "/placeholder.svg"} alt={client.alt} fill />
                   </div>
                 </div>
               ))}
@@ -145,8 +99,20 @@ export function OurClients() {
         </div>
       </div>
     </section>
-  );
-}
+    // <section id="our-clients" className="py-24 bg-white dark:bg-gray-900 w-full">
+    //   <div className="container mx-auto px-4 md:px-6 lg:px-8">
+    //     <h2 className="text-3xl font-bold text-center mb-12 text-gray-900 dark:text-white">Our Clients</h2>
 
-// Add default export for lazy loading
-export default OurClients;
+    //     <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-8 items-center justify-items-center">
+    //       {clients.map((client, index) => (
+    //         <div key={index} className="w-full flex items-center justify-center">
+    //           <div className="relative w-full h-24 md:h-32">
+    //             <Image src={client.logo || "/placeholder.svg"} alt={client.alt} fill />
+    //           </div>
+    //         </div>
+    //       ))}
+    //     </div>
+    //   </div>
+    // </section>
+  )
+}
