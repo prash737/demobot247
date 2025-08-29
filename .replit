@@ -5,9 +5,9 @@ run = "npm run dev"
 channel = "stable-24_05"
 
 [deployment]
-build = ["sh", "-c", "npm run build"]
+build = ["sh", "-c", "pnpm run build"]
 deploymentTarget = "gce"
-run = ["sh", "-c", "npm start"]
+run = ["sh", "-c", "node server.js"]
 
 [[deployment.rewrites]]
 from = "/*"
