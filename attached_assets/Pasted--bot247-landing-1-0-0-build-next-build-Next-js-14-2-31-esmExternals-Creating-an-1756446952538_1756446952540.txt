@@ -1,0 +1,73 @@
+
+> bot247-landing@1.0.0 build
+> next build
+
+
+  ▲ Next.js 14.2.31
+
+    · esmExternals
+
+   Creating an optimized production build ...
+
+<w> [webpack.cache.PackFileCacheStrategy] Skipped not serializable cache item 'Compilation/modules|javascript/auto|/home/runner/workspace/node_modules/.pnpm/next@14.2.31_@opentelemetry+api@1.9.0_react-dom@18.0.0_react@18.0.0__react@18.0.0/node_modules/next/dist/build/webpack/loaders/next-flight-client-module-loader.js!/home/runner/workspace/node_modules/.pnpm/next@14.2.31_@opentelemetry+api@1.9.0_react-dom@18.0.0_react@18.0.0__react@18.0.0/node_modules/next/dist/build/webpack/loaders/next-swc-loader.js??ruleSet[1].rules[16].oneOf[6].use[1]!/home/runner/workspace/node_modules/.pnpm/react-owl-carousel@2.3.3_jquery@3.7.1_react@18.0.0/node_modules/react-owl-carousel/umd/OwlCarousel.js|ssr': No serializer registered for ProvidedDependency
+<w> while serializing webpack/lib/cache/PackFileCacheStrategy.PackContentItems -> webpack/lib/NormalModule -> Array { 16 items } -> ProvidedDependency
+
+<w> [webpack.cache.PackFileCacheStrategy] Skipped not serializable cache item 'Compilation/modules|javascript/auto|/home/runner/workspace/node_modules/.pnpm/next@14.2.31_@opentelemetry+api@1.9.0_react-dom@18.0.0_react@18.0.0__react@18.0.0/node_modules/next/dist/build/webpack/loaders/next-flight-client-module-loader.js!/home/runner/workspace/node_modules/.pnpm/next@14.2.31_@opentelemetry+api@1.9.0_react-dom@18.0.0_react@18.0.0__react@18.0.0/node_modules/next/dist/build/webpack/loaders/next-swc-loader.js??ruleSet[1].rules[16].oneOf[5].use[1]!/home/runner/workspace/node_modules/.pnpm/react-owl-carousel@2.3.3_jquery@3.7.1_react@18.0.0/node_modules/react-owl-carousel/umd/OwlCarousel.js|app-pages-browser': No serializer registered for ProvidedDependency
+<w> while serializing webpack/lib/cache/PackFileCacheStrategy.PackContentItems -> webpack/lib/NormalModule -> Array { 16 items } -> ProvidedDependency
+
+ ✓ Compiled successfully
+
+   Skipping validation of types
+   Skipping linting
+
+   Collecting page data ...
+
+   Generating static pages (0/58) ...
+
+Error checking for table: {
+  code: '42P01',
+  details: null,
+  hint: null,
+  message: 'relation "public.pg_tables" does not exist'
+}
+
+   Generating static pages (14/58) 
+
+   Generating static pages (28/58) 
+
+   Generating static pages (43/58) 
+
+ReferenceError: window is not defined
+    at n (/home/runner/workspace/.next/server/app/page.js:1:142770)
+    at 39059 (/home/runner/workspace/.next/server/app/page.js:1:168028)
+    at t (/home/runner/workspace/.next/server/webpack-runtime.js:1:143)
+    at 54697 (/home/runner/workspace/.next/server/app/page.js:1:16514)
+    at Object.t [as require] (/home/runner/workspace/.next/server/webpack-runtime.js:1:143)
+    at require (/home/runner/workspace/node_modules/.pnpm/next@14.2.31_@opentelemetry+api@1.9.0_react-dom@18.0.0_react@18.0.0__react@18.0.0/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:16:18839)
+    at i (/home/runner/workspace/node_modules/.pnpm/next@14.2.31_@opentelemetry+api@1.9.0_react-dom@18.0.0_react@18.0.0__react@18.0.0/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:88296)
+    at /home/runner/workspace/node_modules/.pnpm/next@14.2.31_@opentelemetry+api@1.9.0_react-dom@18.0.0_react@18.0.0__react@18.0.0/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:98819
+    at /home/runner/workspace/node_modules/.pnpm/next@14.2.31_@opentelemetry+api@1.9.0_react-dom@18.0.0_react@18.0.0__react@18.0.0/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:98906
+    at t (/home/runner/workspace/node_modules/.pnpm/next@14.2.31_@opentelemetry+api@1.9.0_react-dom@18.0.0_react@18.0.0__react@18.0.0/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:99109) {
+  digest: '1142916530'
+}
+
+Error occurred prerendering page "/". Read more: https://nextjs.org/docs/messages/prerender-error
+
+ReferenceError: window is not defined
+    at n (/home/runner/workspace/.next/server/app/page.js:1:142770)
+    at 39059 (/home/runner/workspace/.next/server/app/page.js:1:168028)
+    at t (/home/runner/workspace/.next/server/webpack-runtime.js:1:143)
+    at 54697 (/home/runner/workspace/.next/server/app/page.js:1:16514)
+    at Object.t [as require] (/home/runner/workspace/.next/server/webpack-runtime.js:1:143)
+    at require (/home/runner/workspace/node_modules/.pnpm/next@14.2.31_@opentelemetry+api@1.9.0_react-dom@18.0.0_react@18.0.0__react@18.0.0/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:16:18839)
+    at i (/home/runner/workspace/node_modules/.pnpm/next@14.2.31_@opentelemetry+api@1.9.0_react-dom@18.0.0_react@18.0.0__react@18.0.0/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:88296)
+    at /home/runner/workspace/node_modules/.pnpm/next@14.2.31_@opentelemetry+api@1.9.0_react-dom@18.0.0_react@18.0.0__react@18.0.0/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:98819
+    at /home/runner/workspace/node_modules/.pnpm/next@14.2.31_@opentelemetry+api@1.9.0_react-dom@18.0.0_react@18.0.0__react@18.0.0/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:98906
+    at t (/home/runner/workspace/node_modules/.pnpm/next@14.2.31_@opentelemetry+api@1.9.0_react-dom@18.0.0_react@18.0.0__react@18.0.0/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:99109)
+
+ ✓ Generating static pages (58/58)
+
+
+> Export encountered errors on following paths:
+    /page: /
+
