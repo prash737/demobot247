@@ -16,8 +16,19 @@ import {
 import { Card, CardContent } from "@/components/ui/card"
 
 import React from 'react';
-import OwlCarousel from 'react-owl-carousel';
+import dynamic from 'next/dynamic';
 import { Carousel } from "@/components/ui/carousel";
+
+const OwlCarousel = dynamic(() => {
+  // Import CSS files on client side only
+  if (typeof window !== 'undefined') {
+    require('owl.carousel/dist/assets/owl.carousel.css');
+    require('owl.carousel/dist/assets/owl.theme.default.css');
+  }
+  return import('react-owl-carousel');
+}, {
+  ssr: false,
+});
 
 
 const features = [
@@ -112,8 +123,8 @@ export function Features() {
           <div className="col-lg-12">
             <OwlCarousel className='owl-theme' items={5} {...options}>
               {features.map((feature, index) => (
-                <div className="item">
-                  <div key={index} className="key_list">
+                <div key={index} className="item">
+                  <div className="key_list">
                     <div className="key_icon">
                       <feature.icon className="text-blue-500" strokeWidth={1} />
                     </div>

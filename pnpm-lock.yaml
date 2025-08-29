@@ -134,6 +134,9 @@ importers:
       nodemailer:
         specifier: latest
         version: 7.0.4
+      owl.carousel:
+        specifier: ^2.3.4
+        version: 2.3.4
       react:
         specifier: ^18
         version: 18.0.0

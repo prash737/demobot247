@@ -52,6 +52,7 @@
     "next-auth": "latest",
     "next-themes": "latest",
     "nodemailer": "latest",
+    "owl.carousel": "^2.3.4",
     "react": "^18",
     "react-chartjs-2": "latest",
     "react-dom": "^18",
