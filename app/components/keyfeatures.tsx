@@ -18,6 +18,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Check } from "lucide-react"
 
 import { useEffect } from "react";
+import { AIImageGenerator } from "./ai-image-generator";
 
 // Lazy load AOS only when needed
 const initAOS = async () => {
@@ -138,7 +139,11 @@ export function Keyfeatures() {
                     </div>
                   </div>
                   <div className="col-lg-6 col-sm-6" data-aos="fade-up">
-                    <div className="keyfetures_img"></div>
+                    <AIImageGenerator
+                      prompt={`Professional illustration of ${feature.title}: ${feature.description}`}
+                      featureTitle={feature.title}
+                      className="w-full h-[300px]"
+                    />
                   </div>
                 </div>
 
