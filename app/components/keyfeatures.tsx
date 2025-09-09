@@ -17,46 +17,24 @@ import { Building2, UserCog } from "lucide-react"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Check } from "lucide-react"
 
-// AOS-EFFECT-START
-import AOS from 'aos';
 import { useEffect } from "react";
-// AOS-EFFECT-END
 
-// const benefits = [
-//   {
-//     icon: Building2,
-//     title: "For Organizations",
-//     features: [
-//       "Reduced operational overhead",
-//       "Improved operational efficiency",
-//       "Optimized resource allocation",
-//       "Advanced data-driven decisions",
-//       "Increased global reach",
-//     ],
-//   },
-//   {
-//     icon: Users,
-//     title: "For Users/Clients",
-//     features: [
-//       "Instant responses 24/7",
-//       "Multilingual support",
-//       "Clear inquiry tracking",
-//       "Streamlined information access",
-//       "Faster response times",
-//     ],
-//   },
-//   {
-//     icon: UserCog,
-//     title: "For Operational Teams",
-//     features: [
-//       "Automated routine tasks",
-//       "Focus on high-value interactions",
-//       "Organized information management",
-//       "Real-time reporting",
-//       "Optimized workload",
-//     ],
-//   },
-// ]
+// Lazy load AOS only when needed
+const initAOS = async () => {
+  if (typeof window !== 'undefined') {
+    try {
+      const AOS = await import('aos');
+      await import('aos/dist/aos.css');
+      AOS.init({
+        duration: 800,
+        once: true, // Only animate once
+        disable: 'mobile' // Disable on mobile for better performance
+      });
+    } catch (error) {
+      console.warn('Failed to load AOS:', error);
+    }
+  }
+};
 
 const features = [
   {
@@ -123,14 +101,9 @@ const features = [
 
 export function Keyfeatures() {
 
-  // AOS-EFFECT-START
   useEffect(() => {
-    AOS.init({
-      duration: 1000, // animation duration
-      once: false,    // whether animation should happen only once
-    });
+    initAOS();
   }, []);
-  // AOS-EFFECT-END
 
   return (
 
@@ -209,5 +182,3 @@ export function Keyfeatures() {
 
   )
 }
-
-

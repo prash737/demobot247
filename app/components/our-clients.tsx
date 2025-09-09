@@ -4,14 +4,27 @@ import Image from "next/image"
 import dynamic from 'next/dynamic';
 
 const OwlCarousel = dynamic(() => {
-  // Import CSS files on client side only
-  if (typeof window !== 'undefined') {
-    require('owl.carousel/dist/assets/owl.carousel.css');
-    require('owl.carousel/dist/assets/owl.theme.default.css');
-  }
-  return import('react-owl-carousel');
+  return Promise.resolve().then(async () => {
+    // Only load on client side
+    if (typeof window !== 'undefined') {
+      try {
+        await Promise.all([
+          import('owl.carousel/dist/assets/owl.carousel.css'),
+          import('owl.carousel/dist/assets/owl.theme.default.css')
+        ]);
+        const module = await import('react-owl-carousel');
+        return module;
+      } catch (error) {
+        console.warn('Failed to load OwlCarousel:', error);
+        // Return a fallback component
+        return { default: ({ children }: any) => <div className="fallback-carousel">{children}</div> };
+      }
+    }
+    return { default: () => null };
+  });
 }, {
   ssr: false,
+  loading: () => <div className="h-32 bg-gray-100 animate-pulse rounded-lg" />
 });
 
 const clients = [

@@ -14,10 +14,12 @@ import { useScrollToHash } from "./hooks/useScrollToHash"
 // Dynamic imports for components that use OwlCarousel
 const Features = dynamic(() => import("@/app/components/features").then(mod => ({ default: mod.Features })), {
   ssr: false,
+  loading: () => <div className="h-64 bg-gray-50 animate-pulse rounded-lg" />
 })
 
 const OurClients = dynamic(() => import("@/app/components/our-clients").then(mod => ({ default: mod.OurClients })), {
   ssr: false,
+  loading: () => <div className="h-32 bg-gray-50 animate-pulse rounded-lg" />
 })
 
 export default function Home() {

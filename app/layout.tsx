@@ -4,18 +4,13 @@ import "./globals.css"
 import { ThemeProvider } from "@/app/components/theme-provider"
 import { NavbarWrapper } from "@/app/components/navbar-wrapper"
 import { ScrollToTop } from "@/app/utils/scroll-to-top"
-import 'bootstrap/dist/css/bootstrap.min.css';
 import { ChatbotThemeProvider } from "@/app/contexts/chatbot-theme-context"
 import type React from "react"
-import 'aos/dist/aos.css';
-// Dynamically import OwlCarousel to prevent SSR issues
-import('owl.carousel').then(module => {
-  // This block will only execute on the client-side
-  import('owl.carousel/dist/assets/owl.carousel.css');
-  import('owl.carousel/dist/assets/owl.theme.default.css');
-}).catch(error => {
-  console.error("Failed to load Owl Carousel CSS:", error);
-});
+
+// Dynamically import CSS only on client side
+if (typeof window !== 'undefined') {
+  import('aos/dist/aos.css');
+}
 import Script from "next/script"
 import { Nav } from "@/app/components/nav" // Ensure Nav is imported
 

@@ -35,6 +35,8 @@ export function Nav() {
   const router = useRouter()
   const { toast } = useToast()
   const isAdminRoute = pathname === "/admin/login" || pathname.startsWith("/admin")
+  const [userData, setUserData] = useState(null) // Added state for user data
+  const [isLoading, setIsLoading] = useState(true) // Added loading state
 
   useScrollToHash()
 
@@ -118,71 +120,44 @@ export function Nav() {
     }
   }, [isLoggingOut, isAdminRoute, router, toast])
 
-  const checkAuthStatus = useCallback(() => {
+  const fetchUserData = useCallback(async (email: string | null) => {
+    if (!email) {
+      setUserData(null)
+      return
+    }
     try {
-      const adminData = localStorage.getItem("adminData")
-      const userData = localStorage.getItem("userData")
+      const response = await fetch(`/api/user?email=${email}`)
+      if (response.ok) {
+        const data = await response.json()
+        setUserData(data)
+        console.log("Nav: User data fetched:", data)
+        if (data?.chatbotId) {
+          const { data: credData, error: credError } = await supabase
+            .from("credentials")
+            .select("chatbot_status")
+            .eq("chatbot_id", data.chatbotId)
+            .single()
 
-      // Reset states first
-      setIsLoggedIn(false)
-      setIsAdmin(false)
-      setUsername("")
-      setChatbotStatus("Inactive") // Reset chatbot status
-
-      if (adminData) {
-        try {
-          const parsedAdminData = JSON.parse(adminData)
-          console.log("Nav: Admin data found:", parsedAdminData) // Debug log
-          if (parsedAdminData && parsedAdminData.username) {
-            setIsLoggedIn(true)
-            setIsAdmin(true)
-            setUsername(parsedAdminData.username)
-            console.log("Nav: Admin authenticated:", parsedAdminData.username) // Debug log
+          if (credData && !credError) {
+            setChatbotStatus(credData.chatbot_status)
+            console.log("Nav: Chatbot Status fetched:", credData.chatbot_status)
+          } else {
+            console.error("Nav: Error fetching chatbot status:", credError)
+            setChatbotStatus("Inactive")
           }
-        } catch (error) {
-          console.error("Nav: Error parsing admin data:", error)
-          localStorage.removeItem("adminData")
+        } else {
+          console.log("Nav: User data found but no chatbotId. Chatbot status set to Inactive.")
+          setChatbotStatus("Inactive")
         }
-      } else if (userData) {
-        try {
-          const parsedUserData = JSON.parse(userData)
-          console.log("Nav: User data found:", parsedUserData) // Debug log
-          if (parsedUserData && parsedUserData.username) {
-            setIsLoggedIn(true)
-            setIsAdmin(false)
-            setUsername(parsedUserData.username)
-
-            if (parsedUserData.chatbotId) {
-              supabase
-                .from("credentials")
-                .select("chatbot_status")
-                .eq("chatbot_id", parsedUserData.chatbotId)
-                .single()
-                .then(({ data, error }) => {
-                  if (data && !error) {
-                    setChatbotStatus(data.chatbot_status)
-                    console.log("Nav: Chatbot Status fetched:", data.chatbot_status) // Log chatbot status
-                  } else {
-                    console.error("Nav: Error fetching chatbot status:", error)
-                    setChatbotStatus("Inactive") // Default to inactive on error
-                  }
-                })
-                .catch((error) => {
-                  console.error("Nav: Error fetching chatbot status (catch):", error)
-                  setChatbotStatus("Inactive") // Default to inactive on error
-                })
-            } else {
-              console.log("Nav: User data found but no chatbotId. Chatbot status set to Inactive.")
-              setChatbotStatus("Inactive")
-            }
-          }
-        } catch (error) {
-          console.error("Nav: Error parsing user data:", error)
-          localStorage.removeItem("userData")
-        }
+      } else {
+        console.error("Nav: Failed to fetch user data:", response.status)
+        setUserData(null)
+        setChatbotStatus("Inactive")
       }
     } catch (error) {
-      console.error("Nav: Error in checkAuthStatus (outer catch):", error)
+      console.error("Nav: Error fetching user data:", error)
+      setUserData(null)
+      setChatbotStatus("Inactive")
     }
   }, [])
 
@@ -196,26 +171,51 @@ export function Nav() {
 
   useEffect(() => {
     setMounted(true)
-    checkAuthStatus()
+    setIsLoading(true) // Start loading
 
-    // Check auth status periodically to ensure consistency
-    const interval = setInterval(checkAuthStatus, 1000)
+    // Debounce auth checks to prevent excessive API calls
+    const timeoutId = setTimeout(() => {
+      const checkAuth = async () => {
+        try {
+          const response = await fetch('/api/auth/session', {
+            credentials: 'include',
+          })
 
-    // Listen for storage changes
-    const handleStorageChange = (e: StorageEvent) => {
-      if (e.key === "adminData" || e.key === "userData") {
-        console.log("Nav: Storage event detected, re-checking auth status.")
-        checkAuthStatus()
+          if (response.ok) {
+            const session = await response.json()
+
+            if (session?.user) {
+              setIsLoggedIn(true)
+              setIsAdmin(session.user.role === 'admin')
+              setUsername(session.user.email)
+
+              // Only fetch user data if we don't have it or username changed
+              if (!userData || userData.username !== session.user.email) {
+                await fetchUserData(session.user.email)
+              }
+            } else {
+              setIsLoggedIn(false)
+              setIsAdmin(false)
+              setUsername(null)
+              setUserData(null)
+            }
+          }
+        } catch (error) {
+          console.error("Nav: Auth check failed:", error)
+          setIsLoggedIn(false)
+          setIsAdmin(false)
+          setUsername(null)
+          setUserData(null)
+        } finally {
+          setIsLoading(false) // Stop loading
+        }
       }
-    }
 
-    window.addEventListener("storage", handleStorageChange)
+      checkAuth()
+    }, 300) // 300ms debounce
 
-    return () => {
-      clearInterval(interval)
-      window.removeEventListener("storage", handleStorageChange)
-    }
-  }, [checkAuthStatus])
+    return () => clearTimeout(timeoutId)
+  }, [isAdminRoute, fetchUserData]) // Removed chatbotStatus and userData from dependencies
 
   // Logic to logout non-admin users if they land on an admin route
   useEffect(() => {

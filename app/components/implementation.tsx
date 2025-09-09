@@ -64,7 +64,7 @@ export function Implementation() {
       
       <div className="row text-center">
         {steps.map((step, index) => (
-        <div className="col-lg-6 col-sm-6 pt-5 pb-4 analytis_rightboder analytis_bottomboder">
+            <div key={index} className="col-lg-6 col-sm-6 pt-5 pb-4 analytis_rightboder analytis_bottomboder">
           <div className="row" style={{alignItems:"center"}}>
             <div className="col-lg-6">
               <img src="images/analytics_img.png" className="img-fluid"></img>
