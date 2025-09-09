@@ -37,6 +37,7 @@ export function Nav() {
   const isAdminRoute = pathname === "/admin/login" || pathname.startsWith("/admin")
   const [userData, setUserData] = useState(null) // Added state for user data
   const [isLoading, setIsLoading] = useState(true) // Added loading state
+  const [lastAuthCheck, setLastAuthCheck] = useState(0)
 
   useScrollToHash()
 
@@ -121,17 +122,21 @@ export function Nav() {
   }, [isLoggingOut, isAdminRoute, router, toast])
 
   const fetchUserData = useCallback(async (email: string | null) => {
-    if (!email) {
-      setUserData(null)
-      return
+    if (!email || userData?.username === email) {
+      return // Skip if already have data for this user
     }
+    
     try {
-      const response = await fetch(`/api/user?email=${email}`)
+      const response = await fetch(`/api/user?email=${email}`, {
+        cache: 'force-cache',
+        next: { revalidate: 300 } // Cache for 5 minutes
+      })
+      
       if (response.ok) {
         const data = await response.json()
         setUserData(data)
-        console.log("Nav: User data fetched:", data)
-        if (data?.chatbotId) {
+        
+        if (data?.chatbotId && chatbotStatus === "Inactive") {
           const { data: credData, error: credError } = await supabase
             .from("credentials")
             .select("chatbot_status")
@@ -140,17 +145,13 @@ export function Nav() {
 
           if (credData && !credError) {
             setChatbotStatus(credData.chatbot_status)
-            console.log("Nav: Chatbot Status fetched:", credData.chatbot_status)
           } else {
-            console.error("Nav: Error fetching chatbot status:", credError)
             setChatbotStatus("Inactive")
           }
-        } else {
-          console.log("Nav: User data found but no chatbotId. Chatbot status set to Inactive.")
+        } else if (!data?.chatbotId) {
           setChatbotStatus("Inactive")
         }
       } else {
-        console.error("Nav: Failed to fetch user data:", response.status)
         setUserData(null)
         setChatbotStatus("Inactive")
       }
@@ -159,7 +160,7 @@ export function Nav() {
       setUserData(null)
       setChatbotStatus("Inactive")
     }
-  }, [])
+  }, [userData?.username, chatbotStatus])
 
   useEffect(() => {
     const handleScroll = () => {
@@ -170,52 +171,78 @@ export function Nav() {
   }, [])
 
   useEffect(() => {
-    setMounted(true)
-    setIsLoading(true) // Start loading
+    if (!mounted) {
+      setMounted(true)
+    }
 
-    // Debounce auth checks to prevent excessive API calls
+    const now = Date.now()
+    
+    // Skip auth check if done recently (within 10 seconds)
+    if (now - lastAuthCheck < 10000 && isLoggedIn !== null) {
+      return
+    }
+
+    setIsLoading(true)
+    setLastAuthCheck(now)
+
     const timeoutId = setTimeout(() => {
       const checkAuth = async () => {
         try {
           const response = await fetch('/api/auth/session', {
             credentials: 'include',
+            cache: 'no-store'
           })
 
           if (response.ok) {
             const session = await response.json()
 
             if (session?.user) {
-              setIsLoggedIn(true)
-              setIsAdmin(session.user.role === 'admin')
-              setUsername(session.user.email)
-
-              // Only fetch user data if we don't have it or username changed
-              if (!userData || userData.username !== session.user.email) {
-                await fetchUserData(session.user.email)
+              const userEmail = session.user.email
+              const userRole = session.user.role
+              
+              // Only update state if values have changed
+              if (username !== userEmail) {
+                setUsername(userEmail)
+                setIsLoggedIn(true)
+                setIsAdmin(userRole === 'admin')
+                await fetchUserData(userEmail)
+              } else if (!isLoggedIn) {
+                setIsLoggedIn(true)
+                setIsAdmin(userRole === 'admin')
               }
             } else {
+              // Only clear state if currently logged in
+              if (isLoggedIn) {
+                setIsLoggedIn(false)
+                setIsAdmin(false)
+                setUsername("")
+                setUserData(null)
+                setChatbotStatus("Inactive")
+              }
+            }
+          } else {
+            // Only clear state if currently logged in
+            if (isLoggedIn) {
               setIsLoggedIn(false)
               setIsAdmin(false)
-              setUsername(null)
+              setUsername("")
               setUserData(null)
+              setChatbotStatus("Inactive")
             }
           }
         } catch (error) {
           console.error("Nav: Auth check failed:", error)
-          setIsLoggedIn(false)
-          setIsAdmin(false)
-          setUsername(null)
-          setUserData(null)
+          // Don't clear state on network errors
         } finally {
-          setIsLoading(false) // Stop loading
+          setIsLoading(false)
         }
       }
 
       checkAuth()
-    }, 300) // 300ms debounce
+    }, 300)
 
     return () => clearTimeout(timeoutId)
-  }, [isAdminRoute, fetchUserData]) // Removed chatbotStatus and userData from dependencies
+  }, [mounted, isAdminRoute, lastAuthCheck, isLoggedIn, username, fetchUserData])
 
   // Logic to logout non-admin users if they land on an admin route
   useEffect(() => {
@@ -281,12 +308,28 @@ export function Nav() {
     return () => document.removeEventListener("click", handleOutsideClick)
   }, [isMenuOpen])
 
-  if (!mounted) {
-    return null
+  if (!mounted || isLoading) {
+    return (
+      <nav className="main_nav_box">
+        <div className="container">
+          <div className="flex items-center justify-between h-20">
+            <div className="flex items-center">
+              <a href="/" className="flex-shrink-0">
+                <div className="logo">
+                  <img src="/images/logo.png" alt="Bot247 Logo" />
+                </div>
+              </a>
+            </div>
+            <div className="hidden md:flex items-center space-x-4">
+              <div className="w-6 h-6 border-2 border-blue-600 border-t-transparent rounded-full animate-spin"></div>
+            </div>
+          </div>
+        </div>
+      </nav>
+    )
   }
 
-  // Debug log for current state
-  console.log("Nav: Current auth state:", { isLoggedIn, isAdmin, username, isAdminRoute, chatbotStatus })
+  // Removed excessive debug logging for performance
 
   return (
     <nav data-navbar className={`main_nav_box ${isScrolled ? "main_nav_scroll" : ""}`}
