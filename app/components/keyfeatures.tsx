@@ -124,7 +124,7 @@ export function Keyfeatures() {
           <div className="col-lg-12">
 
             {features.map((feature, index) => (
-              <div className="keyfetures_list" key={index}>
+              <div className="keyfetures_list" key={`feature-${index}-${feature.title}`}>
                 <div className="row text-center" style={{ alignItems: "center" }}>
                   <div className="col-lg-6 col-sm-6" data-aos="fade-down">
                     <div className="keyfetures_icon"><feature.icon className="text-blue-500" strokeWidth={1} /></div>
@@ -139,14 +139,13 @@ export function Keyfeatures() {
                     </div>
                   </div>
                   <div className="col-lg-6 col-sm-6" data-aos="fade-up">
-                    <AIImageGenerator
-                      prompt={`Professional illustration of ${feature.title}: ${feature.description}`}
-                      featureTitle={feature.title}
-                      className="w-full h-[300px]"
-                    />
+                    <div className={`bg-gradient-to-br from-blue-500 to-purple-600 rounded-lg flex items-center justify-center w-full h-[300px]`}>
+                      <span className="text-white text-sm font-medium text-center px-4">
+                        {feature.title}
+                      </span>
+                    </div>
                   </div>
                 </div>
-
               </div>
             ))}
 

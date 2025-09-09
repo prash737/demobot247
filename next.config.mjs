@@ -1,6 +1,6 @@
-
 /** @type {import('next').NextConfig} */
 import webpack from 'webpack';
+import withBundleAnalyzer from '@next/bundle-analyzer'
 
 const nextConfig = {
   eslint: {
@@ -81,10 +81,11 @@ const nextConfig = {
         hostname: 'picsum.photos',
       }
     ],
+    formats: ['image/webp', 'image/avif'],
   },
   experimental: {
     esmExternals: "loose",
-    optimizePackageImports: ['lucide-react', '@radix-ui/react-icons'],
+    optimizePackageImports: ['lucide-react', '@radix-ui/react-icons', 'aos'],
     turbo: {
       rules: {
         '*.svg': {
@@ -113,4 +114,8 @@ const nextConfig = {
   },
 };
 
-export default nextConfig;
+const bundleAnalyzer = withBundleAnalyzer({
+  enabled: process.env.ANALYZE === 'true',
+})
+
+export default bundleAnalyzer(nextConfig)

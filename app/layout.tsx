@@ -15,16 +15,21 @@ import Script from "next/script"
 import { Nav } from "@/app/components/nav" // Ensure Nav is imported
 
 
+const inter = Inter({
+  subsets: ["latin"],
+  display: 'swap',
+  preload: true
+})
 
-const inter = Inter({ subsets: ["latin"] })
+export const metadata: Metadata = {
+  title: "Bot247 - AI Chatbots for Every Business Need",
+  description: "Empower your business with intelligent AI chatbots. Bot247 offers 24/7 customer support, lead generation, and seamless integration for enhanced customer engagement.",
+}
 
-export const metadata = {
-  title: "Bot247.live",
-  description: "AI-powered admission support system",
-  generator: "v0.dev",
-  icons: {
-    icon: "/images/default-avatar.png",
-  },
+export const viewport = {
+  width: 'device-width',
+  initialScale: 1,
+  maximumScale: 1,
 }
 
 export default function RootLayout({
