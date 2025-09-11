@@ -139,11 +139,21 @@ export function Keyfeatures() {
                     </div>
                   </div>
                   <div className="col-lg-6 col-sm-6" data-aos="fade-up">
-                    <div className={`bg-gradient-to-br from-blue-500 to-purple-600 rounded-lg flex items-center justify-center w-full h-[300px]`}>
-                      <span className="text-white text-sm font-medium text-center px-4">
-                        {feature.title}
-                      </span>
-                    </div>
+                    {feature.title === "24/7 Customer Support" ? (
+                      <div className="keyfetures_img">
+                        <img 
+                          src="/images/24-7-customer-support.png" 
+                          alt="24/7 Customer Support - AI chatbot providing round-the-clock assistance"
+                          className="w-full h-[300px] object-cover rounded-lg"
+                        />
+                      </div>
+                    ) : (
+                      <div className={`bg-gradient-to-br from-blue-500 to-purple-600 rounded-lg flex items-center justify-center w-full h-[300px]`}>
+                        <span className="text-white text-sm font-medium text-center px-4">
+                          {feature.title}
+                        </span>
+                      </div>
+                    )}
                   </div>
                 </div>
               </div>
