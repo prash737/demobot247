@@ -147,6 +147,14 @@ export function Keyfeatures() {
                           className="w-full h-[300px] object-cover rounded-lg"
                         />
                       </div>
+                    ) : feature.title === "Instant Responses" ? (
+                      <div className="keyfetures_img">
+                        <img 
+                          src="/images/instant-responses.png" 
+                          alt="Instant Responses - Get answers in under 3 seconds"
+                          className="w-full h-[300px] object-cover rounded-lg"
+                        />
+                      </div>
                     ) : (
                       <div className={`bg-gradient-to-br from-blue-500 to-purple-600 rounded-lg flex items-center justify-center w-full h-[300px]`}>
                         <span className="text-white text-sm font-medium text-center px-4">
