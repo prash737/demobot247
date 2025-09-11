@@ -139,29 +139,92 @@ export function Keyfeatures() {
                     </div>
                   </div>
                   <div className="col-lg-6 col-sm-6" data-aos="fade-up">
-                    {feature.title === "24/7 Customer Support" ? (
-                      <div className="keyfetures_img">
+                    <div className="keyfetures_img">
+                      {feature.title === "24/7 Customer Support" && (
                         <img 
                           src="/images/24-7-customer-support.png" 
                           alt="24/7 Customer Support - AI chatbot providing round-the-clock assistance"
                           className="w-full h-[300px] object-cover rounded-lg"
                         />
-                      </div>
-                    ) : feature.title === "Instant Responses" ? (
-                      <div className="keyfetures_img">
+                      )}
+                      {feature.title === "Instant Responses" && (
                         <img 
                           src="/images/instant-responses.png" 
                           alt="Instant Responses - Get answers in under 3 seconds"
                           className="w-full h-[300px] object-cover rounded-lg"
                         />
-                      </div>
-                    ) : (
-                      <div className={`bg-gradient-to-br from-blue-500 to-purple-600 rounded-lg flex items-center justify-center w-full h-[300px]`}>
-                        <span className="text-white text-sm font-medium text-center px-4">
-                          {feature.title}
-                        </span>
-                      </div>
-                    )}
+                      )}
+                      {feature.title === "Multilingual Support" && (
+                        <img 
+                          src="/images/multilingual-support.png" 
+                          alt="Multilingual Support - Global communication with multiple languages"
+                          className="w-full h-[300px] object-cover rounded-lg"
+                        />
+                      )}
+                      {feature.title === "Advanced Analytics" && (
+                        <img 
+                          src="/images/advanced-analytics.png" 
+                          alt="Advanced Analytics - Dashboard with charts and data visualization"
+                          className="w-full h-[300px] object-cover rounded-lg"
+                        />
+                      )}
+                      {feature.title === "Personalized Interaction" && (
+                        <img 
+                          src="/images/personalized-interaction.png" 
+                          alt="Personalized Interaction - AI adapting to user profiles"
+                          className="w-full h-[300px] object-cover rounded-lg"
+                        />
+                      )}
+                      {feature.title === "Lead Generation & Qualification" && (
+                        <img 
+                          src="/images/lead-generation.png" 
+                          alt="Lead Generation - Sales funnel and conversion process"
+                          className="w-full h-[300px] object-cover rounded-lg"
+                        />
+                      )}
+                      {feature.title === "No-Code/Low-Code Interface" && (
+                        <img 
+                          src="/images/no-code-interface.png" 
+                          alt="No-Code Interface - Drag and drop visual programming"
+                          className="w-full h-[300px] object-cover rounded-lg"
+                        />
+                      )}
+                      {feature.title === "Full Customization" && (
+                        <img 
+                          src="/images/full-customization.png" 
+                          alt="Full Customization - Design tools and branding options"
+                          className="w-full h-[300px] object-cover rounded-lg"
+                        />
+                      )}
+                      {feature.title === "Dynamic Knowledge Base" && (
+                        <img 
+                          src="/images/dynamic-knowledge-base.png" 
+                          alt="Dynamic Knowledge Base - AI processing documents and data"
+                          className="w-full h-[300px] object-cover rounded-lg"
+                        />
+                      )}
+                      {feature.title === "Seamless Embedding" && (
+                        <img 
+                          src="/images/seamless-embedding.png" 
+                          alt="Seamless Embedding - Website integration with chatbot widget"
+                          className="w-full h-[300px] object-cover rounded-lg"
+                        />
+                      )}
+                      {feature.title === "Usage Tracking & Billing" && (
+                        <img 
+                          src="/images/usage-tracking.png" 
+                          alt="Usage Tracking - Dashboard with billing metrics and analytics"
+                          className="w-full h-[300px] object-cover rounded-lg"
+                        />
+                      )}
+                      {feature.title === "Secure Authentication" && (
+                        <img 
+                          src="/images/secure-authentication.png" 
+                          alt="Secure Authentication - Security shields and authentication interface"
+                          className="w-full h-[300px] object-cover rounded-lg"
+                        />
+                      )}
+                    </div>
                   </div>
                 </div>
               </div>
