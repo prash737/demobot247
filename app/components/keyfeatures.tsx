@@ -140,90 +140,27 @@ export function Keyfeatures() {
                   </div>
                   <div className="col-lg-6 col-sm-6" data-aos="fade-up">
                     <div className="keyfetures_img">
-                      {feature.title === "24/7 Customer Support" && (
-                        <img 
-                          src="/images/24-7-customer-support.png" 
-                          alt="24/7 Customer Support - AI chatbot providing round-the-clock assistance"
-                          className="w-full h-[300px] object-cover rounded-lg"
-                        />
-                      )}
-                      {feature.title === "Instant Responses" && (
-                        <img 
-                          src="/images/instant-responses.png" 
-                          alt="Instant Responses - Get answers in under 3 seconds"
-                          className="w-full h-[300px] object-cover rounded-lg"
-                        />
-                      )}
-                      {feature.title === "Multilingual Support" && (
-                        <img 
-                          src="/images/multilingual-support.png" 
-                          alt="Multilingual Support - Global communication with multiple languages"
-                          className="w-full h-[300px] object-cover rounded-lg"
-                        />
-                      )}
-                      {feature.title === "Advanced Analytics" && (
-                        <img 
-                          src="/images/advanced-analytics.png" 
-                          alt="Advanced Analytics - Dashboard with charts and data visualization"
-                          className="w-full h-[300px] object-cover rounded-lg"
-                        />
-                      )}
-                      {feature.title === "Personalized Interaction" && (
-                        <img 
-                          src="/images/personalized-interaction.png" 
-                          alt="Personalized Interaction - AI adapting to user profiles"
-                          className="w-full h-[300px] object-cover rounded-lg"
-                        />
-                      )}
-                      {feature.title === "Lead Generation & Qualification" && (
-                        <img 
-                          src="/images/lead-generation.png" 
-                          alt="Lead Generation - Sales funnel and conversion process"
-                          className="w-full h-[300px] object-cover rounded-lg"
-                        />
-                      )}
-                      {feature.title === "No-Code/Low-Code Interface" && (
-                        <img 
-                          src="/images/no-code-interface.png" 
-                          alt="No-Code Interface - Drag and drop visual programming"
-                          className="w-full h-[300px] object-cover rounded-lg"
-                        />
-                      )}
-                      {feature.title === "Full Customization" && (
-                        <img 
-                          src="/images/full-customization.png" 
-                          alt="Full Customization - Design tools and branding options"
-                          className="w-full h-[300px] object-cover rounded-lg"
-                        />
-                      )}
-                      {feature.title === "Dynamic Knowledge Base" && (
-                        <img 
-                          src="/images/dynamic-knowledge-base.png" 
-                          alt="Dynamic Knowledge Base - AI processing documents and data"
-                          className="w-full h-[300px] object-cover rounded-lg"
-                        />
-                      )}
-                      {feature.title === "Seamless Embedding" && (
-                        <img 
-                          src="/images/seamless-embedding.png" 
-                          alt="Seamless Embedding - Website integration with chatbot widget"
-                          className="w-full h-[300px] object-cover rounded-lg"
-                        />
-                      )}
-                      {feature.title === "Usage Tracking & Billing" && (
-                        <img 
-                          src="/images/usage-tracking.png" 
-                          alt="Usage Tracking - Dashboard with billing metrics and analytics"
-                          className="w-full h-[300px] object-cover rounded-lg"
-                        />
-                      )}
-                      {feature.title === "Secure Authentication" && (
-                        <img 
-                          src="/images/secure-authentication.png" 
-                          alt="Secure Authentication - Security shields and authentication interface"
-                          className="w-full h-[300px] object-cover rounded-lg"
-                        />
-                      )}
+                      <img 
+                        src={`/images/${feature.title === "24/7 Customer Support" ? "24-7-customer-support.png" :
+                               feature.title === "Instant Responses" ? "instant-responses.png" :
+                               feature.title === "Multilingual Support" ? "multilingual-support.png" :
+                               feature.title === "Advanced Analytics" ? "advanced-analytics.png" :
+                               feature.title === "Personalized Interaction" ? "personalized-interaction.png" :
+                               feature.title === "Lead Generation & Qualification" ? "lead-generation.png" :
+                               feature.title === "Full Customization" ? "full-customization.png" :
+                               feature.title === "No-Code/Low-Code Interface" ? "no-code-interface.png" : // Corrected from "No-Code Interface" to match the feature title
+                               feature.title === "Dynamic Knowledge Base" ? "dynamic-knowledge-base.png" :
+                               feature.title === "Seamless Embedding" ? "seamless-embedding.png" :
+                               feature.title === "Usage Tracking & Billing" ? "usage-tracking.png" :
+                               feature.title === "Secure Authentication" ? "secure-authentication.png" :
+                               "placeholder.jpg"}`}
+                        alt={`${feature.title} - ${feature.description}`}
+                        className="w-full h-[300px] object-cover rounded-lg"
+                        onError={(e) => {
+                          console.log(`Failed to load image for: ${feature.title}`);
+                          e.currentTarget.src = "/images/placeholder.jpg";
+                        }}
+                      />
                     </div>
                   </div>
                 </div>
