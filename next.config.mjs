@@ -3,6 +3,11 @@ import webpack from 'webpack';
 import withBundleAnalyzer from '@next/bundle-analyzer'
 
 const nextConfig = {
+  env: {
+    SUPABASE_URL: process.env.SUPABASE_URL,
+    SUPABASE_ANON_KEY: process.env.SUPABASE_ANON_KEY,
+    SUPABASE_SERVICE_ROLE_KEY: process.env.SUPABASE_SERVICE_ROLE_KEY
+  },
   eslint: {
     ignoreDuringBuilds: true,
   },
