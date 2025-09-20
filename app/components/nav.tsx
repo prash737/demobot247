@@ -173,76 +173,57 @@ export function Nav() {
   useEffect(() => {
     if (!mounted) {
       setMounted(true)
-    }
-
-    const now = Date.now()
-    
-    // Skip auth check if done recently (within 10 seconds)
-    if (now - lastAuthCheck < 10000 && isLoggedIn !== null) {
       return
     }
 
-    setIsLoading(true)
-    setLastAuthCheck(now)
-
-    const timeoutId = setTimeout(() => {
-      const checkAuth = async () => {
-        try {
-          const response = await fetch('/api/auth/session', {
-            credentials: 'include',
-            cache: 'no-store'
-          })
-
-          if (response.ok) {
-            const session = await response.json()
-
-            if (session?.user) {
-              const userEmail = session.user.email
-              const userRole = session.user.role
-              
-              // Only update state if values have changed
-              if (username !== userEmail) {
-                setUsername(userEmail)
-                setIsLoggedIn(true)
-                setIsAdmin(userRole === 'admin')
-                await fetchUserData(userEmail)
-              } else if (!isLoggedIn) {
-                setIsLoggedIn(true)
-                setIsAdmin(userRole === 'admin')
-              }
-            } else {
-              // Only clear state if currently logged in
-              if (isLoggedIn) {
-                setIsLoggedIn(false)
-                setIsAdmin(false)
-                setUsername("")
-                setUserData(null)
-                setChatbotStatus("Inactive")
-              }
-            }
-          } else {
-            // Only clear state if currently logged in
-            if (isLoggedIn) {
-              setIsLoggedIn(false)
-              setIsAdmin(false)
-              setUsername("")
-              setUserData(null)
-              setChatbotStatus("Inactive")
-            }
-          }
-        } catch (error) {
-          console.error("Nav: Auth check failed:", error)
-          // Don't clear state on network errors
-        } finally {
+    const checkAuth = async () => {
+      try {
+        // Check localStorage first for immediate response
+        const userData = localStorage.getItem("userData")
+        const adminData = localStorage.getItem("adminData")
+        
+        if (userData || adminData) {
+          const data = userData ? JSON.parse(userData) : JSON.parse(adminData)
+          setIsLoggedIn(true)
+          setUsername(data.username || data.email || "")
+          setIsAdmin(!!adminData)
           setIsLoading(false)
+          return
         }
+
+        // If no localStorage data, user is not logged in
+        setIsLoggedIn(false)
+        setIsAdmin(false)
+        setUsername("")
+        setUserData(null)
+        setChatbotStatus("Inactive")
+        setIsLoading(false)
+      } catch (error) {
+        console.error("Nav: Auth check failed:", error)
+        setIsLoggedIn(false)
+        setIsAdmin(false)
+        setUsername("")
+        setUserData(null)
+        setChatbotStatus("Inactive")
+        setIsLoading(false)
       }
+    }
 
+    checkAuth()
+
+    // Listen for storage changes
+    const handleStorageChange = () => {
       checkAuth()
-    }, 300)
+    }
 
-    return () => clearTimeout(timeoutId)
-  }, [mounted, isAdminRoute, lastAuthCheck, isLoggedIn, username, fetchUserData])
+    window.addEventListener('storage', handleStorageChange)
+    window.addEventListener('userLoggedIn', handleStorageChange)
+
+    return () => {
+      window.removeEventListener('storage', handleStorageChange)
+      window.removeEventListener('userLoggedIn', handleStorageChange)
+    }
+  }, [mounted])
 
   // Logic to logout non-admin users if they land on an admin route
   useEffect(() => {
@@ -308,7 +289,7 @@ export function Nav() {
     return () => document.removeEventListener("click", handleOutsideClick)
   }, [isMenuOpen])
 
-  if (!mounted || isLoading) {
+  if (!mounted) {
     return (
       <nav className="main_nav_box">
         <div className="container">
@@ -321,7 +302,10 @@ export function Nav() {
               </a>
             </div>
             <div className="hidden md:flex items-center space-x-4">
-              <div className="w-6 h-6 border-2 border-blue-600 border-t-transparent rounded-full animate-spin"></div>
+              <div className="top_two_btn">
+                <Link href="/login" className="top_login_btn">Log in</Link>
+                <Link href="/signup">Sign up</Link>
+              </div>
             </div>
           </div>
         </div>
