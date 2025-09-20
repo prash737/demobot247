@@ -79,7 +79,7 @@ export function Benefits() {
                   <div className="col-lg-12">
                     <ul className="p-0">
                       {benefit.features.map((feature, featureIndex) => (
-                        <li key={`feature-${featureIndex}-${feature.title}`} className="flex items-center gap-2">
+                        <li key={featureIndex} className="flex items-center gap-2">
                           <Check className="w-5 h-5 text-green-500 dark:text-green-400 flex-shrink-0" />
                           <span className="text-gray-700 dark:text-gray-300">{feature}</span>
                         </li>
@@ -128,3 +128,4 @@ export function Benefits() {
     // </section>
   )
 }
+
