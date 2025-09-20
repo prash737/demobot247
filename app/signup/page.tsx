@@ -34,7 +34,7 @@ const roleOptions = [
 
 const countryCodes = [
   { code: "+1", country: "USA/Canada", minLen: 10, maxLen: 10 },
-  { code: "+1", country: "Trinidad & Tobago", minLen: 7, maxLen: 7 }, // Specific entry for T&T
+  { code: "+1-tt", country: "Trinidad & Tobago", minLen: 7, maxLen: 7 }, // Specific entry for T&T
   { code: "+7", country: "Russia", minLen: 10, maxLen: 10 },
   { code: "+20", country: "Egypt", minLen: 10, maxLen: 10 },
   { code: "+27", country: "South Africa", minLen: 9, maxLen: 9 },
@@ -386,7 +386,7 @@ export default function SignUpPage() {
       return { isValid: false, message: "Phone number is required" }
     }
 
-    const selectedCountry = countryCodes.find((c) => c.code === code)
+    const selectedCountry = countryCodes.find((c) => c.code === code || c.code.replace('-tt', '') === code)
     if (!selectedCountry) {
       return { isValid: false, message: "Invalid country code selected" }
     }
@@ -783,9 +783,9 @@ export default function SignUpPage() {
                           <SelectValue placeholder="Select country code" />
                         </SelectTrigger>
                         <SelectContent className="max-h-60 overflow-y-auto">
-                          {countryCodes.map((option) => (
-                            <SelectItem key={option.code} value={option.code}>
-                              {option.code} ({option.country})
+                          {countryCodes.map((option, index) => (
+                            <SelectItem key={`${option.code}-${index}`} value={option.code}>
+                              {option.code.replace('-tt', '')} ({option.country})
                             </SelectItem>
                           ))}
                         </SelectContent>
@@ -803,7 +803,7 @@ export default function SignUpPage() {
                           const value = e.target.value
                           // Only allow digits
                           const filteredValue = value.replace(/\D/g, "")
-                          const selectedCountry = countryCodes.find((c) => c.code === countryCode)
+                          const selectedCountry = countryCodes.find((c) => c.code === countryCode || c.code.replace('-tt', '') === countryCode)
                           if (selectedCountry && filteredValue.length > selectedCountry.maxLen) {
                             setPhoneNumber(filteredValue.slice(0, selectedCountry.maxLen))
                           } else {
