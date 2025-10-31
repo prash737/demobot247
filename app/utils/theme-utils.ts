@@ -1,3 +1,5 @@
+"use client"
+
 import { createClient } from "@supabase/supabase-js"
 
 // Initialize Supabase client
@@ -6,10 +8,21 @@ const supabase = createClient(
   "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InpzaXZ0eXBncnJjdHR6aHRmanNmIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MzgzMzU5NTUsImV4cCI6MjA1MzkxMTk1NX0.3cAMZ4LPTqgIc8z6D8LRkbZvEhP_ffI3Wka0-QDSIys",
 )
 
-// Create a global cache for theme fetches
-if (typeof window !== "undefined") {
-  window.themeAlreadyFetched = window.themeAlreadyFetched || {}
-  window.themeFetchInProgress = window.themeFetchInProgress || {}
+// Helper to safely access window properties
+const getWindowCache = () => {
+  if (typeof window === "undefined") return { themeAlreadyFetched: {}, themeFetchInProgress: {} }
+
+  if (!window.themeAlreadyFetched) {
+    window.themeAlreadyFetched = {}
+  }
+  if (!window.themeFetchInProgress) {
+    window.themeFetchInProgress = {}
+  }
+
+  return {
+    themeAlreadyFetched: window.themeAlreadyFetched,
+    themeFetchInProgress: window.themeFetchInProgress
+  }
 }
 
 // Debounce function to prevent rapid consecutive calls
@@ -82,16 +95,16 @@ export async function checkForExistingAvatar(chatbotId: string) {
 // Update the fetchThemeSettings function to include response_tone and response_length
 export async function fetchThemeSettings(chatbotId: string) {
   try {
+    const cache = getWindowCache()
+
     // Check if a fetch is already in progress for this chatbot ID
-    if (typeof window !== "undefined" && window.themeFetchInProgress && window.themeFetchInProgress[chatbotId]) {
+    if (cache.themeFetchInProgress[chatbotId]) {
       console.log(`Theme fetch already in progress for ${chatbotId}, skipping duplicate request`)
       return null
     }
 
     // Mark this fetch as in progress
-    if (typeof window !== "undefined" && window.themeFetchInProgress) {
-      window.themeFetchInProgress[chatbotId] = true
-    }
+    cache.themeFetchInProgress[chatbotId] = true
 
     // Prevent duplicate fetches for the same chatbotId within a short time period
     const now = Date.now()
@@ -101,7 +114,7 @@ export async function fetchThemeSettings(chatbotId: string) {
     }
 
     // Check if we've already fetched this theme
-    if (typeof window !== "undefined" && window.themeAlreadyFetched && window.themeAlreadyFetched[chatbotId]) {
+    if (cache.themeAlreadyFetched[chatbotId]) {
       console.log(`Theme for chatbot ID ${chatbotId} already fetched, using cached data`)
       return null
     }
@@ -122,9 +135,7 @@ export async function fetchThemeSettings(chatbotId: string) {
       console.error("Error fetching theme settings:", error)
 
       // Mark fetch as complete
-      if (typeof window !== "undefined" && window.themeFetchInProgress) {
-        window.themeFetchInProgress[chatbotId] = false
-      }
+      cache.themeFetchInProgress[chatbotId] = false
 
       return null
     }
@@ -144,14 +155,10 @@ export async function fetchThemeSettings(chatbotId: string) {
       }
 
       // Mark this theme as fetched
-      if (typeof window !== "undefined" && window.themeAlreadyFetched) {
-        window.themeAlreadyFetched[chatbotId] = true
-      }
+      cache.themeAlreadyFetched[chatbotId] = true
 
       // Mark fetch as complete
-      if (typeof window !== "undefined" && window.themeFetchInProgress) {
-        window.themeFetchInProgress[chatbotId] = false
-      }
+      cache.themeFetchInProgress[chatbotId] = false
 
       // Return theme settings from database, using defaults for NULL values
       return {
@@ -173,23 +180,17 @@ export async function fetchThemeSettings(chatbotId: string) {
     console.log("No theme data found for chatbot ID:", chatbotId)
 
     // Mark this theme as fetched even though no data was found
-    if (typeof window !== "undefined" && window.themeAlreadyFetched) {
-      window.themeAlreadyFetched[chatbotId] = true
-    }
+    cache.themeAlreadyFetched[chatbotId] = true
 
     // Mark fetch as complete
-    if (typeof window !== "undefined" && window.themeFetchInProgress) {
-      window.themeFetchInProgress[chatbotId] = false
-    }
+    cache.themeFetchInProgress[chatbotId] = false
 
     return null
   } catch (error) {
     console.error("Error in fetchThemeSettings:", error)
 
     // Mark fetch as complete
-    if (typeof window !== "undefined" && window.themeFetchInProgress) {
-      window.themeFetchInProgress[chatbotId] = false
-    }
+    cache.themeFetchInProgress[chatbotId] = false
 
     return null
   }

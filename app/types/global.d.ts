@@ -4,6 +4,7 @@ interface Window {
   themeFetchInProgress?: Record<string, boolean>
   chatbotDataCache?: Record<string, any>
   chatbotDataFetchInProgress?: Record<string, boolean>
+  Razorpay?: any
 }
 
 interface UserData {

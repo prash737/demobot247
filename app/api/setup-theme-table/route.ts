@@ -16,8 +16,8 @@ const supabase = (supabaseUrl && supabaseServiceKey) ?
 
 export async function GET() {
   try {
-    // Return early if no Supabase client (build time)
-    if (!supabase) {
+    // Return early if no Supabase client or during build time
+    if (!supabase || !process.env.NEXT_PUBLIC_SUPABASE_URL) {
       return NextResponse.json({ 
         message: "Database operations not available during build time" 
       }, { status: 200 })
