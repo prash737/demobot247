@@ -43,13 +43,15 @@ export function OptimizedImage({
         width={width}
         height={height}
         priority={priority}
+        loading={priority ? "eager" : "lazy"}
+        quality={75}
         className={`transition-opacity duration-300 ${isLoading ? 'opacity-0' : 'opacity-100'}`}
         onLoad={() => setIsLoading(false)}
         onError={() => {
           setError(true)
           setIsLoading(false)
         }}
-        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+        sizes="(max-width: 580px) 100vw, (max-width: 768px) 90vw, (max-width: 1200px) 50vw, 33vw"
       />
     </div>
   )

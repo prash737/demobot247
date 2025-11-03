@@ -9,6 +9,14 @@ const config: Config = {
     "*.{js,ts,jsx,tsx,mdx}",
   ],
   theme: {
+    screens: {
+      'xs': '375px',
+      'sm': '580px',
+      'md': '768px',
+      'lg': '992px',
+      'xl': '1200px',
+      '2xl': '1536px',
+    },
     extend: {
       colors: {
         background: "hsl(var(--background))",
