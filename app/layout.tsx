@@ -6,11 +6,6 @@ import { NavbarWrapper } from "@/app/components/navbar-wrapper"
 import { ScrollToTop } from "@/app/utils/scroll-to-top"
 import { ChatbotThemeProvider } from "@/app/contexts/chatbot-theme-context"
 import type React from "react"
-
-// Dynamically import CSS only on client side
-if (typeof window !== 'undefined') {
-  import('aos/dist/aos.css');
-}
 import Script from "next/script"
 import { Nav } from "@/app/components/nav" // Ensure Nav is imported
 
@@ -42,7 +37,22 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
-        {/* Bootstrap CSS from CDN to resolve MIME type error */}
+        {/* Preload critical fonts */}
+        <link
+          rel="preload"
+          href="/fonts/DMSans-VariableFont_opsz,wght.ttf"
+          as="font"
+          type="font/ttf"
+          crossOrigin="anonymous"
+        />
+        <link
+          rel="preload"
+          href="/fonts/DMSerifDisplay-Regular.ttf"
+          as="font"
+          type="font/ttf"
+          crossOrigin="anonymous"
+        />
+        {/* Bootstrap CSS from CDN */}
         <link
           href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
           rel="stylesheet"

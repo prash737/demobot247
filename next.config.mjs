@@ -20,9 +20,16 @@ const nextConfig = {
   optimizeFonts: true,
   output: 'standalone',
   trailingSlash: false,
+  reactStrictMode: true,
   // Performance optimizations
   compiler: {
     removeConsole: process.env.NODE_ENV === 'production',
+  },
+  // Reduce bundle size
+  modularizeImports: {
+    'lucide-react': {
+      transform: 'lucide-react/dist/esm/icons/{{member}}',
+    },
   },
   // Enable caching headers
   async headers() {
@@ -101,12 +108,6 @@ const nextConfig = {
     }
   },
   webpack: (config, { isServer }) => {
-    config.plugins.push(
-      new webpack.ProvidePlugin({
-        $: 'jquery',
-        jQuery: 'jquery',
-        'window.jQuery': 'jquery',
-      }));
     if (!isServer) {
       config.resolve.fallback = {
         ...config.resolve.fallback,

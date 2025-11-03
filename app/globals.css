@@ -155,17 +155,17 @@ body {
 @font-face {
   font-family: Roboto-Bold;
   src: url("/fonts/Roboto-Bold.ttf");
-  font-display: swap;
+  font-display: optional;
 }
 @font-face {
   font-family: Roboto-Light;
   src: url("/fonts/Roboto-Light.ttf");
-  font-display: swap;
+  font-display: optional;
 }
 @font-face {
   font-family: Metropolis-Thin;
   src: url("/fonts/Metropolis-Thin.otf");
-  font-display: swap;
+  font-display: optional;
 }
 body {
   font-family: DMSans !important;
